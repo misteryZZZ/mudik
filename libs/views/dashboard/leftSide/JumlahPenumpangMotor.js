@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { getPassenger } from '../../../models/passengerModel'
+import { getPassengerCount } from '../../../models/passengerModel'
 
 const JumlahPenumpangMotor = () => {
   const [passenger, setPassenger] = useState({
@@ -11,9 +11,9 @@ const JumlahPenumpangMotor = () => {
 
   useEffect(() => {
     (async () => {
-      const man = await getPassenger('man')
-      const woman = await getPassenger('woman')
-      const vehicle = await getPassenger('vehicle')
+      const man = await getPassengerCount('man')
+      const woman = await getPassengerCount('woman')
+      const vehicle = await getPassengerCount('vehicle')
       await setPassenger({ man, woman, vehicle })
     })()
   },[])

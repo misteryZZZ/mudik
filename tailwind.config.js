@@ -13,7 +13,10 @@ module.exports = {
       colors: {
         maincolor: '#00807f',
         secondary: '#0278d0',
-        orange: '#FE852A',
+        orange: {
+          DEFAULT: '#FE852A',
+          dark: '#c57336'
+        }
       }
     },
   },

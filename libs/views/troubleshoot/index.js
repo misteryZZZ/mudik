@@ -3,7 +3,9 @@ import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
 
+import Layout from '../layout'
 import Header from '../layout/header'
+
 import { SortDropdown } from '../../components/SortDropdown'
 import { Search } from '../../components/input'
 
@@ -12,22 +14,24 @@ import SectionTroubleshoot from './SectionTroubleshoot'
 const Troubleshoot = () => {
   const router = useRouter();
 
-  const [logedIn, setLogedIn] = useState(false);
+  const [user, setUser] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const logedInStatus = await isLogedin()
-      await setLogedIn(logedInStatus);
-      if (!logedInStatus) {
+      const dataUser = await isLogedin()
+      await setUser(dataUser);
+      if (!dataUser) {
         router.push('/login');
       }
     })()
   },[])
 
-  if (!logedIn) return false;
+  if (!user) return false;
   return (
-    <>
+    <Layout menuActive="troubleshoot"
+    title="Troubleshoot | Mudik Gratis DKI Jakarta 2022">
       <Header title="Troubleshoot" hasMoreButtons
+      user={user}
       additionalComponent={
         <>
           {/*<ButtonSort className="text-black mr-4" text="Semua rute" medium />*/}
@@ -38,7 +42,7 @@ const Troubleshoot = () => {
       <main className="px-4 py-2 grow">
         <SectionTroubleshoot />
       </main>
-    </>
+    </Layout>
   );
 }
 

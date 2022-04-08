@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Table from '../../components/table';
 
-import dataManifest from '../../models/manifest-dummy.json'
+// import dataManifest from '../../models/manifest-dummy.json'
+import { getPassengerList } from '../../models/passengerModel';
 
-const SectionTable = () => {
+const SectionTable = ({ filter }) => {
+  const [manifest, setManifest] = useState([])
 
-  const data = React.useMemo(() => dataManifest)
+  useEffect(() => {
+    (async () => {
+      const dataManifest = await getPassengerList();
+      setManifest(dataManifest)
+    })()
+  },[])
+
+  const data = React.useMemo(() => manifest)
 
   const columns = React.useMemo(() => [
       {
@@ -15,27 +24,27 @@ const SectionTable = () => {
       },
       {
         Header: 'Kota Tujuan',
-        accessor: 'kota_tujuan'
+        accessor: 'detail_bus.name'
       },
       {
         Header: 'No Bus & Truk',
-        accessor: 'no_kendaraan'
+        accessor: (row) => `${row.detail_bus ? row.detail_bus.code : '-'} dan ${row.detail_truck ? row.detail_truck.code : '-'}`
       },
       {
         Header: 'Nama Penumpang',
-        accessor: 'nama_penumpang'
+        accessor: 'detail_passenger.name'
       },
       {
         Header: 'Jenis Kelamin',
-        accessor: 'jenis_kelamin'
+        accessor: ({ detail_passenger: {gender} }) => `${(gender === 'p') ? 'Perempuan' : 'Laki-laki'}`
       },
       {
         Header: 'Email',
-        accessor: 'email'
+        accessor: 'detail_passenger.email'
       },
       {
         Header: 'No Telepon',
-        accessor: 'telepon'
+        accessor: 'detail_passenger.phone'
       },
       {
         Header: 'Barang Bawaan',
@@ -47,7 +56,7 @@ const SectionTable = () => {
       },
       {
         Header: 'Vaksin',
-        accessor: 'vaksin'
+        accessor: (row) => `Dosis ${row.detail_passenger.vaksin}`
       },
       {
         Header: 'Hasil Tes',

@@ -12,7 +12,7 @@ const Table = ({ columns, data }) => {
   } = useTable({ columns, data })
 
   return (
-    <div className="border border-black rounded-xl p-4 w-max min-w-full h-full">
+    <div className="border border-black rounded-xl p-4 w-max min-w-full h-full mr-px">
       <table {...getTableProps}
         className="w-full">
         <thead className="border-b border-black">
@@ -36,7 +36,7 @@ const Table = ({ columns, data }) => {
                 {row.cells.map((cell,i) => (
                   <td {...cell.getCellProps}
                     key={i}
-                    className="text-center py-3">
+                    className="text-center px-1 py-3">
                     {cell.render("Cell")}
                   </td>
                 ))}

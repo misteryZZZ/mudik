@@ -3,42 +3,46 @@ import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
 
+import Layout from '../layout'
+import Header from '../layout/header'
+
 import SectionTable from './SectionTable'
 import { SortDropdown } from '../../components/SortDropdown'
 import { Search } from '../../components/input'
 
-import Header from '../layout/header'
-
 const Manifest = () => {
   const router = useRouter();
 
-  const [logedIn, setLogedIn] = useState(false);
+  const [user, setUser] = useState(false);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     (async () => {
       const logedInStatus = await isLogedin()
-      await setLogedIn(logedInStatus);
+      await setUser(logedInStatus);
       if (!logedInStatus) {
         router.push('/login');
       }
     })()
   },[])
 
-  if (!logedIn) return false;
+  if (!user) return false;
   return(
-    <>
+    <Layout 
+    title="Data Manifest | Mudik Gratis DKI Jakarta 2022"
+    menuActive="manifest">
       <Header title="Data Manifest" hasMoreButtons
+      user={user}
       additionalComponent={
         <>
-          {/*<ButtonSort className="text-black mr-4" text="Kota tujuan" medium />*/}
           <SortDropdown placeholder="Kota tujuan" options={['Cilacap', 'Yogyakarta', 'Malang']} />
-          <Search medium />
+          <Search medium className="mr-2" onChange={() => setFilter(e.target.value)} />
         </>
       } />
       <main className="px-4 py-2">
-        <SectionTable />
+        <SectionTable filter={filter} />
       </main>
-    </>
+    </Layout>
   );
 }
 

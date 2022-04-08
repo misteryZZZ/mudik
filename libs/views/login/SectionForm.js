@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-import axios from 'axios'
+import { doLogin } from '../../models/userModel'
 
 import { InputWithLabel } from '../../components/input'
 import { Button } from '../../components/button'
@@ -11,30 +11,21 @@ export const SectionForm = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
-  /**
-   * menghandle ketika button login di klik,
-   *
-   * @param      {event}  e         event ketika button di klik
-   * @param      {text}   email     The email
-   * @param      {text}   password  The password
-   */
-  const handleSubmit = (e, email, password) => {
+  const handleSubmit = async (e, email, password) => {
     e.preventDefault();
+    setLoading(true);
 
-    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/login`,{
-      email: email,
-      password: password
-    })
-    .then(response => {
-      if (response.data.success) {
-        localStorage.setItem("token", response.data.data.access_token);
-        router.push('/')
-      }
-      else {
-        alert('gagal melakukan login')
-      }
-    })
+    const response = await doLogin(email, password);
+    console.log(response);
+    if (response && response.success) {
+      localStorage.setItem("token", response.data.access_token);
+      router.push('/')
+    } else {
+      // jika login gagal
+    }
+    setLoading(false);
   }
 
   return (
@@ -47,12 +38,12 @@ export const SectionForm = () => {
         <form className="min-w-[400px] px-8"
         onSubmit={e => handleSubmit(e, email, password)}>
           <h1 className="text-3xl font-semibold text-white mb-12">Login</h1>
-          <InputWithLabel label="Email" onChange={e => setEmail(e.target.value)} />
-          <InputWithLabel label="Password" type="password" onChange={e => setPassword(e.target.value)} />
+          <InputWithLabel label="Email" name="email" onChange={e => setEmail(e.target.value)} />
+          <InputWithLabel label="Password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
           <a href="#">
             <p className="text-right text-white text-sm w-full mb-6">Lupa pasword?</p>
           </a>
-          <Button text="Login" type="submit" />
+          <Button text="Login" type="submit" isLoading={isLoading}/>
         </form>
       </div>
     </div>
