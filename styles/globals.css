@@ -1,16 +1,44 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
-* {
-  box-sizing: border-box;
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;*/
+
+@layer utilities {
+  .stepper {
+    @apply flex;
+  }
+
+  .stepper {
+    @apply grow px-4;
+  }
+  .stepper .stepper-item {
+    @apply h-[20px] w-full flex justify-end items-center;
+  }
+  .stepper .stepper-item:first-child {
+    @apply w-[20px];
+  }
+  .stepper .stepper-item:before {
+    @apply content-[''] block w-[40px] h-[4px] bg-orange/30 grow;
+  }
+  .stepper .stepper-item:first-child:before {
+    @apply hidden;
+  }
+  .stepper .stepper-item.active:before {
+    @apply bg-orange;
+  }
+  .stepper .stepper-item:after {
+    @apply content-[''] block w-[20px] h-[20px] rounded-full border-[4px] border-orange/30 bg-white relative -mx-1;
+  }
+  .stepper .stepper-item.active:after {
+    @apply border-orange;
+  }
+
+  .menu li.active > div:after {
+    @apply content-[''] block absolute right-0 h-full w-1 bg-yellow-500 h-full;
+  }
 }

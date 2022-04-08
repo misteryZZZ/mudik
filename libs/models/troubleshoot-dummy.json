@@ -1,0 +1,38 @@
+[
+  {
+    "no_kendaraan": "cilacap 01",
+    "tujuan": "Cilacap",
+    "nama_lo": "Suhadi",
+    "jumlah_penumpang": {
+      "laki_laki": 20,
+      "perempuan": 39
+    },
+    "status": "mogok di jagorawi KM 02",
+    "tanggal": "25-04-2022",
+    "jam": "10.00"
+  },
+  {
+    "no_kendaraan": "Yogyakarta 02",
+    "tujuan": "Yogyakarta",
+    "nama_lo": "Sunandi",
+    "jumlah_penumpang": {
+      "laki_laki": 21,
+      "perempuan": 22
+    },
+    "status": "mogok di jagorawi KM 02",
+    "tanggal": "25-04-2022",
+    "jam": "08.00"
+  },
+  {
+    "no_kendaraan": "Lampung 03",
+    "tujuan": "Lampung",
+    "nama_lo": "Suharti",
+    "jumlah_penumpang": {
+      "laki_laki": 31,
+      "perempuan": 24
+    },
+    "status": "mogok di jagorawi KM 02",
+    "tanggal": "25-04-2022",
+    "jam": "12.00"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "03 dan 11",
+    "nama_penumpang": "Mia Uzliani",
+    "jenis_kelamin": "Perempuan",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": "Motor",
+    "status": "Onboard",
+    "vaksin": "Dosis 2",
+    "hasil_tes": "Positif"
+  },
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "02 dan 12",
+    "nama_penumpang": "Rahmah Putri",
+    "jenis_kelamin": "Perempuan",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": null,
+    "status": "",
+    "vaksin": "Dosis 2",
+    "hasil_tes": "Positif"
+  },
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "01 dan 10",
+    "nama_penumpang": "Sketsa Purnomo",
+    "jenis_kelamin": "Laki-laki",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": "Motor",
+    "status": "Onboard",
+    "vaksin": "Dosis 2",
+    "hasil_tes": "Positif"
+  },
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "02 dan 12",
+    "nama_penumpang": "Haiga Sofia",
+    "jenis_kelamin": "Perempuan",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": "Motor",
+    "status": "Onboard",
+    "vaksin": "Dosis 1",
+    "hasil_tes": "Positif"
+  },
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "03 dan 11",
+    "nama_penumpang": "Yulia Yasmin",
+    "jenis_kelamin": "Perempuan",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": null,
+    "status": "",
+    "vaksin": "Dosis 2",
+    "hasil_tes": "Negatif"
+  },
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "01 dan 10",
+    "nama_penumpang": "Sofia Septi",
+    "jenis_kelamin": "Perempuan",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": "Motor",
+    "status": "Onboard",
+    "vaksin": "Dosis 1",
+    "hasil_tes": "Positif"
+  },
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "02 dan 12",
+    "nama_penumpang": "Azzuri Nur",
+    "jenis_kelamin": "Laki-laki",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": "Motor",
+    "status": "Onboard",
+    "vaksin": "Dosis 2",
+    "hasil_tes": "Positif"
+  },
+  {
+    "kota_tujuan": "cilacap",
+    "no_kendaraan": "02 dan 12",
+    "nama_penumpang": "Ifin Nurtanto",
+    "jenis_kelamin": "Laki-laki",
+    "email": "test@mail.com",
+    "telepon": "0812xxxxxx",
+    "barang_bawaan": "Motor",
+    "status": "Onboard",
+    "vaksin": "Dosis 2",
+    "hasil_tes": "Negatif"
+  }
+]
