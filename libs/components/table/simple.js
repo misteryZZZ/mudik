@@ -1,19 +1,19 @@
 import { useEffect } from 'react'
 import { useTable, useFilters, usePagination, useSortBy } from 'react-table'
 
-const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
+const Table = ({ columns, data }) => {
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    // rows,
-    page, // Instead of using 'rows', we'll use page,
+    rows,
+    // page, // Instead of using 'rows', we'll use page,
     prepareRow,
-    setFilter,
+    // setFilter,
 
     // pagination
-    canPreviousPage,
+    /*canPreviousPage,
     canNextPage,
     pageOptions,
     pageCount,
@@ -21,24 +21,24 @@ const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex, pageSize },*/
   } = useTable(
     {
       columns,
-      data,
-      initialState: {
-        pageIndex: 0,
-        pageSize: 5,
-      }
+      data
+      // initialState: {
+      //   pageIndex: 0,
+      //   pageSize: 5,
+      // }
     },
-    useFilters,
+    // useFilters,
     // useSortBy,
-    usePagination,
+    // usePagination,
     )
 
-  useEffect(() => {
-    setFilter(filter, search);
-  }, [filter, search])
+  // useEffect(() => {
+  //   setFilter(filter, search);
+  // }, [filter, search])
 
   return (
     <div className="border border-black rounded-xl p-4 w-max min-w-full h-full mr-px">
@@ -51,20 +51,13 @@ const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
                 <th {...column.getHeaderProps()}
                   className="px-4 pb-3">
                   {column.render('Header')}
-                  {/*<span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
-                  </span>*/}
                 </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
+          {rows.map((row, i) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}
@@ -82,7 +75,7 @@ const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
         </tbody>
       </table>
 
-      <div className="pagination">
+      {/*<div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}
         </button>{' '}
@@ -98,22 +91,10 @@ const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
         <span>
           Page{' '}
           <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
+            {pageIndex} of {pageOptions.length}
+          </strong>
         </span>
-        <select
-          value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[2, 3, 4, 5].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-      </div>
+      </div>*/}
     </div>
   );
 }

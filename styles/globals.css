@@ -8,11 +8,14 @@
 @tailwind components;
 @tailwind utilities;*/
 
+.leaflet-container {
+  @apply w-full h-full z-[1];
+}
+
 @layer utilities {
   .stepper {
     @apply flex;
   }
-
   .stepper {
     @apply grow px-4;
   }
@@ -41,4 +44,6 @@
   .menu li.active > div:after {
     @apply content-[''] block absolute -right-0.5 h-full w-1 bg-yellow-500 h-full py-2 rounded-full;
   }
+
+
 }

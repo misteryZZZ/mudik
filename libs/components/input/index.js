@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Search = ({ className, medium, placeholder = 'Cari' }) => (
+export const Search = ({ className, medium, placeholder = 'Cari', ...inputProps }) => (
   <label
   className={`block relative text-gray-300 ` + className}>
     <svg className={`absolute ${medium ? 'top-2.5 left-3' : 'top-1.5 left-1.5'}`} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -8,13 +8,14 @@ export const Search = ({ className, medium, placeholder = 'Cari' }) => (
     </svg>
     <input type="text" placeholder={placeholder}
     className={`border-2 rounded-md ${medium ? 'text-md py-1 pl-8' : 'text-sm pl-6 w-[100px]'}`}
+    {...inputProps}
     />
   </label>
 )
 
-export const InputWithLabel = ({ label, type = 'text', ...inputProps }) => (
-  <label className="block mt-4">
-    <p className="text-sm text-white mb-1">{label}</p>
-    <input type={type} className="bg-white border-1 rounded text-xl w-full p-1.5" {...inputProps} />
+export const InputWithLabel = ({ label, type = 'text', labelClassName, className, ...inputProps }) => (
+  <label className={`block mt-4 `+labelClassName}>
+    <p className="text-sm mb-1">{label}</p>
+    <input type={type} className={`bg-white border-1 rounded text-xl w-full p-1.5 `+className} {...inputProps} />
   </label>
 )

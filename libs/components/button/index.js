@@ -19,8 +19,8 @@ export const ButtonSort = ({ className, medium, text = 'Sort' }) => {
   )
 }
 
-export const Button = ({ type, text, isLoading, onClick }) => (
-  <button className="bg-orange hover:bg-orange-dark active:translate-y-px transition text-white w-full rounded px-4 py-2 flex items-center justify-center"
+export const Button = ({ type, text, isLoading, onClick, className }) => (
+  <button className={`bg-orange hover:bg-orange-dark active:translate-y-px transition text-white w-full rounded px-4 py-2 flex items-center justify-center `+className}
   onClick={onClick}
   disabled={isLoading}>
     {isLoading && (

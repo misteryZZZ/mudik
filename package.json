@@ -5,15 +5,19 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "google-map-react": "^2.1.10",
+    "leaflet": "^1.7.1",
     "next": "12.1.4",
-    "react": "18.0.0",
+    "react": "^18.0.0",
     "react-dom": "18.0.0",
     "react-dropdown": "^1.9.2",
+    "react-leaflet": "^4.0.0-beta.0",
     "react-table": "^7.7.0"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './libs/**/*.{js,ts,jsx,tsx}',
+    './libs_cms/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {

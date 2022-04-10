@@ -7,10 +7,10 @@ import Layout from '../layout'
 import Header from '../layout/header'
 
 import SectionTable from './SectionTable'
-import { SortDropdown } from '../../components/SortDropdown'
-import { Search } from '../../components/input'
+import { SortDropdown } from '../../../libs/components/SortDropdown'
+import { Search } from '../../../libs/components/input'
 
-const Manifest = () => {
+const Truck = () => {
   const router = useRouter();
 
   const [user, setUser] = useState(false);
@@ -45,7 +45,7 @@ const Manifest = () => {
       const logedInStatus = await isLogedin()
       await setUser(logedInStatus);
       if (!logedInStatus) {
-        router.push('/login');
+        router.push('/cms/login');
       }
     })()
   },[])
@@ -53,14 +53,14 @@ const Manifest = () => {
   if (!user) return false;
   return(
     <Layout 
-    title="Data Manifest | Mudik Gratis DKI Jakarta 2022"
-    menuActive="manifest">
-      <Header title="Data Manifest" hasMoreButtons
+    title="Truck | Mudik Gratis DKI Jakarta 2022"
+    menuActive="truck">
+      <Header title="Truck" hasMoreButtons
       user={user}
       additionalComponent={
         <>
-          <SortDropdown placeholder="Kota tujuan" options={filterOptions} onChange={handleFilterChange} />
-          <Search medium className="mr-2" onChange={handleSearchChange} />
+          {/*<SortDropdown placeholder="Kota tujuan" options={filterOptions} onChange={handleFilterChange} />
+          <Search medium className="mr-2" onChange={handleSearchChange} />*/}
         </>
       } />
       <main className="px-4 py-2">
@@ -70,4 +70,4 @@ const Manifest = () => {
   );
 }
 
-export default Manifest;
+export default Truck;
