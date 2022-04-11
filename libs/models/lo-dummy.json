@@ -1,0 +1,56 @@
+[
+    {
+        "nama_lo": "Adit Hermanto",
+        "kota_tujuan": "Cilacap",
+        "no_bus": "Cilacap 02",
+        "phone": "082166542163",
+        "image": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+        "masuk": "26-04-2022\n06.00 WIB",
+        "keluar": "27-04-2022\n06.00 WIB"
+    },
+    {
+        "nama_lo": "Irfan Abimayu",
+        "kota_tujuan": "Jogjakarta",
+        "no_bus": "Jogjakarta 02",
+        "phone": "082166542163",
+        "image": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+        "masuk": "26-04-2022\n06.00 WIB",
+        "keluar": "27-04-2022\n06.00 WIB"
+    },
+    {
+        "nama_lo": "Ray Gunawan",
+        "kota_tujuan": "Cilacap",
+        "no_bus": "Cilacap 01",
+        "phone": "082166542163",
+        "image": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+        "masuk": "26-04-2022\n06.00 WIB",
+        "keluar": "27-04-2022\n06.00 WIB"
+    },
+    {
+        "nama_lo": "Ifah Indiyah",
+        "kota_tujuan": "Cilacap",
+        "no_bus": "Cilacap 03",
+        "phone": "082166542163",
+        "image": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+        "masuk": "26-04-2022\n06.00 WIB",
+        "keluar": "27-04-2022\n06.00 WIB"
+    },
+    {
+        "nama_lo": "Jesica Mila",
+        "kota_tujuan": "Malang",
+        "no_bus": "Malang 02",
+        "phone": "082166542163",
+        "image": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+        "masuk": "26-04-2022\n06.00 WIB",
+        "keluar": "27-04-2022\n06.00 WIB"
+    },
+    {
+        "nama_lo": "Musodik",
+        "kota_tujuan": "Malang",
+        "no_bus": "Malang 01",
+        "phone": "082166542163",
+        "image": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+        "masuk": "26-04-2022\n06.00 WIB",
+        "keluar": "27-04-2022\n06.00 WIB"
+    }
+]

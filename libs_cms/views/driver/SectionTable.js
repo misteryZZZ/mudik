@@ -5,7 +5,7 @@ import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getDriver, deleteDriver } from '../../models/driverModel';
 
-const SectionTable = ({ filter, search }) => {
+const SectionTable = ({ handleUpdate }) => {
   const [driver, setDriver] = useState({
     data: []
   });
@@ -20,7 +20,14 @@ const SectionTable = ({ filter, search }) => {
 
   const handleDelete = async (id) => {
     const response = await deleteDriver(id);
-    if (response.success) alert('Berhasil menghapus driver')
+
+    if (response.success) {
+      alert('Berhasil menghapus driver');
+      setDriver({
+        ...city,
+        data: city.data.filter(e => e.id != id)
+      });
+    }
   }
 
   const data = React.useMemo(() => driver)
@@ -51,7 +58,7 @@ const SectionTable = ({ filter, search }) => {
         accessor: (rows) => (
           <>
           <button className="bg-yellow-500 rounded px-2 text-white mr-1"
-          onClick={null}>
+          onClick={() => handleUpdate(rows.id)}>
             Update
           </button>
           <button className="bg-red-500 rounded px-2 text-white mr-1"

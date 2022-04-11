@@ -32,7 +32,7 @@ const Map = () => {
     menuActive="map">
       <Header title="Live Map" additionalComponent={
         <>
-          <SortDropdown placeholder="Semua rute" options={['Cilacap', 'Yogyakarta', 'Malang']} />
+          <SortDropdown placeholder="Semua rute" options={['Cilacap', 'Jogjakarta', 'Malang']} />
           <Search medium />
         </>
       } />

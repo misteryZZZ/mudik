@@ -4,7 +4,7 @@ import { Button } from '../../../libs/components/button'
 import { InputWithLabel } from '../../../libs/components/input'
 import { SelectWithLabel } from '../../../libs/components/select'
 
-import { createBus, getBusDetail, updateBus } from '../../models/busModel'
+import { createTruck, getTruckDetail, updateTruck } from '../../models/truckModel'
 import { getDriver } from '../../models/driverModel'
 import { getTrip } from '../../models/tripModel'
 
@@ -28,19 +28,19 @@ const FormModal = ({ setShowModal, type, id }) => {
     setLoading(true);
 
     if (type == 'create') {
-      const response = await createBus(data);
+      const response = await createTruck(data);
       if (response && response.success) {
-        alert('Berhasil membuat bus');
+        alert('Berhasil membuat truck');
       } else {
-        alert('Gagal membuat bus');
+        alert('Gagal membuat truck');
       }
     } else {
-      const response = await updateBus(id, data);
+      const response = await updateTruck(id, data);
       console.log(response);
       if (response && response.success) {
-        alert('Berhasil menupdate bus');
+        alert('Berhasil menupdate truck');
       } else {
-        alert('Gagal menupdate bus');
+        alert('Gagal menupdate truck');
       }
     }
     setLoading(false);
@@ -60,7 +60,7 @@ const FormModal = ({ setShowModal, type, id }) => {
       })))
 
       if (type == 'update') {
-        const dataPre = await getBusDetail(id)
+        const dataPre = await getTruckDetail(id)
         console.log(dataPre);
         setData({
           driverID: dataPre.id,

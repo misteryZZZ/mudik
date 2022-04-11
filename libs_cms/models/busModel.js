@@ -44,11 +44,41 @@ export const createBus = async (data) => {
       'Authorization': `Bearer ${localStorage.token}`
     },
     body: JSON.stringify({
-      driver_id: data.cityID,
-      trip_id: data.type,
-      code: data.type,
-      no_police: data.type,
-      quota: data.type,
+      driver_id: data.driverID,
+      trip_id: data.tripID,
+      code: data.code,
+      no_police: data.no_police,
+      quota: data.quota,
+    })
+  })
+  .then(response => {
+    if(response.ok){
+      return response.json()
+    } else {
+      return false;
+    }
+  })
+  .catch((err) => {
+    console.warn(err)
+    return false;
+  })
+  return response;
+}
+
+export const updateBus = async (id, data) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/bus/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`
+    },
+    body: JSON.stringify({
+      _method: 'PUT',
+      driver_id: data.driverID,
+      trip_id: data.tripID,
+      code: data.code,
+      no_police: data.no_police,
+      quota: data.quota,
     })
   })
   .then(response => {

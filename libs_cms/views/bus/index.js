@@ -44,7 +44,7 @@ const BusView = () => {
       user={user}
       additionalComponent={
         <>
-          <Button text="Create" className="!w-min rounded-lg !py-1" onClick={() => setShowModal(true) && setTypeModal('create')} />
+          <Button text="Create" className="!w-min rounded-lg !py-1" onClick={() => {setShowModal(true); setTypeModal('create')}} />
         </>
       } />
       <main className="px-4 py-2">

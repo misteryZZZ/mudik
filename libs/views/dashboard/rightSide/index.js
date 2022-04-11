@@ -21,7 +21,7 @@ const RightSide = () => {
     <div className="grow px-4 h-[688px] rounded-2xl">
       <div className="flex justify-between">
         <h1 className="text-2xl text-maincolor mb-4">Summary</h1>
-        <SortDropdown placeholder="Tujuan" options={['Cilacap', 'Yogyakarta', 'Malang']}/>
+        <SortDropdown placeholder="Tujuan" options={['Cilacap', 'Jogjakarta', 'Malang']}/>
       </div>
 
       <div className="h-full overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
@@ -32,8 +32,8 @@ const RightSide = () => {
             jumlah_penumpang={e.passenger_count}
             laki_laki={e.passenger_man_count}
             perempuan={e.passenger_woman_count}
-            driver_image={e.detail_bus.driver.image}
-            driver_name={e.detail_bus.driver.name}
+            driver_image={null/*e.detail_bus.driver.image*/}
+            driver_name={null/*e.detail_bus.driver.name*/}
             no_polisi={e.detail_bus.no_police}
           />
         ))}

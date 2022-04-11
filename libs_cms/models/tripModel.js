@@ -39,7 +39,7 @@ export const getTripDetail = async (id) => {
 }
 
 export const createTrip = async (data) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/trip/1`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/trip`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -48,7 +48,36 @@ export const createTrip = async (data) => {
     body: JSON.stringify({
       _method: 'PUT',
       city_id: data.cityID,
-      type: data.type
+      type: data.type,
+      rute: [],
+    })
+  })
+  .then(response => {
+    if(response.ok){
+      return response.json()
+    } else {
+      return false;
+    }
+  })
+  .catch((err) => {
+    console.warn(err)
+    return false;
+  })
+  return response;
+}
+
+export const updateTrip = async (id, data) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/trip/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`
+    },
+    body: JSON.stringify({
+      _method: 'PUT',
+      city_id: data.cityID,
+      type: data.type,
+      rute: [],
     })
   })
   .then(response => {

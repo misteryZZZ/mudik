@@ -5,7 +5,7 @@ import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getCity, deleteCity } from '../../models/cityModel';
 
-const SectionTable = ({ filter, search }) => {
+const SectionTable = ({ handleUpdate }) => {
   const [city, setCity] = useState({
     data: []
   });
@@ -20,7 +20,14 @@ const SectionTable = ({ filter, search }) => {
 
   const handleDelete = async (id) => {
     const response = await deleteCity(id);
-    if (response.success) alert('Berhasil menghapus city')
+
+    if (response.success) {
+      alert('Berhasil menghapus city');
+      setCity({
+        ...city,
+        data: city.data.filter(e => e.id != id)
+      });
+    }
   }
 
   const data = React.useMemo(() => city)
@@ -43,7 +50,7 @@ const SectionTable = ({ filter, search }) => {
         accessor: (rows) => (
           <>
           <button className="bg-yellow-500 rounded px-2 text-white mr-1"
-          onClick={null}>
+          onClick={() => handleUpdate(rows.id)}>
             Update
           </button>
           <button className="bg-red-500 rounded px-2 text-white mr-1"

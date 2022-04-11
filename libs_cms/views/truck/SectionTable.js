@@ -5,7 +5,7 @@ import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getTruck, deleteTruck } from '../../models/truckModel';
 
-const SectionTable = ({ filter, search }) => {
+const SectionTable = ({ handleUpdate }) => {
   const [truck, setTruck] = useState({
     data: []
   });
@@ -20,7 +20,14 @@ const SectionTable = ({ filter, search }) => {
 
   const handleDelete = async (id) => {
     const response = await deleteTruck(id);
-    if (response.success) alert('Berhasil menghapus truck')
+
+    if (response.success) {
+      alert('Berhasil menghapus truk');
+      setTruck({
+        ...truck,
+        data: truck.data.filter(e => e.id != id)
+      });
+    }
   }
 
   const data = React.useMemo(() => truck)
@@ -47,7 +54,7 @@ const SectionTable = ({ filter, search }) => {
         accessor: (rows) => (
           <>
           <button className="bg-yellow-500 rounded px-2 text-white mr-1"
-          onClick={null}>
+          onClick={() => handleUpdate(rows.id)}>
             Update
           </button>
           <button className="bg-red-500 rounded px-2 text-white mr-1"

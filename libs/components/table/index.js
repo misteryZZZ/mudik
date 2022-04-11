@@ -107,7 +107,7 @@ const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
             setPageSize(Number(e.target.value))
           }}
         >
-          {[2, 3, 4, 5].map(pageSize => (
+          {[5,10,20].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

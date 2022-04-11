@@ -7,37 +7,22 @@ import Layout from '../layout'
 import Header from '../layout/header'
 
 import SectionTable from './SectionTable'
-import { SortDropdown } from '../../../libs/components/SortDropdown'
-import { Search } from '../../../libs/components/input'
+import FormModal from './FormModal'
+import { Button } from '../../../libs/components/button'
 
 const DriverView = () => {
   const router = useRouter();
 
   const [user, setUser] = useState(false);
-  const [search, setSearch] = useState(undefined);
-  const [filter, setFilter] = useState(undefined);
+  const [modalID, setModalID] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [typeModal, setTypeModal] = useState('create');
 
-  const filterOptions = [
-    {
-      label: 'Kota tujuan',
-      value: 'detail_bus.name'
-    },{
-      label: 'Nama Penumpang',
-      value: 'detail_passenger.name'
-    },{
-      label: 'Email',
-      value: 'detail_passenger.email'
-    }
-  ]
-
-  const handleSearchChange = (e) => {
-    const value = e.target.value || undefined;
-    setSearch(value);
-  }
-
-  const handleFilterChange = (e) => {
-    const value = e.value || undefined;
-    setFilter(value);
+  const handleUpdate = (id) => {
+    console.log(id);
+    setModalID(id);
+    setShowModal(true);
+    setTypeModal('update')
   }
 
   useEffect(() => {
@@ -59,12 +44,15 @@ const DriverView = () => {
       user={user}
       additionalComponent={
         <>
-          {/*<SortDropdown placeholder="Kota tujuan" options={filterOptions} onChange={handleFilterChange} />
-          <Search medium className="mr-2" onChange={handleSearchChange} />*/}
+          <Button text="Create" className="!w-min rounded-lg !py-1" onClick={() => {setShowModal(true); setTypeModal('create')}} />
         </>
       } />
       <main className="px-4 py-2">
-        <SectionTable search={search} filter={filter} />
+        <SectionTable
+        setShowModal={setShowModal}
+        showModal={showModal}
+        handleUpdate={handleUpdate}/>
+        {showModal && <FormModal setShowModal={setShowModal} type={typeModal} id={modalID} />}
       </main>
     </Layout>
   );

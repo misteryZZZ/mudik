@@ -35,7 +35,7 @@ const Troubleshoot = () => {
       additionalComponent={
         <>
           {/*<ButtonSort className="text-black mr-4" text="Semua rute" medium />*/}
-          <SortDropdown placeholder="Semua rute" options={['Cilacap', 'Yogyakarta', 'Malang']} />
+          <SortDropdown placeholder="Semua rute" options={['Cilacap', 'Jogjakarta', 'Malang']} />
           <Search medium />
         </>
       } />

@@ -35,7 +35,7 @@ const TripView = () => {
     })()
   },[])
 
-  if (!user) return false;
+  if (!user) return <>Loading...</>;
   return(
     <Layout 
     title="Trip | Mudik Gratis DKI Jakarta 2022"
@@ -44,7 +44,7 @@ const TripView = () => {
       user={user}
       additionalComponent={
         <>
-          <Button text="Create" className="!w-min rounded-lg !py-1" onClick={() => setShowModal(true) && setTypeModal('create')} />
+          <Button text="Create" className="!w-min rounded-lg !py-1" onClick={() => {setShowModal(true); setTypeModal('create')}} />
         </>
       } />
       <main className="px-4 py-2">

@@ -18,13 +18,13 @@ const SectionTable = ({ handleUpdate }) => {
   },[])
 
   const handleDelete = async (id) => {
-    const response = await deleteTrip(id);
+    const response = await deleteBus(id);
 
     if (response.success) {
-      alert('Berhasil menghapus trip');
-      setTrips({
-        ...trips,
-        data: trips.data.filter(e => e.id != id)
+      alert('Berhasil menghapus bus');
+      setBus({
+        ...bus,
+        data: bus.data.filter(e => e.id != id)
       });
     }
   }
