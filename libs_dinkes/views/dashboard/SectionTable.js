@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../components/table';
-import { Dropdown } from '../../components/dropdown'
+import Table from '../../../libs/components/table';
+import { Dropdown } from '../../../libs/components/dropdown'
 
 // import dataManifest from '../../models/manifest-dummy.json'
-import { getPassengerList } from '../../models/passengerModel';
+import { getPassengerList } from '../../../libs/models/passengerModel';
 
 const SectionTable = ({ filter, search }) => {
   const [manifest, setManifest] = useState([]);
@@ -68,6 +68,14 @@ const SectionTable = ({ filter, search }) => {
       {
         Header: 'Hasil Tes',
         accessor: 'hasil_tes'
+      },
+      {
+        Header: 'Jenis Vaksin',
+        accessor: (rows) => 'Sinovac'
+      },
+      {
+        Header: 'Puskesmas',
+        accessor: (rows) => 'Puskesmas Pasar Minggu'
       },
       {
         Header: 'Action',

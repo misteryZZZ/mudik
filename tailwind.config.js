@@ -5,6 +5,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './libs/**/*.{js,ts,jsx,tsx}',
     './libs_cms/**/*.{js,ts,jsx,tsx}',
+    './libs_dinkes/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {

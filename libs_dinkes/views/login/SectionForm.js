@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 
 import { doLogin } from '../../models/userModel'
 
-import { InputWithLabel } from '../../components/input'
-import { Button } from '../../components/button'
+import { InputWithLabel } from '../../../libs/components/input'
+import { Button } from '../../../libs/components/button'
 
 export const SectionForm = () => {
   const router = useRouter()
@@ -21,7 +21,7 @@ export const SectionForm = () => {
     console.log(response);
     if (response && response.success) {
       localStorage.setItem("token", response.data.access_token);
-      router.push('/')
+      router.push('/dinkes')
     } else {
       // jika login gagal
     }
@@ -38,8 +38,8 @@ export const SectionForm = () => {
         <form className="w-full max-w-[400px] px-3 md:px-8"
         onSubmit={e => handleSubmit(e, email, password)}>
           <h1 className="text-3xl font-semibold text-white mb-12">Login</h1>
-          <InputWithLabel label="Email" name="email" onChange={e => setEmail(e.target.value)} labelClassName="text-white"/>
-          <InputWithLabel label="Password" name="password" type="password" onChange={e => setPassword(e.target.value)} labelClassName="text-white"/>
+          <InputWithLabel label="Email" name="email" labelClassName="text-white" onChange={e => setEmail(e.target.value)} />
+          <InputWithLabel label="Password" name="password" labelClassName="text-white" type="password" onChange={e => setPassword(e.target.value)} />
           <p className="text-right text-white text-sm w-full mb-6">
             <a href="#">Lupa pasword?</a>
           </p>
