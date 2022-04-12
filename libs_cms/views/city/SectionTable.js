@@ -46,6 +46,10 @@ const SectionTable = ({ handleUpdate }) => {
         accessor: 'terminal_name'
       },
       {
+        Header: 'Gambar',
+        accessor: (rows) => <img className="w-20 mx-auto" src={rows.image} alt="" />
+      },
+      {
         Header: 'Action',
         accessor: (rows) => (
           <>

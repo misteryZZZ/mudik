@@ -43,13 +43,7 @@ export const createBus = async (data) => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      driver_id: data.driverID,
-      trip_id: data.tripID,
-      code: data.code,
-      no_police: data.no_police,
-      quota: data.quota,
-    })
+    body: JSON.stringify(data)
   })
   .then(response => {
     if(response.ok){
@@ -74,11 +68,7 @@ export const updateBus = async (id, data) => {
     },
     body: JSON.stringify({
       _method: 'PUT',
-      driver_id: data.driverID,
-      trip_id: data.tripID,
-      code: data.code,
-      no_police: data.no_police,
-      quota: data.quota,
+      ...data
     })
   })
   .then(response => {

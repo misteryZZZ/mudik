@@ -13,6 +13,7 @@ const SectionTable = ({ handleUpdate }) => {
   useEffect(() => {
     (async () => {
       const dataBus = await getBus();
+      console.log(dataBus);
       setBus(dataBus)
     })()
   },[])

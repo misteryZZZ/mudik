@@ -47,6 +47,10 @@ const SectionTable = ({ handleUpdate }) => {
         Header: 'Tipe',
         accessor: 'type'
       },
+      // {
+      //   Header: 'Rute',
+      //   accessor: (rows) => <p>{rows.rute.map(e => e.name).join(',')}</p>
+      // },
       {
         Header: 'Action',
         accessor: (rows) => (

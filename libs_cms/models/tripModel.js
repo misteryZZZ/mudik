@@ -45,12 +45,7 @@ export const createTrip = async (data) => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      _method: 'PUT',
-      city_id: data.cityID,
-      type: data.type,
-      rute: [],
-    })
+    body: JSON.stringify(data)
   })
   .then(response => {
     if(response.ok){
@@ -75,9 +70,7 @@ export const updateTrip = async (id, data) => {
     },
     body: JSON.stringify({
       _method: 'PUT',
-      city_id: data.cityID,
-      type: data.type,
-      rute: [],
+      ...data
     })
   })
   .then(response => {

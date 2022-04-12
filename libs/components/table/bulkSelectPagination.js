@@ -1,7 +1,24 @@
 import { useEffect } from 'react'
 import { useTable, useFilters, usePagination, useSortBy } from 'react-table'
 
-const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
+const IndeterminateCheckbox = React.forwardRef(
+  ({ indeterminate, ...rest }, ref) => {
+    const defaultRef = React.useRef()
+    const resolvedRef = ref || defaultRef
+
+    React.useEffect(() => {
+      resolvedRef.current.indeterminate = indeterminate
+    }, [resolvedRef, indeterminate])
+
+    return (
+      <>
+        <input type="checkbox" ref={resolvedRef} {...rest} />
+      </>
+    )
+  }
+)
+
+const Table = ({ columns, data, filter = '', search }) => {
 
   const {
     getTableProps,

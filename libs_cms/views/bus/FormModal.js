@@ -13,11 +13,14 @@ const FormModal = ({ setShowModal, type, id }) => {
   const [isLoading, setLoading] = useState(false);
 
   const [data, setData] = useState({
-    driverID: '',
-    tripID: '',
+    driver_id: '',
+    trip_id: '',
     code: '',
     no_police: '',
     quota: '',
+    date_at: '',
+    time_at: '',
+    place_at: '',
   });
 
   const [dataDriver, setDataDriver] = useState([])
@@ -55,7 +58,7 @@ const FormModal = ({ setShowModal, type, id }) => {
       })))
       const fetchDataTrip = await getTrip();
       setDataTrip(fetchDataTrip.data.map(e => ({
-        label: e.city.name,
+        label: `${e.city.name} (${e.type})`,
         value: e.id
       })))
 
@@ -63,11 +66,14 @@ const FormModal = ({ setShowModal, type, id }) => {
         const dataPre = await getBusDetail(id)
         console.log(dataPre);
         setData({
-          driverID: dataPre.id,
-          tripID: dataPre.trip_id,
+          driver_id: dataPre.id,
+          trip_id: dataPre.trip_id,
           code: dataPre.code,
           no_police: dataPre.no_police,
           quota: dataPre.quota,
+          date_at: dataPre.date_at,
+          time_at: dataPre.time_at,
+          place_at: dataPre.place_at,
         })
       }
     })()
@@ -81,11 +87,14 @@ const FormModal = ({ setShowModal, type, id }) => {
           <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
         </div>
         <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-          <SelectWithLabel label="Driver" nama="city" options={dataDriver} selected={data.driverID} onChange={e => setData({...data, driverID: e.target.value})} className="border-2" />
-          <SelectWithLabel label="Trip" nama="type" options={dataTrip} selected={data.tripID} onChange={e => setData({...data, tripID: e.target.value})} className="border-2" />
-          <InputWithLabel label="Kode" name="code" value={data.code} onChange={e => setData({...data, code: e.target.value})} className="border-2"/>
-          <InputWithLabel label="No Polisi" name="no_police" value={data.no_police} onChange={e => setData({...data, no_police: e.target.value})} className="border-2"/>
-          <InputWithLabel label="Kuota" name="quota" value={data.quota} onChange={e => setData({...data, quota: e.target.value})} className="border-2"/>
+          <SelectWithLabel label="Driver" options={dataDriver} selected={data.driver_id} onChange={e => setData({...data, driver_id: String(e.target.value)})} className="border-2" />
+          <SelectWithLabel label="Trip" options={dataTrip} selected={data.trip_id} onChange={e => setData({...data, trip_id: String(e.target.value)})} className="border-2" />
+          <InputWithLabel label="Kode" value={data.code} onChange={e => setData({...data, code: e.target.value})} className="border-2"/>
+          <InputWithLabel label="No Polisi" value={data.no_police} onChange={e => setData({...data, no_police: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Kuota" value={data.quota} onChange={e => setData({...data, quota: String(e.target.value)})} className="border-2"/>
+          <InputWithLabel label="Tanggal" type="date" value={data.date_at} onChange={e => setData({...data, date_at: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Waktu" type="time" value={data.time_at} onChange={e => setData({...data, time_at: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Posisi" value={data.place_at} onChange={e => setData({...data, place_at: e.target.value})} className="border-2"/>
 
           <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
         </form>

@@ -4,6 +4,7 @@ import Router from 'next/router'
 import { Button } from '../../../libs/components/button'
 import { InputWithLabel } from '../../../libs/components/input'
 import { SelectWithLabel } from '../../../libs/components/select'
+import { InputRoute } from '../../../libs/components/inputRoute'
 
 import { createTrip, getTripDetail, updateTrip } from '../../models/tripModel'
 import { getCity } from '../../models/cityModel'
@@ -11,11 +12,11 @@ import { getCity } from '../../models/cityModel'
 const FormModal = ({ setShowModal, type, id }) => {
 
   const [isLoading, setLoading] = useState(false);
-
-  const [cityID, setCityID] = useState(null);
+  
   const [data, setData] = useState({
-    cityID: undefined,
+    city_id: undefined,
     type: undefined,
+    rute: []
   });
 
   const [dataCity, setDataCity] = useState([])
@@ -59,8 +60,9 @@ const FormModal = ({ setShowModal, type, id }) => {
         const dataPre = await getTripDetail(id)
         console.log(dataPre);
         setData({
-          cityID: dataPre.city_id,
-          type: dataPre.type
+          city_id: dataPre.city_id,
+          type: dataPre.type,
+          rute: dataPre.rute.map(e => e.name)
         })
       }
     })()
@@ -74,8 +76,9 @@ const FormModal = ({ setShowModal, type, id }) => {
           <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
         </div>
         <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-          <SelectWithLabel label="Kota" nama="city" options={dataCity} selected={data.cityID} onChange={e => setData({...data, cityID: e.target.value})} className="border-2" />
+          <SelectWithLabel label="Kota" nama="city" options={dataCity} selected={data.city_id} onChange={e => setData({...data, city_id: e.target.value})} className="border-2" />
           <SelectWithLabel label="Tipe" nama="type" options={dataType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
+          <InputRoute label="Rute" setValues={(newValues) => setData({...data, rute: newValues})} values={data.rute} className="border-2"/>
 
           <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
         </form>

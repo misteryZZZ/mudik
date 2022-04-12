@@ -16,8 +16,8 @@ export const getPassengerCount = async (type) => {
   return data.data.count;
 }
 
-export const getPassengerList = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/passenger/list`, {
+export const getPassengerManifest = async () => {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/passenger/manifest`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {

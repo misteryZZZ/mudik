@@ -55,7 +55,7 @@ const FormModal = ({ setShowModal, type, id }) => {
       })))
       const fetchDataTrip = await getTrip();
       setDataTrip(fetchDataTrip.data.map(e => ({
-        label: e.city.name,
+        label: `${e.city.name} (${e.type})`,
         value: e.id
       })))
 

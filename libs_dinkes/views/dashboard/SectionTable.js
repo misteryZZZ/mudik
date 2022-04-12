@@ -3,15 +3,14 @@ import React, { useState, useEffect } from 'react';
 import Table from '../../../libs/components/table';
 import { Dropdown } from '../../../libs/components/dropdown'
 
-// import dataManifest from '../../models/manifest-dummy.json'
-import { getPassengerList } from '../../../libs/models/passengerModel';
+import { getPassengerManifest } from '../../../libs/models/passengerModel';
 
 const SectionTable = ({ filter, search }) => {
   const [manifest, setManifest] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const dataManifest = await getPassengerList();
+      const dataManifest = await getPassengerManifest();
       console.log(dataManifest);
       setManifest(dataManifest)
     })()
@@ -25,16 +24,7 @@ const SectionTable = ({ filter, search }) => {
         accessor: (e,i) => i + 1,
       },
       {
-        Header: 'Kota Tujuan',
-        accessor: 'detail_bus.name'
-      },
-      {
-        Header: 'No Bus & Truk',
-        accessor: (row) => `${row.detail_bus ? row.detail_bus.code : '-'} dan ${row.detail_truck ? row.detail_truck.code : '-'}`
-      },
-      {
         Header: 'Nama Penumpang',
-        // accessor: 'detail_passenger.name'
         accessor: ({ detail_passenger: {name, member}}) => {
           if (member.length == 0) return name;
           const options = [...member].map(e => e.name)
@@ -54,10 +44,6 @@ const SectionTable = ({ filter, search }) => {
         accessor: 'detail_passenger.phone'
       },
       {
-        Header: 'Barang Bawaan',
-        accessor: 'barang_bawaan'
-      },
-      {
         Header: 'Status',
         accessor: 'status'
       },
@@ -71,11 +57,11 @@ const SectionTable = ({ filter, search }) => {
       },
       {
         Header: 'Jenis Vaksin',
-        accessor: (rows) => 'Sinovac'
+        accessor: (rows) => rows.detail_passenger.type_vaksin
       },
       {
         Header: 'Puskesmas',
-        accessor: (rows) => 'Puskesmas Pasar Minggu'
+        accessor: (rows) => rows.detail_passenger.puskes
       },
       {
         Header: 'Action',

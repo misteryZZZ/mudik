@@ -55,7 +55,7 @@ const Manifest = () => {
     <Layout 
     title="Data Manifest | Mudik Gratis DKI Jakarta 2022"
     menuActive="manifest">
-      <Header title="Data Manifest" hasMoreButtons
+      <Header title="Data Manifest"
       user={user}
       additionalComponent={
         <>

@@ -40,14 +40,10 @@ export const createCity = async (data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/city`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      name: data.name,
-      terminal_name: data.terminal_name,
-      image: null,
-    })
+    body: data
   })
   .then(response => {
     if(response.ok){
@@ -67,15 +63,10 @@ export const updateCity = async (id, data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/city/${id}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      _method: 'PUT',
-      name: data.name,
-      terminal_name: data.terminal_name,
-      image: null,
-    })
+    body: data
   })
   .then(response => {
     if(response.ok){

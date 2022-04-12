@@ -16,6 +16,6 @@ export const Search = ({ className, medium, placeholder = 'Cari', ...inputProps 
 export const InputWithLabel = ({ label, type = 'text', labelClassName, className, ...inputProps }) => (
   <label className={`block mt-4 `+labelClassName}>
     <p className="text-sm mb-1">{label}</p>
-    <input type={type} className={`bg-white border-1 rounded text-xl w-full p-1.5 `+className} {...inputProps} />
+    <input type={type} className={`bg-white border-1 rounded text-xl text-black w-full p-1.5 `+className} {...inputProps} />
   </label>
 )
