@@ -5,8 +5,6 @@ import { InputWithLabel } from '../../../libs/components/input'
 import { SelectWithLabel } from '../../../libs/components/select'
 
 import { createDriver, getDriverDetail, updateDriver } from '../../models/driverModel'
-import { getBus } from '../../models/busModel'
-import { getTruck } from '../../models/truckModel'
 
 const FormModal = ({ setShowModal, type, id }) => {
 

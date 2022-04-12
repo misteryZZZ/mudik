@@ -15,7 +15,7 @@ const Manifest = () => {
 
   const [user, setUser] = useState(false);
   const [search, setSearch] = useState(undefined);
-  const [filter, setFilter] = useState(undefined);
+  const [filter, setFilter] = useState('detail_bus.name');
 
   const filterOptions = [
     {
