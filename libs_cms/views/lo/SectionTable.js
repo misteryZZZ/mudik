@@ -3,24 +3,26 @@ import React, { useState, useEffect } from 'react';
 import Table from '../../../libs/components/table/simple';
 import { Dropdown } from '../../../libs/components/dropdown'
 
-import { getLO, deleteLO } from '../../models/loModel';
+import { getAllLO, deleteLO } from '../../models/loModel';
 
-const SectionTable = ({ filter, search }) => {
-  const [LO, setLO] = useState({
-    data: []
-  });
+const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
+  const [LO, setLO] = useState([]);
+
+  const getData = async () => {
+    const dataLO = await getLO();
+    setLO(dataLO)
+  }
 
   useEffect(() => {
-    (async () => {
-      const dataLO = await getLO();
-      console.log(dataLO);
-      setLO(dataLO)
-    })()
-  },[])
+    getData();
+  },[tableUpdate])
 
   const handleDelete = async (id) => {
     const response = await deleteLO(id);
-    if (response.success) alert('Berhasil menghapus LO')
+    if (response.success) {
+      alert('Berhasil menghapus LO')
+      setLO(LO.filter(e => e.id != id));
+    }
   }
 
   const data = React.useMemo(() => LO)
@@ -43,12 +45,12 @@ const SectionTable = ({ filter, search }) => {
         accessor: 'phone'
       },
       {
-        Header: 'Bus',
-        accessor: 'bus.name'
+        Header: 'Tipe Kendaraan',
+        accessor: 'type'
       },
       {
         Header: 'No Polisi',
-        accessor: 'bus.no_police'
+        accessor: (rows) => <>{rows[type]?.no_police}</>
       },
       {
         Header: 'Action',

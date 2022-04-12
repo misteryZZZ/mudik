@@ -3,30 +3,26 @@ import React, { useState, useEffect } from 'react';
 import Table from '../../../libs/components/table/simple';
 import { Dropdown } from '../../../libs/components/dropdown'
 
-import { getDriver, deleteDriver } from '../../models/driverModel';
+import { getAllDriver, deleteDriver } from '../../models/driverModel';
 
-const SectionTable = ({ handleUpdate }) => {
-  const [driver, setDriver] = useState({
-    data: []
-  });
+const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
+  const [driver, setDriver] = useState([]);
+
+  const getData = async () => {
+    const dataDriver = await getAllDriver();
+    setDriver(dataDriver)
+  }
 
   useEffect(() => {
-    (async () => {
-      const dataDriver = await getDriver();
-      console.log(dataDriver);
-      setDriver(dataDriver)
-    })()
+    getData();
   },[])
 
-  const handleDelete = async (id) => {
+  const handleDeleteClick = async (id) => {
     const response = await deleteDriver(id);
 
     if (response.success) {
       alert('Berhasil menghapus driver');
-      setDriver({
-        ...city,
-        data: city.data.filter(e => e.id != id)
-      });
+      setDriver(driver.filter(e => e.id != id));
     }
   }
 
@@ -46,23 +42,15 @@ const SectionTable = ({ handleUpdate }) => {
         accessor: 'type'
       },
       {
-        Header: 'No Polisi',
-        accessor: (rows) => rows[rows.type].no_police
-      },
-      {
-        Header: 'Kota Tujuan',
-        accessor: (rows) => rows[rows.type].trip.city.name
-      },
-      {
         Header: 'Action',
         accessor: (rows) => (
           <>
           <button className="bg-yellow-500 rounded px-2 text-white mr-1"
-          onClick={() => handleUpdate(rows.id)}>
+          onClick={() => handleUpdateClick(rows.id)}>
             Update
           </button>
           <button className="bg-red-500 rounded px-2 text-white mr-1"
-          onClick={() => handleDelete(rows.id)}>
+          onClick={() => handleDeleteClick(rows.id)}>
             Delete
           </button>
           </>
@@ -75,7 +63,7 @@ const SectionTable = ({ handleUpdate }) => {
   return (
     <section className="rounded-2xl bg-white p-4">
       <div className="overflow-auto pb-3">
-        <Table columns={columns} data={driver.data} />
+        <Table columns={columns} data={data} />
       </div>
     </section>
   )

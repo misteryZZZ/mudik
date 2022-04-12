@@ -65,7 +65,8 @@ export const createCity = async (data) => {
   })
   .then(response => {
     if(response.ok){
-      return response.json()
+      console.log(response.text());
+      // return response.json()
     } else {
       return false;
     }
