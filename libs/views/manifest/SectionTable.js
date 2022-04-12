@@ -2,19 +2,33 @@ import React, { useState, useEffect } from 'react';
 
 import Table from '../../components/table';
 import { Dropdown } from '../../components/dropdown'
+import { Button } from '../../components/button'
 
-// import dataManifest from '../../models/manifest-dummy.json'
-import { getPassengerList } from '../../models/passengerModel';
+import FormModal from './FormModal'
+
+import { getPassengerManifest, verifPassenger } from '../../models/passengerModel';
 
 const SectionTable = ({ filter, search }) => {
+  const [modalID, setModalID] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [manifest, setManifest] = useState([]);
 
+  const getData = async () => {
+    const dataManifest = await getPassengerManifest();
+    console.log(dataManifest);
+    setManifest(dataManifest)
+  }
+
+  const handleVerif = async (id) => {
+    const response = await verifPassenger(id);
+    if (response.success) {
+      alert('Berhasil')
+      getData();
+    }
+  }
+
   useEffect(() => {
-    (async () => {
-      const dataManifest = await getPassengerList();
-      console.log(dataManifest);
-      setManifest(dataManifest)
-    })()
+    getData();
   },[])
 
   const data = React.useMemo(() => manifest)
@@ -29,10 +43,6 @@ const SectionTable = ({ filter, search }) => {
         accessor: 'detail_bus.name'
       },
       {
-        Header: 'No Bus & Truk',
-        accessor: (row) => `${row.detail_bus ? row.detail_bus.code : '-'} dan ${row.detail_truck ? row.detail_truck.code : '-'}`
-      },
-      {
         Header: 'Nama Penumpang',
         // accessor: 'detail_passenger.name'
         accessor: ({ detail_passenger: {name, member}}) => {
@@ -40,6 +50,14 @@ const SectionTable = ({ filter, search }) => {
           const options = [...member].map(e => e.name)
           return (<Dropdown placeholder={name} options={options}/>)
         }
+      },
+      {
+        Header: 'NIK',
+        accessor: 'detail_passenger.nik'
+      },
+      {
+        Header: 'No. KK',
+        accessor: 'detail_passenger.no_kk'
       },
       {
         Header: 'Jenis Kelamin',
@@ -50,38 +68,21 @@ const SectionTable = ({ filter, search }) => {
         accessor: 'detail_passenger.email'
       },
       {
-        Header: 'No Telepon',
-        accessor: 'detail_passenger.phone'
+        Header: 'Vaksin',
+        accessor: ({ detail_passenger: {vaksin} }) => `Dosis ${vaksin}`
       },
       {
-        Header: 'Barang Bawaan',
-        accessor: 'barang_bawaan'
+        Header: 'Sepeda Motor',
+        accessor: ({ detail_passenger: {vehicle} }) => vehicle ? 'Ya' : 'Tidak'
+      },
+      {
+        Header: 'No. STNK',
+        accessor: 'detail_passenger.vehicle.stnk'
       },
       {
         Header: 'Status',
-        accessor: 'status'
-      },
-      {
-        Header: 'Vaksin',
-        accessor: (row) => `Dosis ${row.detail_passenger.vaksin}`
-      },
-      {
-        Header: 'Hasil Tes',
-        accessor: 'hasil_tes'
-      },
-      {
-        Header: 'Action',
-        accessor: (rows) => (
-          <>
-            <button className="bg-green-500 rounded px-2 text-white mr-1"
-            onClick={null}>
-              Accept
-            </button>
-            <button className="bg-red-500 rounded px-2 text-white mr-1"
-            onClick={null}>
-              Decline
-            </button>
-          </>
+        accessor: ({ detail_passenger: {id, verify_date} }) => (
+          <Button text="Verifikasi" disabled={!!verify_date} className="bg-maincolor hover:bg-maincolor-dark" onClick={() => {setShowModal(true); setModalID(id)}} />
         )
       }
     ],
@@ -92,6 +93,7 @@ const SectionTable = ({ filter, search }) => {
     <section className="rounded-2xl bg-white p-4">
       <div className="overflow-auto pb-3">
         <Table columns={columns} data={data} search={search} filter={filter} />
+        {showModal && <FormModal setShowModal={setShowModal} id={modalID}/>}
       </div>
     </section>
   )

@@ -23,7 +23,7 @@ export const Profile = ({ fotoProfile, dropdownContent }) => {
   const close = () => setOpen(false);
   const toggle = () => setOpen(!open);
   return (
-    <div className="shrink-0 h-[40px] relative">
+    <div className="shrink-0 h-[40px] relative px-2">
       <button>
         <img className="block w-10 rounded-full" src={fotoProfile} alt="foto profile" onClick={toggle} onBlur={close} />
       </button>

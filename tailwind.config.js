@@ -13,7 +13,10 @@ module.exports = {
         'sans': ['Fredoka', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        maincolor: '#00807f',
+        maincolor: {
+          DEFAULT: '#00807f',
+          dark: '#056868'
+        },
         secondary: '#0278d0',
         orange: {
           DEFAULT: '#FE852A',

@@ -19,7 +19,7 @@ const Header = ({
         {(hasMoreButtons) && (
           <>
             <Button.Export />
-            <Button.Notif />
+            {/*<Button.Notif />*/}
             <Button.Profile
               fotoProfile={user.image}
               dropdownContent={
@@ -29,7 +29,7 @@ const Header = ({
                   </Link>
                 </div>
               }/>
-            <Button.More />
+            {/*<Button.More />*/}
           </>
         )}
       </div>
