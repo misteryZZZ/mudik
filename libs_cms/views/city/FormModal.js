@@ -16,7 +16,6 @@ const FormModal = ({ setShowModal, type, id, onSuccess }) => {
   const [data, setData] = useState({
     name: '',
     terminal_name: '',
-    image: null
   });
 
   const handleFileChange = (e) => {

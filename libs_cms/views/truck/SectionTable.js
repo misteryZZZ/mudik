@@ -50,6 +50,14 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
         accessor: 'quota'
       },
       {
+        Header: 'Tanggal Keberangkatan',
+        accessor: 'date_at'
+      },
+      {
+        Header: 'Waktu Keberangkatan',
+        accessor: 'time_at'
+      },
+      {
         Header: 'Action',
         accessor: (rows) => (
           <>

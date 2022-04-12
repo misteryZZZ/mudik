@@ -15,18 +15,18 @@ const Manifest = () => {
 
   const [user, setUser] = useState(false);
   const [search, setSearch] = useState(undefined);
-  const [filter, setFilter] = useState(undefined);
+  const [filter, setFilter] = useState('Nama Penumpang');
 
   const filterOptions = [
     {
-      label: 'Kota tujuan',
-      value: 'detail_bus.name'
+      label: 'Nama Penumpang',
+      value: 'Nama Penumpang'
     },{
-      label: 'Jenis Vaksi',
-      value: ''
+      label: 'Vaksin',
+      value: 'Vaksin'
     },{
       label: 'Puskesmas',
-      value: ''
+      value: 'Puskesmas'
     }
   ]
 
@@ -59,7 +59,7 @@ const Manifest = () => {
       user={user}
       additionalComponent={
         <>
-          <SortDropdown placeholder="Kota tujuan" options={filterOptions} onChange={handleFilterChange} />
+          <SortDropdown placeholder="Nama Penumpang" options={filterOptions} onChange={handleFilterChange} />
           <Search medium className="mr-2" onChange={handleSearchChange} />
         </>
       } />

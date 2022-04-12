@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useTable, useFilters, usePagination, useSortBy } from 'react-table'
 
-const Table = ({ columns, data, filter = 'detail_bus.name', search }) => {
+const Table = ({ columns, data, filter, search }) => {
 
   const {
     getTableProps,
