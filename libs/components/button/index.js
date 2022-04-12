@@ -19,10 +19,11 @@ export const ButtonSort = ({ className, medium, text = 'Sort' }) => {
   )
 }
 
-export const Button = ({ type, text, isLoading, onClick, className }) => (
+export const Button = ({ type, text, isLoading, onClick, className, ...props }) => (
   <button className={`bg-orange hover:bg-orange-dark active:translate-y-px transition text-white w-full rounded px-4 py-2 flex items-center justify-center `+className}
   onClick={onClick}
-  disabled={isLoading}>
+  disabled={isLoading}
+  {...props}>
     {isLoading && (
       <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>

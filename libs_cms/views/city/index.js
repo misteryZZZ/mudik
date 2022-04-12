@@ -13,16 +13,22 @@ import { Button } from '../../../libs/components/button'
 const City = () => {
   const router = useRouter();
 
+  const [tableUpdate, setTableUpdate] = useState(0);
+
   const [user, setUser] = useState(false);
   const [modalID, setModalID] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [typeModal, setTypeModal] = useState('create');
 
-  const handleUpdate = (id) => {
+  const handleUpdateClick = (id) => {
     console.log(id);
     setModalID(id);
     setShowModal(true);
     setTypeModal('update')
+  }
+
+  const handleModalSuccess = () => {
+    setTableUpdate(tableUpdate+1)
   }
 
   useEffect(() => {
@@ -35,7 +41,7 @@ const City = () => {
     })()
   },[])
 
-  if (!user) return false;
+  if (!user) return <>Loading...</>;
   return(
     <Layout 
     title="City | Mudik Gratis DKI Jakarta 2022"
@@ -51,8 +57,15 @@ const City = () => {
         <SectionTable
         setShowModal={setShowModal}
         showModal={showModal}
-        handleUpdate={handleUpdate}/>
-        {showModal && <FormModal setShowModal={setShowModal} type={typeModal} id={modalID} />}
+        handleUpdateClick={handleUpdateClick}
+        tableUpdate={tableUpdate}/>
+        {showModal &&
+          <FormModal
+          setShowModal={setShowModal}
+          type={typeModal}
+          id={modalID}
+          onSuccess={handleModalSuccess}
+          />}
       </main>
     </Layout>
   );

@@ -5,10 +5,8 @@ import { InputWithLabel } from '../../../libs/components/input'
 import { SelectWithLabel } from '../../../libs/components/select'
 
 import { createBus, getBusDetail, updateBus } from '../../models/busModel'
-import { getDriver } from '../../models/driverModel'
-import { getTrip } from '../../models/tripModel'
 
-const FormModal = ({ setShowModal, type, id }) => {
+const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
 
   const [isLoading, setLoading] = useState(false);
 
@@ -23,9 +21,6 @@ const FormModal = ({ setShowModal, type, id }) => {
     place_at: '',
   });
 
-  const [dataDriver, setDataDriver] = useState([])
-  const [dataTrip, setDataTrip] = useState([])
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -33,7 +28,8 @@ const FormModal = ({ setShowModal, type, id }) => {
     if (type == 'create') {
       const response = await createBus(data);
       if (response && response.success) {
-        alert('Berhasil membuat bus');
+        onSuccess();
+        setShowModal(false);
       } else {
         alert('Gagal membuat bus');
       }
@@ -41,27 +37,18 @@ const FormModal = ({ setShowModal, type, id }) => {
       const response = await updateBus(id, data);
       console.log(response);
       if (response && response.success) {
-        alert('Berhasil menupdate bus');
+        onSuccess();
+        setShowModal(false);
       } else {
         alert('Gagal menupdate bus');
       }
     }
+
     setLoading(false);
   }
 
   useEffect(() => {
     (async () => {
-      const fetchDataDriver = await getDriver();
-      setDataDriver(fetchDataDriver.data.map(e => ({
-        label: e.name,
-        value: e.id
-      })))
-      const fetchDataTrip = await getTrip();
-      setDataTrip(fetchDataTrip.data.map(e => ({
-        label: `${e.city.name} (${e.type})`,
-        value: e.id
-      })))
-
       if (type == 'update') {
         const dataPre = await getBusDetail(id)
         console.log(dataPre);
@@ -87,8 +74,8 @@ const FormModal = ({ setShowModal, type, id }) => {
           <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
         </div>
         <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-          <SelectWithLabel label="Driver" options={dataDriver} selected={data.driver_id} onChange={e => setData({...data, driver_id: String(e.target.value)})} className="border-2" />
-          <SelectWithLabel label="Trip" options={dataTrip} selected={data.trip_id} onChange={e => setData({...data, trip_id: String(e.target.value)})} className="border-2" />
+          <SelectWithLabel label="Driver" options={dataSelect.driver} selected={data.driver_id} onChange={e => setData({...data, driver_id: String(e.target.value)})} className="border-2" />
+          <SelectWithLabel label="Trip" options={dataSelect.trip} selected={data.trip_id} onChange={e => setData({...data, trip_id: String(e.target.value)})} className="border-2" />
           <InputWithLabel label="Kode" value={data.code} onChange={e => setData({...data, code: e.target.value})} className="border-2"/>
           <InputWithLabel label="No Polisi" value={data.no_police} onChange={e => setData({...data, no_police: e.target.value})} className="border-2"/>
           <InputWithLabel label="Kuota" value={data.quota} onChange={e => setData({...data, quota: String(e.target.value)})} className="border-2"/>

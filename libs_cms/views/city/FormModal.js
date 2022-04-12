@@ -7,7 +7,7 @@ import { ImageUpload } from '../../../libs/components/imageUpload'
 
 import { createCity, getCityDetail, updateCity } from '../../models/cityModel'
 
-const FormModal = ({ setShowModal, type, id }) => {
+const FormModal = ({ setShowModal, type, id, onSuccess }) => {
 
   const [isLoading, setLoading] = useState(false);
 
@@ -33,12 +33,13 @@ const FormModal = ({ setShowModal, type, id }) => {
     const formData = new FormData();
     formData.append('nama', data.name);
     formData.append('terminal_name', data.terminal_name);
-    formData.append('image', image.file);
+    if (image.file) formData.append('image', image.file);
 
     if (type == 'create') {
       const response = await createCity(formData);
       if (response && response.success) {
-        alert('Berhasil membuat city');
+        onSuccess();
+        setShowModal(false);
       } else {
         alert('Gagal membuat city');
       }
@@ -47,7 +48,8 @@ const FormModal = ({ setShowModal, type, id }) => {
       const response = await updateCity(id, formData);
       console.log(response);
       if (response && response.success) {
-        alert('Berhasil menupdate city');
+        onSuccess();
+        setShowModal(false);
       } else {
         alert('Gagal menupdate city');
       }

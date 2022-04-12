@@ -6,8 +6,10 @@ export const InputRoute = ({ setValues, values, label, className }) => {
   const [input, setInput] = useState('')
 
   const addValues = () => {
-    setValues([ ...values, input]);
-    setInput('');
+    if (input) {
+      setValues([ ...values, input]);
+      setInput('');
+    }
   }
 
   const handleKeyPress = (e) => {

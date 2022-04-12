@@ -23,7 +23,7 @@ const Manifest = () => {
       value: 'detail_bus.name'
     },{
       label: 'Nama Penumpang',
-      value: 'detail_passenger.name'
+      value: 'Nama Penumpang'
     },{
       label: 'Email',
       value: 'detail_passenger.email'

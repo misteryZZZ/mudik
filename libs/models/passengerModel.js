@@ -34,9 +34,14 @@ export const getPassengerManifest = async () => {
   return data.data.transaction;
 }
 
-export const verifPassenger = async (id) => {
+export const verifPassenger = async (data) => {
   return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/passenger/accept`, {
-    headers: {'Authorization': `Bearer ${localStorage.token}`}
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
   })
   .then(response => {
     if(response.ok){

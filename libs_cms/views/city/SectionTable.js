@@ -3,30 +3,26 @@ import React, { useState, useEffect } from 'react';
 import Table from '../../../libs/components/table/simple';
 import { Dropdown } from '../../../libs/components/dropdown'
 
-import { getCity, deleteCity } from '../../models/cityModel';
+import { getAllCity, deleteCity } from '../../models/cityModel';
 
-const SectionTable = ({ handleUpdate }) => {
-  const [city, setCity] = useState({
-    data: []
-  });
+const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
+  const [city, setCity] = useState([]);
+
+  const getData = async () => {
+    const dataCity = await getAllCity();
+    setCity(dataCity)
+  }
 
   useEffect(() => {
-    (async () => {
-      const dataCity = await getCity();
-      setCity(dataCity)
-      console.log(city);
-    })()
-  },[])
+    getData();
+  },[tableUpdate])
 
-  const handleDelete = async (id) => {
+  const handleDeleteClick = async (id) => {
     const response = await deleteCity(id);
 
     if (response.success) {
       alert('Berhasil menghapus city');
-      setCity({
-        ...city,
-        data: city.data.filter(e => e.id != id)
-      });
+      setCity(city.filter(e => e.id != id));
     }
   }
 
@@ -54,11 +50,11 @@ const SectionTable = ({ handleUpdate }) => {
         accessor: (rows) => (
           <>
           <button className="bg-yellow-500 rounded px-2 text-white mr-1"
-          onClick={() => handleUpdate(rows.id)}>
+          onClick={() => handleUpdateClick(rows.id)}>
             Update
           </button>
           <button className="bg-red-500 rounded px-2 text-white mr-1"
-          onClick={() => handleDelete(rows.id)}>
+          onClick={() => handleDeleteClick(rows.id)}>
             Delete
           </button>
           </>
@@ -71,7 +67,7 @@ const SectionTable = ({ handleUpdate }) => {
   return (
     <section className="rounded-2xl bg-white p-4">
       <div className="overflow-auto pb-3">
-        <Table columns={columns} data={city.data} />
+        <Table columns={columns} data={data} />
       </div>
     </section>
   )

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Router from 'next/router'
 
 import { Button } from '../../../libs/components/button'
 import { InputWithLabel } from '../../../libs/components/input'
@@ -7,9 +6,8 @@ import { SelectWithLabel } from '../../../libs/components/select'
 import { InputRoute } from '../../../libs/components/inputRoute'
 
 import { createTrip, getTripDetail, updateTrip } from '../../models/tripModel'
-import { getCity } from '../../models/cityModel'
 
-const FormModal = ({ setShowModal, type, id }) => {
+const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
 
   const [isLoading, setLoading] = useState(false);
   
@@ -19,9 +17,6 @@ const FormModal = ({ setShowModal, type, id }) => {
     rute: []
   });
 
-  const [dataCity, setDataCity] = useState([])
-  const dataType = ['mudik-saja','mudik-balik','mudik-balik-motor']
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -30,8 +25,8 @@ const FormModal = ({ setShowModal, type, id }) => {
       const response = await createTrip(data);
       console.log(response);
       if (response && response.success) {
-        setShowModal(false)
-        Router.reload()
+        onSuccess();
+        setShowModal(false);
       } else {
         alert('Gagal membuat trip');
       }
@@ -39,8 +34,8 @@ const FormModal = ({ setShowModal, type, id }) => {
       const response = await updateTrip(id, data);
       console.log(response);
       if (response && response.success) {
-        setShowModal(false)
-        Router.reload()
+        onSuccess();
+        setShowModal(false);
       } else {
         alert('Gagal menupdate trip');
       }
@@ -50,12 +45,6 @@ const FormModal = ({ setShowModal, type, id }) => {
 
   useEffect(() => {
     (async () => {
-      const fetchDataCity = await getCity();
-      setDataCity(fetchDataCity.data.map(e => ({
-        label: e.name,
-        value: e.id
-      })))
-
       if (type == 'update') {
         const dataPre = await getTripDetail(id)
         console.log(dataPre);
@@ -76,8 +65,8 @@ const FormModal = ({ setShowModal, type, id }) => {
           <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
         </div>
         <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-          <SelectWithLabel label="Kota" nama="city" options={dataCity} selected={data.city_id} onChange={e => setData({...data, city_id: e.target.value})} className="border-2" />
-          <SelectWithLabel label="Tipe" nama="type" options={dataType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
+          <SelectWithLabel label="Kota" nama="city" options={dataSelect.city} selected={data.city_id} onChange={e => setData({...data, city_id: e.target.value})} className="border-2" />
+          <SelectWithLabel label="Tipe" nama="type" options={dataSelect.type} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
           <InputRoute label="Rute" setValues={(newValues) => setData({...data, rute: newValues})} values={data.rute} className="border-2"/>
 
           <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />

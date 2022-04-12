@@ -1,3 +1,22 @@
+export const getAllTruck = async () => {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/truck?all=yes`, {
+    headers: {'Authorization': `Bearer ${localStorage.token}`}
+  })
+  .then(response => {
+    if(response.ok){
+      return response.json()
+    } else {
+      return false;
+    }
+  })
+  .catch((err) => {
+    console.warn(err)
+    return false;
+  })
+  if (!data) return false;
+  return data.data.truck;
+}
+
 export const getTruck = async (page = 1, city = '') => {
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/truck?page=${page}&city=${city}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
@@ -43,13 +62,7 @@ export const createTruck = async (data) => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      driver_id: data.driverID,
-      trip_id: data.tripID,
-      code: data.code,
-      no_police: data.no_police,
-      quota: data.quota,
-    })
+    body: JSON.stringify(data)
   })
   .then(response => {
     if(response.ok){
@@ -74,11 +87,7 @@ export const updateTruck = async (id, data) => {
     },
     body: JSON.stringify({
       _method: 'PUT',
-      driver_id: data.driverID,
-      trip_id: data.tripID,
-      code: data.code,
-      no_police: data.no_police,
-      quota: data.quota,
+      ...data
     })
   })
   .then(response => {

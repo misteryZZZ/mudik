@@ -23,7 +23,7 @@ export const SectionForm = () => {
       localStorage.setItem("token", response.data.access_token);
       router.push('/dinkes')
     } else {
-      // jika login gagal
+      alert('Gagal login')
     }
     setLoading(false);
   }

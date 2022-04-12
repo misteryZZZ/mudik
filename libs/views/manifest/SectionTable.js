@@ -36,7 +36,7 @@ const SectionTable = ({ filter, search }) => {
   const columns = React.useMemo(() => [
       {
         Header: 'No',
-        accessor: (e,i) => i + 1,
+        accessor: 'id'
       },
       {
         Header: 'Kota Tujuan',
@@ -80,9 +80,17 @@ const SectionTable = ({ filter, search }) => {
         accessor: 'detail_passenger.vehicle.stnk'
       },
       {
+        Header: 'File Booster',
+        accessor: ({ detail_passenger: {file_booster} }) => {
+          if (file_booster) return (
+            <a href={file_booster} target="_blank">Link</a>
+          )
+        }
+      },
+      {
         Header: 'Status',
         accessor: ({ detail_passenger: {id, verify_date} }) => (
-          <Button text="Verifikasi" disabled={!!verify_date} className="bg-maincolor hover:bg-maincolor-dark" onClick={() => {setShowModal(true); setModalID(id)}} />
+          <Button text="Verifikasi" disabled={!!verify_date} className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark" onClick={() => {setShowModal(true); setModalID(id)}} />
         )
       }
     ],

@@ -10,6 +10,7 @@ const FormModal = ({ setShowModal, id }) => {
   const [isLoading, setLoading] = useState(false);
 
   const [data, setData] = useState({
+    passenger_id: id,
     passenger_date: '',
     passenger_time_start: '',
     passenger_time_end: '',
