@@ -3,33 +3,29 @@ import React, { useState, useEffect } from 'react';
 import Table from '../../../libs/components/table';
 import { Dropdown } from '../../../libs/components/dropdown'
 
-import { getPassengerManifest } from '../../../libs/models/passengerModel';
+import { getManifestDinkes } from '../../models/manifestModel';
 
-const SectionTable = ({ filter, search }) => {
+const SectionTable = ({ filter, search, territory }) => {
   const [manifest, setManifest] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const dataManifest = await getPassengerManifest();
+      const dataManifest = await getManifestDinkes();
       console.log(dataManifest);
       setManifest(dataManifest)
     })()
   },[])
 
-  const data = React.useMemo(() => manifest)
+  const data = React.useMemo(() => manifest.filter(e => (e.detail_passenger.puskes.kabupaten).toLowerCase() == (territory).toLowerCase() ))
 
   const columns = React.useMemo(() => [
       {
         Header: 'No',
-        accessor: (e,i) => i + 1,
+        accessor: 'id'
       },
       {
-        Header: 'Nama Penumpang',
-        accessor: ({ detail_passenger: {name, member}}) => {
-          if (member.length == 0) return name;
-          const options = [...member].map(e => e.name)
-          return (<Dropdown placeholder={name} options={options}/>)
-        }
+        Header: 'Penumpang',
+        accessor: 'detail_passenger.name'
       },
       {
         Header: 'Jenis Kelamin',
@@ -44,39 +40,34 @@ const SectionTable = ({ filter, search }) => {
         accessor: 'detail_passenger.phone'
       },
       {
+        Header: 'NIK',
+        accessor: 'detail_passenger.nik'
+      },
+      {
+        Header: 'No KK',
+        accessor: 'detail_passenger.no_kk'
+      },
+      {
         Header: 'Status',
-        accessor: 'status'
+        accessor: 'detail_passenger.status'
       },
       {
         Header: 'Vaksin',
-        accessor: (row) => `Dosis ${row.detail_passenger.vaksin}`
+        accessor: ({ detail_passenger: {vaksin} }) => `Dosis ${vaksin}`
       },
       {
-        Header: 'Hasil Tes',
-        accessor: 'hasil_tes'
+        Header: 'Tipke Vaksin',
+        accessor: 'detail_passenger.type_vaksin'
       },
       {
-        Header: 'Jenis Vaksin',
-        accessor: (rows) => rows.detail_passenger.type_vaksin
+        Header: 'File Booster',
+        accessor: ({ file_booster }) => {
+          if (file_booster) return <a href={file_booster} target="_blank">File</a>
+        }
       },
       {
         Header: 'Puskesmas',
-        accessor: (rows) => rows.detail_passenger.puskes
-      },
-      {
-        Header: 'Action',
-        accessor: (rows) => (
-          <>
-            <button className="bg-green-500 rounded px-2 text-white mr-1"
-            onClick={null}>
-              Accept
-            </button>
-            <button className="bg-red-500 rounded px-2 text-white mr-1"
-            onClick={null}>
-              Decline
-            </button>
-          </>
-        )
+        accessor: 'detail_passenger.puskes.name'
       }
     ],
     []

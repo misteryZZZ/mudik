@@ -28,9 +28,9 @@ const CardSummary = ({
     </div>
 
     <div className="flex items-center gap-2 p-3">
-      <img className="rounded-md w-12" src={'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'/*driver_image*/} alt="foto driver" />
+      <img className="rounded-md w-12" src={driver_image} alt="foto driver" />
       <div className="grow">
-        <p className="font-semibold">{'Fermin Kris'/*driver_name*/}</p>
+        <p className="font-semibold">{driver_name}</p>
         {/*<p className="bg-green-500/25 text-green-900 px-2 rounded inline-block text-xs">
           <span className="inline-block w-[5px] h-[5px] rounded-full bg-green-500 my-[2px] mr-2" />
           Perjalanan

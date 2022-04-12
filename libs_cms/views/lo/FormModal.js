@@ -39,8 +39,19 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     e.preventDefault();
     setLoading(true);
 
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    if (data.password) formData.append('password', data.password);
+    if (data.password) formData.append('re_password', data.re_password);
+    formData.append('phone', data.phone);
+    formData.append('type', data.type);
+    formData.append('vehicle_id', String(data.vehicle_id));
+    if (image.file) formData.append('image', image.file);
+
+
     if (type == 'create') {
-      const response = await createLO(data);
+      const response = await createLO(formData);
       if (response && response.success) {
         onSuccess();
         setShowModal(false);
@@ -48,7 +59,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         alert('Gagal membuat bus');
       }
     } else {
-      const response = await updateLO(id, data);
+      const response = await updateLO(id, formData);
       console.log(response);
       if (response && response.success) {
         onSuccess();

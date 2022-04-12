@@ -15,12 +15,12 @@ const Manifest = () => {
 
   const [user, setUser] = useState(false);
   const [search, setSearch] = useState(undefined);
-  const [filter, setFilter] = useState('Nama Penumpang');
+  const [filter, setFilter] = useState('detail_passenger.name');
 
   const filterOptions = [
     {
       label: 'Nama Penumpang',
-      value: 'Nama Penumpang'
+      value: 'detail_passenger.name'
     },{
       label: 'Vaksin',
       value: 'Vaksin'
@@ -50,7 +50,7 @@ const Manifest = () => {
     })()
   },[])
 
-  if (!user) return false;
+  if (!user) return <>Loading...</>;
   return(
     <Layout 
     title="Data Manifest | Mudik Gratis DKI Jakarta 2022"
@@ -64,7 +64,7 @@ const Manifest = () => {
         </>
       } />
       <main className="px-4 py-2">
-        <SectionTable search={search} filter={filter} />
+        <SectionTable search={search} filter={filter} territory={user.territory}/>
       </main>
     </Layout>
   );

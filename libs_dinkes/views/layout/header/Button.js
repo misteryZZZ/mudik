@@ -25,7 +25,7 @@ export const Profile = ({ fotoProfile, dropdownContent }) => {
   return (
     <div className="shrink-0 h-[40px] relative px-2">
       <button>
-        <img className="block w-10 rounded-full" src={fotoProfile} alt="foto profile" onClick={toggle} onBlur={close} />
+        <img className="block w-10 rounded-full" src={fotoProfile || 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'} alt="foto profile" onClick={toggle} onBlur={close} />
       </button>
       <div className={`absolute min-w-[140px] top-full right-0 mt-3 bg-white rounded-lg shadow-md hidden z-10 ${open ? '!block' : ''}`}>
         {dropdownContent}

@@ -1,5 +1,5 @@
 export const isLogedin = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/profile`, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dinkes/v1/profile`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -19,7 +19,7 @@ export const isLogedin = async () => {
 
 export const doLogin = async (email, password) => {
   console.log(email, password);
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/login`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dinkes/v1/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ export const doLogin = async (email, password) => {
       return response.json()
     }
     else {
-      alert('gagal melakukan login')
+      return false;
     }
   })
   .catch(error => {

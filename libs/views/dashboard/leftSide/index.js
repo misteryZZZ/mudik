@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { getTripCounting } from '../../../models/tripModel'
+import { getCheckpoint } from '../../../models/checkpointModel'
 
 import Maps from './Maps';
 import JumlahPenumpangMotor from './JumlahPenumpangMotor';
@@ -13,11 +14,15 @@ import { ButtonSort } from '../../../components/button'
 
 const LeftSide = () => {
   const [trips, setTrips] = useState([])
+  const [checkpoint, setCheckpoint] = useState([])
 
   useEffect(() => {
     (async () => {
       const dataTrips = await getTripCounting();
       setTrips(dataTrips)
+
+      const dataCheckpoint = await getCheckpoint();
+      setCheckpoint(dataCheckpoint)
     })()
   },[])
 
@@ -82,8 +87,8 @@ const LeftSide = () => {
         </div>
 
         <div className="overflow-x-auto">
-          {trips.map((e,i) => (
-            <Checkpoint key={i} judul={`${e.trip.city.name} - ${e.trip_id}`} progres={0} />
+          {checkpoint.map((e,i) => (
+            <Checkpoint key={i} judul={e.bus.name} progres={0} rute={e.rute}/>
           ))}
         </div>
 

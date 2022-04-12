@@ -32,8 +32,8 @@ const RightSide = () => {
             jumlah_penumpang={e.passenger_count}
             laki_laki={e.passenger_man_count}
             perempuan={e.passenger_woman_count}
-            driver_image={null/*e.detail_bus.driver.image*/}
-            driver_name={null/*e.detail_bus.driver.name*/}
+            driver_image={e.detail_bus.driver.image}
+            driver_name={e.detail_bus.driver.name}
             no_polisi={e.detail_bus.no_police}
           />
         ))}

@@ -61,10 +61,9 @@ export const createLO = async (data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/lo`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify(data)
+    body: data
   })
   .then(response => {
     if(response.ok){
@@ -84,13 +83,9 @@ export const updateLO = async (id, data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/lo/${id}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      _method: 'PUT',
-      ...data
-    })
+    body: data
   })
   .then(response => {
     if(response.ok){
