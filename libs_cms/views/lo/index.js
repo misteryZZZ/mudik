@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
+import { getAllDriver } from '../../models/driverModel'
+import { getAllBus } from '../../models/busModel'
+import { getAllTruck } from '../../models/truckModel'
 
 import Layout from '../layout'
 import Header from '../layout/header'
 
 import SectionTable from './SectionTable'
-// import FormModal from './FormModal'
+import FormModal from './FormModal'
 import { Button } from '../../../libs/components/button'
 
 const LOView = () => {
@@ -17,12 +20,19 @@ const LOView = () => {
   const [modalID, setModalID] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [typeModal, setTypeModal] = useState('create');
+  const [dataSelect, setDataSelect] = useState({
+    driver: []
+  })
 
-  const handleUpdate = (id) => {
+  const handleUpdateClick = (id) => {
     console.log(id);
     setModalID(id);
     setShowModal(true);
     setTypeModal('update')
+  }
+
+  const handleModalSuccess = () => {
+    setTableUpdate(tableUpdate+1)
   }
 
   useEffect(() => {
@@ -32,10 +42,29 @@ const LOView = () => {
       if (!logedInStatus) {
         router.push('/cms/login');
       }
+
+      const fetchDriver = await getAllDriver();
+      const fetchBus = await getAllBus();
+      const fetchTruck = await getAllTruck();
+      await setDataSelect({
+        driver: fetchDriver.map(e => ({
+          label: e.name,
+          value: e.id
+        })),
+        bus: fetchBus.map(e => ({
+          label: `${e.name} (${e.no_police})`,
+          value: e.id
+        })),
+        truck: fetchTruck.map(e => ({
+          label: `${e.name} (${e.no_police})`,
+          value: e.id
+        })),
+      })
+
     })()
   },[])
 
-  if (!user) return false;
+  if (!user) return <>Loading...</>;
   return(
     <Layout 
     title="Data LO | Mudik Gratis DKI Jakarta 2022"
@@ -51,8 +80,15 @@ const LOView = () => {
         <SectionTable
         setShowModal={setShowModal}
         showModal={showModal}
-        handleUpdate={handleUpdate}/>
-        {/*showModal && <FormModal setShowModal={setShowModal} type={typeModal} id={modalID} />*/}
+        handleUpdateClick={handleUpdateClick}/>
+        {showModal &&
+          <FormModal
+          setShowModal={setShowModal}
+          type={typeModal}
+          id={modalID}
+          dataSelect={dataSelect}
+          onSuccess={handleModalSuccess}
+          />}
       </main>
     </Layout>
   );

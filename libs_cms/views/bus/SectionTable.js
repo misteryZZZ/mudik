@@ -22,7 +22,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
 
     if (response.success) {
       alert('Berhasil menghapus bus');
-      setBus(bus.filter(e => e.id != id));
+      getData();
     }
   }
 

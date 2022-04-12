@@ -9,19 +9,19 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   const [LO, setLO] = useState([]);
 
   const getData = async () => {
-    const dataLO = await getLO();
-    setLO(dataLO)
+    const dataLO = await getAllLO();
+    setLO(dataLO);
   }
 
   useEffect(() => {
     getData();
   },[tableUpdate])
 
-  const handleDelete = async (id) => {
+  const handleDeleteClick = async (id) => {
     const response = await deleteLO(id);
     if (response.success) {
       alert('Berhasil menghapus LO')
-      setLO(LO.filter(e => e.id != id));
+      getData();
     }
   }
 
@@ -31,6 +31,11 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
       {
         Header: 'No',
         accessor: (e,i) => i + 1,
+      },
+      {
+        Header: 'Gambar',
+        accessor: ({ image }) => 
+        (<img className="w-10 rounded-full mx-auto" src={image} alt="" />)
       },
       {
         Header: 'Nama',
@@ -50,18 +55,18 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
       },
       {
         Header: 'No Polisi',
-        accessor: (rows) => <>{rows[type]?.no_police}</>
+        accessor: (rows) => <>{rows[rows.type]?.no_police}</>
       },
       {
         Header: 'Action',
         accessor: (rows) => (
           <>
           <button className="bg-yellow-500 rounded px-2 text-white mr-1"
-          onClick={null}>
+          onClick={() => handleUpdateClick(rows.id)}>
             Update
           </button>
           <button className="bg-red-500 rounded px-2 text-white mr-1"
-          onClick={() => handleDelete(rows.id)}>
+          onClick={() => handleDeleteClick(rows.id)}>
             Delete
           </button>
           </>
@@ -74,7 +79,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   return (
     <section className="rounded-2xl bg-white p-4">
       <div className="overflow-auto pb-3">
-        <Table columns={columns} data={LO.data} />
+        <Table columns={columns} data={data} />
       </div>
     </section>
   )

@@ -61,15 +61,9 @@ export const createDriver = async (data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      name: data.name,
-      type: data.type,
-      vehicle_id: data.vehicle_id,
-      image: null
-    })
+    body: data
   })
   .then(response => {
     if(response.ok){
@@ -89,16 +83,9 @@ export const updateDriver = async (id, data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver/${id}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({
-      _method: 'PUT',
-      name: data.name,
-      type: data.type,
-      vehicle_id: data.vehicle_id,
-      image: null
-    })
+    body: data
   })
   .then(response => {
     if(response.ok){

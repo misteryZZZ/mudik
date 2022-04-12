@@ -22,7 +22,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
 
     if (response.success) {
       alert('Berhasil menghapus truk');
-      setTruck(truck.filter(e => e.id != id));
+      getData();
     }
   }
 

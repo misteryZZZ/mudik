@@ -30,7 +30,7 @@ const FormModal = ({ setShowModal, type, id, onSuccess }) => {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append('nama', data.name);
+    formData.append('name', data.name);
     formData.append('terminal_name', data.terminal_name);
     if (image.file) formData.append('image', image.file);
 

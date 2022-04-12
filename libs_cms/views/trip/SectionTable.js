@@ -22,8 +22,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpadate }) => {
 
     if (response.success) {
       alert('Berhasil menghapus trip');
-      // await getData()
-      setTrips(trips.filter(e => e.id != id));
+      getData()
     }
   }
 

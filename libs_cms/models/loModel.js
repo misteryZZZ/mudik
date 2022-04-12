@@ -1,5 +1,5 @@
 export const getAllLO = async () => {
-  const data = await fetch(`${pocess.env.NEXT_PUBLIC_API_URL}/api/cms/v1/lo?all=yes`, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/lo?all=yes`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -54,7 +54,7 @@ export const getLODetail = async (id) => {
     return false;
   })
   if (!data) return false;
-  return data.data.bus;
+  return data.data.lo;
 }
 
 export const createLO = async (data) => {

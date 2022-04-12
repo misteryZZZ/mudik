@@ -22,7 +22,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
 
     if (response.success) {
       alert('Berhasil menghapus driver');
-      setDriver(driver.filter(e => e.id != id));
+      getData();
     }
   }
 
@@ -34,6 +34,11 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
         accessor: (e,i) => i + 1,
       },
       {
+        Header: 'Gambar',
+        accessor: ({ image }) => 
+        (<img className="w-10 rounded-full mx-auto" src={image} alt="" />)
+      },
+      {
         Header: 'Nama',
         accessor: 'name'
       },
@@ -43,14 +48,14 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
       },
       {
         Header: 'Action',
-        accessor: (rows) => (
+        accessor: ({ id }) => (
           <>
           <button className="bg-yellow-500 rounded px-2 text-white mr-1"
-          onClick={() => handleUpdateClick(rows.id)}>
+          onClick={() => handleUpdateClick(id)}>
             Update
           </button>
           <button className="bg-red-500 rounded px-2 text-white mr-1"
-          onClick={() => handleDeleteClick(rows.id)}>
+          onClick={() => handleDeleteClick(id)}>
             Delete
           </button>
           </>

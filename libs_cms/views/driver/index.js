@@ -48,11 +48,11 @@ const DriverView = () => {
       const fetchBus = await getAllBus();
       const fetchTruck = await getAllTruck();
       await setDataSelect({
-        trip: fetchBus.map(e => ({
+        bus: fetchBus.map(e => ({
           label: `${e.name} (${e.no_police})`,
           value: e.id
         })),
-        driver: fetchTruck.map(e => ({
+        truck: fetchTruck.map(e => ({
           label: `${e.name} (${e.no_police})`,
           value: e.id
         }))
