@@ -31,15 +31,15 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowMo
       },
       {
         Header: 'No Tiket Penumpang',
-        accessor: 'code'
+        accessor: (rows) => rows.code
       },
       {
         Header: 'No Tiket Motor',
-        accessor: 'code'
+        accessor: (rows) => rows.code
       },
       {
         Header: 'Status Keberangkatan',
-        accessor: '(belom)'
+        accessor: () => '(belom)'
       },
       {
         Header: 'No. Bus',
@@ -92,7 +92,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowMo
       },
       {
         Header: 'Waktu Verifikasi Offline',
-        accessor: '(belom)'
+        accessor: () => '(belom)'
       },
       {
         Header: 'Sepeda Motor',
@@ -118,7 +118,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowMo
       },
       {
         Header: 'Kode Booking',
-        accessor: '(belom)'
+        accessor: () => '(belom)'
       }
     ],
     []
