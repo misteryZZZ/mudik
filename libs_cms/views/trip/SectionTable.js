@@ -5,7 +5,7 @@ import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getAllTrip, deleteTrip } from '../../models/tripModel';
 
-const SectionTable = ({ handleUpdateClick, setShowModal, tableUpadate }) => {
+const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   const [trips, setTrips] = useState([]);
 
   const getData = async () => {
@@ -15,7 +15,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpadate }) => {
 
   useEffect(() => {
     getData()
-  },[tableUpadate])
+  },[tableUpdate])
 
   const handleDeleteClick = async (id) => {
     const response = await deleteTrip(id);

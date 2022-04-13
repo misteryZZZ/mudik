@@ -6,6 +6,7 @@ import { isLogedin } from '../../models/userModel'
 import Layout from '../layout'
 import Header from '../layout/header'
 
+import FormModal from './FormModal'
 import SectionTable from './SectionTable'
 import { SortDropdown } from '../../components/SortDropdown'
 import { Search } from '../../components/input'
@@ -13,9 +14,13 @@ import { Search } from '../../components/input'
 const Manifest = () => {
   const router = useRouter();
 
+  const [tableUpdate, setTableUpdate] = useState(0);
+
   const [user, setUser] = useState(false);
   const [search, setSearch] = useState(undefined);
   const [filter, setFilter] = useState('detail_bus.name');
+  const [modalID, setModalID] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const filterOptions = [
     {
@@ -38,6 +43,15 @@ const Manifest = () => {
   const handleFilterChange = (e) => {
     const value = e.value || undefined;
     setFilter(value);
+  }
+
+  const handleVerifClick = (id) => {
+    setModalID(id);
+    setShowModal(true);
+  }
+
+  const handleModalSuccess = () => {
+    setTableUpdate(tableUpdate+1)
   }
 
   useEffect(() => {
@@ -64,7 +78,18 @@ const Manifest = () => {
         </>
       } />
       <main className="px-4 py-2">
-        <SectionTable search={search} filter={filter} />
+        <SectionTable
+        search={search}
+        filter={filter}
+        handleVerifClick={handleVerifClick}
+        tableUpdate={tableUpdate}
+        />
+        {showModal &&
+          <FormModal
+          setShowModal={setShowModal}
+          id={modalID}
+          onSuccess={handleModalSuccess}
+          />}
       </main>
     </Layout>
   );

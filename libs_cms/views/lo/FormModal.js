@@ -56,7 +56,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         onSuccess();
         setShowModal(false);
       } else {
-        alert('Gagal membuat bus');
+        alert('Gagal membuat LO');
       }
     } else {
       const response = await updateLO(id, formData);
@@ -65,7 +65,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         onSuccess();
         setShowModal(false);
       } else {
-        alert('Gagal menupdate bus');
+        alert('Gagal menupdate LO');
       }
     }
 
@@ -95,7 +95,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-start backdrop-blur-sm z-10 bg-black/10 overflow-y-auto p-4">
       <div className="flex flex-col bg-white rounded-xl p-6 shadow-lg w-full max-w-[800px]">
         <div className="flex justify-between border-b pb-4">
-          <h1 className="text-xl font-semibold">{(type === 'create') ? 'Buat bus baru' : 'Update bus'}</h1>
+          <h1 className="text-xl font-semibold">{(type === 'create') ? 'Buat LO baru' : 'Update LO'}</h1>
           <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
         </div>
         <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
@@ -103,7 +103,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
           <InputWithLabel label="Email" name="email" value={data.email} onChange={e => setData({...data, email: e.target.value})} className="border-2" />
           <InputWithLabel label="Password" type="password" value={data.password} onChange={e => setData({...data, password: e.target.value})} className="border-2"/>
           <InputWithLabel label="Confirm Password" type="password" value={data.re_password} onChange={e => setData({...data, re_password: e.target.value})} className="border-2"/>
-          <InputWithLabel label="No Telepon" value={data.phone} onChange={e => setData({...data, phoone: e.target.value})} className="border-2"/>
+          <InputWithLabel label="No Telepon" value={data.phone} onChange={e => setData({...data, phone: e.target.value})} className="border-2"/>
           <SelectWithLabel label="Tipe Kendaraan" options={dataVehicleType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2"/>
           <SelectWithLabel label="Kendaraan" options={(data.type) ? dataSelect[data.type] : []} selected={data.vehicle_id} value={data.vehicle_id} onChange={e => setData({...data, vehicle_id: String(e.target.value)})} className="border-2"/>
           <ImageUpload label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />

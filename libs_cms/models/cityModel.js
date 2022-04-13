@@ -55,11 +55,10 @@ export const getCityDetail = async (id) => {
 }
 
 export const createCity = async (data) => {
-  console.log(data);
+  console.log(...data.entries());
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/city`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.token}`
     },
     body: data,
@@ -82,7 +81,6 @@ export const updateCity = async (id, data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/city/${id}`, {
     method: 'POST',
     headers: {
-
       'Authorization': `Bearer ${localStorage.token}`
     },
     body: data

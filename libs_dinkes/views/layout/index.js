@@ -11,7 +11,7 @@ const Layout = ({ children, title, description, menuActive, headerTitle, headerM
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <div>
+      <div className="relative">
         <Navigation menuActive={menuActive} />
         <div className="flex flex-col bg-gray-50 min-h-[100vh] lg:ml-[210px] transition-all">
           {children}

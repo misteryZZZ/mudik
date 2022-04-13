@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getTripCounting } from '../../../models/tripModel'
 import { getCheckpoint } from '../../../models/checkpointModel'
 
-import Maps from './Maps';
+import SectionMap from '../../liveMap/SectionMap';
 import JumlahPenumpangMotor from './JumlahPenumpangMotor';
 import DetilJumlah from './DetilJumlah';
 import CardStatus from './CardStatus';
@@ -31,7 +31,7 @@ const LeftSide = () => {
     <div className="bg-white rounded-xl p-4 lg:w-2/3 mb-4">
       
       <div className="flex flex-col md:flex-row gap-3 mb-3">
-        <Maps />
+        <SectionMap />
 
         <div className="flex gap-3">
           <div className="rounded-lg overflow-hidden text-sm w-full">

@@ -83,19 +83,23 @@ const Table = ({ columns, data, filter, search }) => {
       </table>
 
       <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}
+        className="cursor-pointer px-2 py-1 border rounded my-2">
           {'<<'}
         </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}
+        className="cursor-pointer px-2 py-1 border rounded my-2">
           {'<'}
         </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
+        <button onClick={() => nextPage()} disabled={!canNextPage}
+        className="cursor-pointer px-2 py-1 border rounded my-2">
           {'>'}
         </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}
+        className="cursor-pointer px-2 py-1 border rounded my-2">
           {'>>'}
         </button>{' '}
-        <span>
+        <span className="mx-2">
           Page{' '}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
@@ -106,6 +110,7 @@ const Table = ({ columns, data, filter, search }) => {
           onChange={e => {
             setPageSize(Number(e.target.value))
           }}
+          className="border p-1 rounded cursor-pointer"
         >
           {[10, 20, 50].map(pageSize => (
             <option key={pageSize} value={pageSize}>

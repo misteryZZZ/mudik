@@ -1,4 +1,4 @@
-import LiveMapView from '../libs/views/liveMap'
+import LiveMapView from '../../libs/views/liveMap'
 
 export default function Home() {
   return (

@@ -35,6 +35,7 @@ export const getPassengerManifest = async () => {
 }
 
 export const verifPassenger = async (data) => {
+  console.log(data);
   return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/passenger/accept`, {
     method: 'POST',
     headers: {

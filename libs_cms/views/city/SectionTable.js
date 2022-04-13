@@ -5,7 +5,7 @@ import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getAllCity, deleteCity } from '../../models/cityModel';
 
-const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
+const SectionTable = ({ handleUpdateClick, tableUpdate }) => {
   const [city, setCity] = useState([]);
 
   const getData = async () => {

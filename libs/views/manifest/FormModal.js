@@ -5,7 +5,7 @@ import { InputWithLabel } from '../../../libs/components/input'
 
 import { verifPassenger } from '../../models/passengerModel'
 
-const FormModal = ({ setShowModal, id }) => {
+const FormModal = ({ setShowModal, id, onSuccess }) => {
 
   const [isLoading, setLoading] = useState(false);
 
@@ -27,7 +27,8 @@ const FormModal = ({ setShowModal, id }) => {
 
     const response = await verifPassenger(data);
     if (response && response.success) {
-      alert('Berhasil memverifikasi');
+      onSuccess()
+      setShowModal(false)
     } else {
       alert('Gagal memverifikasi');
     }
@@ -55,10 +56,10 @@ const FormModal = ({ setShowModal, id }) => {
           <InputWithLabel label="Tempat penumpang" value={data.passenger_place} onChange={e => setData({...data, passenger_place: e.target.value})} className="border-2"/>
           {/*VEHICLE*/}
           <h1 className="text-lg my-6">Motor</h1>
-          <InputWithLabel label="Tanggal motor" type="date" value={data.vehicle_date} onChange={e => setData({...data, vehicle_date: e.target.value})} className="border-2"/>
-          <InputWithLabel label="Waktu mulai motor" type="time" value={data.vehicle_time_start} onChange={e => setData({...data, vehicle_time_start: e.target.value})} className="border-2"/>
-          <InputWithLabel label="Waktu akhir motor" type="time" value={data.vehicle_time_end} onChange={e => setData({...data, vehicle_time_end: e.target.value})} className="border-2"/>
-          <InputWithLabel label="Tempat motor" value={data.vehicle_place} onChange={e => setData({...data, vehicle_place: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Tanggal motor (opsional)" type="date" value={data.vehicle_date} onChange={e => setData({...data, vehicle_date: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Waktu mulai motor (opsional)" type="time" value={data.vehicle_time_start} onChange={e => setData({...data, vehicle_time_start: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Waktu akhir motor (opsional)" type="time" value={data.vehicle_time_end} onChange={e => setData({...data, vehicle_time_end: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Tempat motor (opsional)" value={data.vehicle_place} onChange={e => setData({...data, vehicle_place: e.target.value})} className="border-2"/>
 
           <Button text="Verifikasi" isLoading={isLoading} className="mt-6" />
         </form>

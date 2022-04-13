@@ -84,7 +84,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-start backdrop-blur-sm z-10 bg-black/10 overflow-y-auto p-4">
       <div className="flex flex-col bg-white rounded-xl p-6 shadow-lg w-full max-w-[800px]">
         <div className="flex justify-between border-b pb-4">
-          <h1 className="text-xl font-semibold">{(type === 'create') ? 'Buat bus baru' : 'Update bus'}</h1>
+          <h1 className="text-xl font-semibold">{(type === 'create') ? 'Buat driver baru' : 'Update driver'}</h1>
           <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
         </div>
         <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>

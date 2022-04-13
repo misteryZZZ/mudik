@@ -7,7 +7,7 @@ export const Wrapper = ({ children }) => (
 
 export const Dashboard = ({ active }) => (
   <li className={active ? 'active' : null}>
-    <Link href="/">
+    <Link href="/dashboard/">
       <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
         <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fillRule="evenodd" clipRule="evenodd" d="M3.38123 5.88542C3.38123 4.79235 4.26733 3.90625 5.36039 3.90625H21.0896C22.1826 3.90625 23.0687 4.79235 23.0687 5.88542V21.6146C23.0687 22.7076 22.1826 23.5938 21.0896 23.5938H5.36039C4.26733 23.5938 3.38123 22.7076 3.38123 21.6146V5.88542Z" stroke="white" strokeWidth="1.97917" strokeLinecap="round" strokeLinejoin="round"/>
@@ -23,7 +23,7 @@ export const Dashboard = ({ active }) => (
 
 export const LiveMap = ({ active }) => (
   <li className={active ? 'active' : null}>
-    <Link href="/map">
+    <Link href="/dashboard/map">
       <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
         <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fillRule="evenodd" clipRule="evenodd" d="M13.225 7.23596C10.9597 7.23596 9.12341 9.07229 9.12341 11.3375C9.12341 13.6028 10.9597 15.4391 13.225 15.4391C15.4902 15.4391 17.3265 13.6028 17.3265 11.3375C17.3265 9.07229 15.4902 7.23596 13.225 7.23596ZM10.764 11.3375C10.764 9.97839 11.8658 8.87659 13.225 8.87659C14.5841 8.87659 15.6859 9.97839 15.6859 11.3375C15.6859 12.6967 14.5841 13.7985 13.225 13.7985C11.8658 13.7985 10.764 12.6967 10.764 11.3375Z" fill="white"/>
@@ -38,7 +38,7 @@ export const LiveMap = ({ active }) => (
 
 export const DataManifest = ({ active }) => (
   <li className={active ? 'active' : null}>
-    <Link href="/manifest">
+    <Link href="/dashboard/manifest">
       <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.71245 9.15003C7.71245 8.71511 8.06503 8.36253 8.49995 8.36253H12.7C13.1349 8.36253 13.4875 8.71511 13.4875 9.15003C13.4875 9.58496 13.1349 9.93753 12.7 9.93753H8.49995C8.06503 9.93753 7.71245 9.58496 7.71245 9.15003Z" fill="white"/>
@@ -54,7 +54,7 @@ export const DataManifest = ({ active }) => (
 
 export const DataLO = ({ active }) => (
   <li className={active ? 'active' : null}>
-    <Link href="/data-lo">
+    <Link href="/dashboard/data-lo">
       <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fillRule="evenodd" clipRule="evenodd" d="M12.6 2.8875C10.1354 2.8875 8.1375 4.88543 8.1375 7.35C8.1375 9.81457 10.1354 11.8125 12.6 11.8125C15.0646 11.8125 17.0625 9.81457 17.0625 7.35C17.0625 4.88543 15.0646 2.8875 12.6 2.8875ZM6.5625 7.35C6.5625 4.01558 9.26558 1.3125 12.6 1.3125C15.9344 1.3125 18.6375 4.01558 18.6375 7.35C18.6375 10.6844 15.9344 13.3875 12.6 13.3875C9.26558 13.3875 6.5625 10.6844 6.5625 7.35Z" fill="white"/>
@@ -68,7 +68,7 @@ export const DataLO = ({ active }) => (
 
 export const Troubleshoot = ({ active }) => (
   <li className={active ? 'active' : null}>
-    <Link href="/troubleshoot">
+    <Link href="/dashboard/troubleshoot">
       <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M13.2842 8.68229C13.7191 8.68229 14.0717 9.03442 14.0717 9.46879V12.6148C14.0717 13.0492 13.7191 13.4013 13.2842 13.4013C12.8493 13.4013 12.4967 13.0492 12.4967 12.6148V9.46879C12.4967 9.03442 12.8493 8.68229 13.2842 8.68229Z" fill="white"/>

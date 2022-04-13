@@ -4,13 +4,11 @@ import Table from '../../components/table';
 import { Dropdown } from '../../components/dropdown'
 import { Button } from '../../components/button'
 
-import FormModal from './FormModal'
 
 import { getPassengerManifest, verifPassenger } from '../../models/passengerModel';
 
-const SectionTable = ({ filter, search }) => {
-  const [modalID, setModalID] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowModal }) => {
+  
   const [manifest, setManifest] = useState([]);
 
   const getData = async () => {
@@ -19,17 +17,10 @@ const SectionTable = ({ filter, search }) => {
     setManifest(dataManifest)
   }
 
-  const handleVerif = async (id) => {
-    const response = await verifPassenger(id);
-    if (response.success) {
-      alert('Berhasil')
-      getData();
-    }
-  }
 
   useEffect(() => {
     getData();
-  },[])
+  },[tableUpdate])
 
   const data = React.useMemo(() => manifest)
 
@@ -90,7 +81,7 @@ const SectionTable = ({ filter, search }) => {
       {
         Header: 'Status',
         accessor: ({ detail_passenger: {id, verify_date} }) => (
-          <Button text="Verifikasi" disabled={!!verify_date} className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark" onClick={() => {setShowModal(true); setModalID(id)}} />
+          <Button text="Verifikasi" disabled={!!verify_date} className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark" onClick={() => handleVerifClick(id)} />
         )
       }
     ],
@@ -101,7 +92,6 @@ const SectionTable = ({ filter, search }) => {
     <section className="rounded-2xl bg-white p-4">
       <div className="overflow-auto pb-3">
         <Table columns={columns} data={data} search={search} filter={filter} />
-        {showModal && <FormModal setShowModal={setShowModal} id={modalID}/>}
       </div>
     </section>
   )

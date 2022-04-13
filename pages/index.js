@@ -1,7 +1,7 @@
-import DashboardView from '../libs/views/dashboard'
+import PortalView from '../libs/views/portal'
 
 export default function Home() {
   return (
-    <DashboardView />
+    <PortalView />
   )
 }

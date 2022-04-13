@@ -13,24 +13,26 @@ import SectionMap from './SectionMap'
 const Map = () => {
   const router = useRouter();
 
-  const [logedIn, setLogedIn] = useState(false);
+  const [user, setUser] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const logedInStatus = await isLogedin()
-      await setLogedIn(logedInStatus);
-      if (!logedInStatus) {
+      const dataUser = await isLogedin()
+      await setUser(dataUser);
+      if (!dataUser) {
         router.push('/login');
       }
     })()
   },[])
 
-  if (!logedIn) return false;
+  if (!user) return false;
   return (
     <Layout
     title="Mudik Gratis DKI Jakarta 2022"
     menuActive="map">
-      <Header title="Live Map" additionalComponent={
+      <Header title="Live Map" hasMoreButtons
+      user={user}
+       additionalComponent={
         <>
           <SortDropdown placeholder="Semua rute" options={['Cilacap', 'Jogjakarta', 'Malang']} />
           <Search medium />
