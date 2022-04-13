@@ -30,6 +30,26 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowMo
         accessor: 'id'
       },
       {
+        Header: 'No Tiket Penumpang',
+        accessor: 'code'
+      },
+      {
+        Header: 'No Tiket Motor',
+        accessor: 'code'
+      },
+      {
+        Header: 'Status Keberangkatan',
+        accessor: '(belom)'
+      },
+      {
+        Header: 'No. Bus',
+        accessor: 'bus_card'
+      },
+      {
+        Header: 'No. Bus',
+        accessor: 'truck_card'
+      },
+      {
         Header: 'Kota Tujuan',
         accessor: 'detail_bus.name'
       },
@@ -55,12 +75,24 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowMo
         accessor: ({ detail_passenger: {gender} }) => `${(gender === 'p') ? 'Perempuan' : 'Laki-laki'}`
       },
       {
+        Header: 'No. Telepon',
+        accessor: 'detail_passenger.phone'
+      },
+      {
         Header: 'Email',
         accessor: 'detail_passenger.email'
       },
       {
-        Header: 'Vaksin',
-        accessor: ({ detail_passenger: {vaksin} }) => `Dosis ${vaksin}`
+        Header: 'Status Vaksin',
+        accessor: 'detail_passenger.type_vaksin'
+      },
+      {
+        Header: 'Puskesmas',
+        accessor: 'detail_passenger.puskes.name'
+      },
+      {
+        Header: 'Waktu Verifikasi Offline',
+        accessor: '(belom)'
       },
       {
         Header: 'Sepeda Motor',
@@ -79,10 +111,14 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowMo
         }
       },
       {
-        Header: 'Status',
+        Header: 'Status Booking',
         accessor: ({ detail_passenger: {id, verify_date} }) => (
           <Button text="Verifikasi" disabled={!!verify_date} className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark" onClick={() => handleVerifClick(id)} />
         )
+      },
+      {
+        Header: 'Kode Booking',
+        accessor: '(belom)'
       }
     ],
     []
