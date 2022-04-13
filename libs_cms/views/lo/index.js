@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
-import { getAllDriver } from '../../models/driverModel'
 import { getAllBus } from '../../models/busModel'
 import { getAllTruck } from '../../models/truckModel'
 
@@ -16,12 +15,16 @@ import { Button } from '../../../libs/components/button'
 const LOView = () => {
   const router = useRouter();
 
+  const [tableUpdate, setTableUpdate] = useState(0);
+
   const [user, setUser] = useState(false);
   const [modalID, setModalID] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [typeModal, setTypeModal] = useState('create');
   const [dataSelect, setDataSelect] = useState({
-    driver: []
+    driver: [],
+    bus: [],
+    truck: [],
   })
 
   const handleUpdateClick = (id) => {
@@ -43,14 +46,9 @@ const LOView = () => {
         router.push('/cms/login');
       }
 
-      const fetchDriver = await getAllDriver();
       const fetchBus = await getAllBus();
       const fetchTruck = await getAllTruck();
       await setDataSelect({
-        driver: fetchDriver.map(e => ({
-          label: e.name,
-          value: e.id
-        })),
         bus: fetchBus.map(e => ({
           label: `${e.name} (${e.no_police})`,
           value: e.id
@@ -80,7 +78,9 @@ const LOView = () => {
         <SectionTable
         setShowModal={setShowModal}
         showModal={showModal}
-        handleUpdateClick={handleUpdateClick}/>
+        handleUpdateClick={handleUpdateClick}
+        tableUpdate={tableUpdate}
+        />
         {showModal &&
           <FormModal
           setShowModal={setShowModal}

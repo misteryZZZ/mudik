@@ -15,7 +15,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
 
   useEffect(() => {
     getData();
-  },[])
+  },[tableUpdate])
 
   const handleDeleteClick = async (id) => {
     const response = await deleteDriver(id);

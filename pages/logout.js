@@ -6,7 +6,7 @@ const Logout = () => {
 
   useEffect(() => {
     localStorage.removeItem('token');
-    router.push('/login');
+    router.push('/');
   })
 
   return null;
