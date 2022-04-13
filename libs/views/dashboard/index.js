@@ -21,7 +21,7 @@ const DashboardView = () => {
       console.log(userData);
       await setUser(userData);
       if (!userData) {
-        router.push('/login');
+        router.push('/dashboard/login');
       }
     })()
   },[])

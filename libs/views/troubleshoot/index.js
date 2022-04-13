@@ -21,7 +21,7 @@ const Troubleshoot = () => {
       const dataUser = await isLogedin()
       await setUser(dataUser);
       if (!dataUser) {
-        router.push('/login');
+        router.push('/dashboard/login');
       }
     })()
   },[])

@@ -59,7 +59,7 @@ const Manifest = () => {
       const logedInStatus = await isLogedin()
       await setUser(logedInStatus);
       if (!logedInStatus) {
-        router.push('/login');
+        router.push('/dashboard/login');
       }
     })()
   },[])
