@@ -8,7 +8,7 @@ export const Spinner = ({ color = 'currentColor', className }) => (
 )
 
 export const SpinnerOverlay = ({ ...props }) => (
-  <div className="absolute w-full h-full z-20 bg-white/10 flex items-center justify-center">
+  <div className="absolute w-full h-full bg-white/70 flex items-center justify-center">
     <Spinner {...props} />
   </div>
 )

@@ -21,7 +21,7 @@ const SectionTable = ({ filter, search, territory }) => {
   const columns = React.useMemo(() => [
       {
         Header: 'No',
-        accessor: 'id'
+        accessor: (rows, i) => i + 1
       },
       {
         Header: 'Penumpang',

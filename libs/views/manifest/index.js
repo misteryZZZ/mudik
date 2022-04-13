@@ -8,7 +8,8 @@ import { SpinnerOverlay } from '../../components/loading'
 import Layout from '../layout'
 import Header from '../layout/header'
 
-import FormModal from './FormModal'
+import VerifModal from './VerifModal'
+import MemberModal from './MemberModal'
 import SectionTable from './SectionTable'
 import { SortDropdown } from '../../components/SortDropdown'
 import { Search } from '../../components/input'
@@ -21,8 +22,11 @@ const Manifest = () => {
   const [user, setUser] = useState(false);
   const [search, setSearch] = useState(undefined);
   const [filter, setFilter] = useState('detail_bus.name');
+  const [data, setData] = useState('');
   const [modalID, setModalID] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [memberModal, setMemberModal] = useState(false);
+  const [dataMember, setdataMember] = useState([]);
 
   const filterOptions = [
     {
@@ -47,13 +51,19 @@ const Manifest = () => {
     setFilter(value);
   }
 
-  const handleVerifClick = (id) => {
+  const handleVerifClick = (id, data) => {
     setModalID(id);
+    setData(data);
     setShowModal(true);
   }
 
   const handleModalSuccess = () => {
     setTableUpdate(tableUpdate+1)
+  }
+
+  const handleMemberClick = (member) => {
+    setMemberModal(true)
+    setdataMember(member)
   }
 
   useEffect(() => {
@@ -84,13 +94,20 @@ const Manifest = () => {
         search={search}
         filter={filter}
         handleVerifClick={handleVerifClick}
+        handleMemberClick={handleMemberClick}
         tableUpdate={tableUpdate}
         />
         {showModal &&
-          <FormModal
+          <VerifModal
           setShowModal={setShowModal}
           id={modalID}
+          data={data}
           onSuccess={handleModalSuccess}
+          />}
+        {memberModal &&
+          <MemberModal
+          data={dataMember}
+          setShowModal={setMemberModal}
           />}
       </main>
     </Layout>
