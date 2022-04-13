@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
 
+import { SpinnerOverlay } from '../../components/loading'
+
 import Layout from '../layout'
 import Header from '../layout/header'
 import { SortDropdown } from '../../components/SortDropdown'
@@ -25,7 +27,7 @@ const Map = () => {
     })()
   },[])
 
-  if (!user) return false;
+  if (!user) return <SpinnerOverlay className="text-maincolor" />;
   return (
     <Layout
     title="Mudik Gratis DKI Jakarta 2022"

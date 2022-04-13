@@ -51,7 +51,7 @@ const SectionTable = () => {
   );
 
   return (
-    <section className="rounded-2xl bg-white p-4 h-full">
+    <section className="rounded-2xl bg-white p-4 h-full shadow-gray-500/10">
       <div className="overflow-auto pb-3 h-full">
         <Table columns={columns} data={data} filter="tujuan" />
       </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
+
+import { SpinnerOverlay } from '../../components/loading'
 
 import Layout from '../layout'
 import Header from '../layout/header'
@@ -26,7 +27,7 @@ const DashboardView = () => {
     })()
   },[])
 
-  if (!user) return false;
+  if (!user) return <SpinnerOverlay className="text-maincolor" />;
   return (
     <Layout
     title="Mudik Gratis DKI Jakarta 2022"

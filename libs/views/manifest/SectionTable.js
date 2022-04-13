@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../components/table';
+import Table from '../../components/table/TableSort';
 import { Dropdown } from '../../components/dropdown'
 import { Button } from '../../components/button'
 
@@ -89,10 +89,8 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, setShowMo
   );
 
   return (
-    <section className="rounded-2xl bg-white p-4">
-      <div className="overflow-auto pb-3">
+    <section className="rounded-2xl bg-white p-4 shadow-lg shadow-gray-500/10">
         <Table columns={columns} data={data} search={search} filter={filter} />
-      </div>
     </section>
   )
 }

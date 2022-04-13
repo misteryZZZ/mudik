@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
 
+import { SpinnerOverlay } from '../../components/loading'
+
 import Layout from '../layout'
 import Header from '../layout/header'
 
@@ -26,7 +28,7 @@ const Troubleshoot = () => {
     })()
   },[])
 
-  if (!user) return false;
+  if (!user) return <SpinnerOverlay className="text-maincolor" />;
   return (
     <Layout menuActive="troubleshoot"
     title="Troubleshoot | Mudik Gratis DKI Jakarta 2022">

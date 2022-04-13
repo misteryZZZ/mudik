@@ -18,13 +18,13 @@ const RightSide = () => {
   },[])
 
   return (
-    <div className="grow px-4 h-[688px] rounded-2xl">
+    <div className="grow px-4 max-h-[688px] rounded-2xl">
       <div className="flex justify-between">
         <h1 className="text-2xl text-maincolor mb-4">Summary</h1>
         <SortDropdown placeholder="Tujuan" options={['Cilacap', 'Jogjakarta', 'Malang']}/>
       </div>
 
-      <div className="h-full overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
+      <div className="overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
 
         {summary.map((e,i) => (
           <CardSummary key={i}
