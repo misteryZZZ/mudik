@@ -28,13 +28,13 @@ const RightSide = () => {
 
         {summary.map((e,i) => (
           <CardSummary key={i}
-            title={e.detail_bus.name}
+            title={e.detail_bus ? e.detail_bus.name : ''}
             jumlah_penumpang={e.passenger_count}
             laki_laki={e.passenger_man_count}
             perempuan={e.passenger_woman_count}
-            driver_image={e.detail_bus.driver.image}
-            driver_name={e.detail_bus.driver.name}
-            no_polisi={e.detail_bus.no_police}
+            driver_image={e.detail_bus ? e.detail_bus.driver.image : ''}
+            driver_name={e.detail_bus ? e.detail_bus.driver.name : ''}
+            no_polisi={e.detail_bus ? e.detail_bus.no_police : ''}
           />
         ))}
       </div>
