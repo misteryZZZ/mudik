@@ -1,6 +1,7 @@
 export const isLogedin = async () => {
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/profile`, {
-    headers: {'Authorization': `Bearer ${localStorage.token}`}
+    mode: 'no-cors',
+    headers: {'Authorization': `Bearer ${localStorage.token}`},
   })
   .then(response => {
     if(response.ok){
@@ -20,6 +21,7 @@ export const isLogedin = async () => {
 export const doLogin = async (email, password) => {
   console.log(email, password);
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/login`, {
+    mode: 'no-cors',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
