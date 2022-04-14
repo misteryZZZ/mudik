@@ -16,7 +16,6 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
   const [data, setData] = useState({
     name: '',
     type: '',
-    vehicle_id: '',
   });
 
   const dataVehicleType = [
@@ -38,7 +37,6 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('type', data.type);
-    formData.append('vehicle_id', data.vehicle_id);
     if (image.file) formData.append('image', image.file);
 
     console.log(...formData.entries());
@@ -73,7 +71,6 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         setData({
           name: dataPre.name,
           type: dataPre.type,
-          vehicle_id: dataPre.bus_id ? dataPre.bus_id : dataPre.truck_id,
         })
         setImage({ preview: dataPre.image })
       }
@@ -90,7 +87,6 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
           <InputWithLabel label="Nama" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2"/>
           <SelectWithLabel label="Tipe Kendaraan" nama="type" options={dataVehicleType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
-          <SelectWithLabel label="Kendaraan" name="vehicle_id" options={(data.type) ? dataSelect[data.type] : []} onChange={e => setData({...data, vehicle_id: e.target.value})} className="border-2"/>
           <ImageUpload label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />
 
           <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />

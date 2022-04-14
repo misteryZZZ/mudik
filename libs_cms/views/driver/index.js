@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
-import { getAllBus } from '../../models/busModel'
-import { getAllTruck } from '../../models/truckModel'
+// import { getAllBus } from '../../models/busModel'
+// import { getAllTruck } from '../../models/truckModel'
 
 import Layout from '../layout'
 import Header from '../layout/header'
@@ -45,7 +45,7 @@ const DriverView = () => {
         router.push('/cms/login');
       }
 
-      const fetchBus = await getAllBus();
+      /*const fetchBus = await getAllBus();
       const fetchTruck = await getAllTruck();
       await setDataSelect({
         bus: fetchBus.map(e => ({
@@ -56,7 +56,7 @@ const DriverView = () => {
           label: `${e.name} (${e.no_police})`,
           value: e.id
         }))
-      })
+      })*/
 
     })()
   },[])
