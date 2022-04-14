@@ -11,7 +11,7 @@ import FormModal from './FormModal'
 import { Button } from '../../../libs/components/button'
 import { SpinnerOverlay } from '../../../libs/components/loading'
 
-const BannerView = () => {
+const BusView = () => {
   const router = useRouter();
 
   const [tableUpdate, setTableUpdate] = useState(0);
@@ -73,4 +73,4 @@ const BannerView = () => {
   );
 }
 
-export default BannerView;
+export default BusView;

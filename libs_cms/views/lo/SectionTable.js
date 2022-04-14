@@ -35,7 +35,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
       {
         Header: 'Gambar',
         accessor: ({ image }) => 
-        (<img className="w-10 rounded-full mx-auto" src={image} alt="" />)
+        (<img className="w-10 h-10 object-cover rounded-full mx-auto" src={image} alt="" />)
       },
       {
         Header: 'Nama',
