@@ -9,6 +9,7 @@ import Header from '../layout/header'
 import SectionTable from './SectionTable'
 import { SortDropdown } from '../../../libs/components/SortDropdown'
 import { Search } from '../../../libs/components/input'
+import { SpinnerOverlay } from '../../../libs/components/loading'
 
 const Manifest = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const Manifest = () => {
       value: 'Vaksin'
     },{
       label: 'Puskesmas',
-      value: 'Puskesmas'
+      value: 'detail_passenger.puskes.name'
     }
   ]
 
@@ -50,7 +51,7 @@ const Manifest = () => {
     })()
   },[])
 
-  if (!user) return <>Loading...</>;
+  if (!user) return <SpinnerOverlay className="text-maincolor" />;
   return(
     <Layout 
     title="Data Manifest | Mudik Gratis DKI Jakarta 2022"

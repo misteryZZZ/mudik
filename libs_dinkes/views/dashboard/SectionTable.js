@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../../libs/components/table';
+import Table from '../../../libs/components/table/TableSort';
 import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getManifestDinkes } from '../../models/manifestModel';

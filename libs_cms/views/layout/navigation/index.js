@@ -31,6 +31,7 @@ const Navigation = ({ menuActive }) => {
           <Menu.Driver active={menuActive === 'driver'} />
           <Menu.LO active={menuActive === 'lo'} />
           <Menu.Banner active={menuActive === 'banner'} />
+          <Menu.Content active={menuActive === 'content'} />
         </Menu.Wrapper>
       </nav>
     </>

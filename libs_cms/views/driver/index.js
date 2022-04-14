@@ -11,6 +11,7 @@ import Header from '../layout/header'
 import SectionTable from './SectionTable'
 import FormModal from './FormModal'
 import { Button } from '../../../libs/components/button'
+import { SpinnerOverlay } from '../../../libs/components/loading'
 
 const DriverView = () => {
   const router = useRouter();
@@ -61,7 +62,7 @@ const DriverView = () => {
     })()
   },[])
 
-  if (!user) return <>Loading...</>;
+  if (!user) return <SpinnerOverlay  className="text-maincolor" />;
   return(
     <Layout 
     title="Driver | Mudik Gratis DKI Jakarta 2022"

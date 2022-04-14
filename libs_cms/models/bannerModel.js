@@ -1,5 +1,6 @@
 export const getAllBanner = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/banner?all=yes`, {    headers: {'Authorization': `Bearer ${localStorage.token}`}
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/banner?all=yes`, {
+    headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
     if(response.ok){

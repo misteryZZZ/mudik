@@ -22,7 +22,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     id: '',
     type: 'html',
     html: '',
-    file: '',
+    file: '-',
   });
 
   const handleFileChange = (e) => {
@@ -89,8 +89,10 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
             <TextareaWithLabel label="Kode HTML" value={data.html} onChange={e => setData({ ...data, html: e.target.value})} className="border-2 !text-base" rows="6"/>
           )}
           {data.type == 'file' && (
-          // <ImageUpload label="Gambar" onChange={handleFileChange} preview={file.preview} className="!border-2" />
-            <FileUpload label="File" onChange={handleFileChange} className="!border-2"/>
+            <>
+              <FileUpload label="File" onChange={handleFileChange} className="!border-2"/>
+              {type == 'update' && <p>Stored filename: {data.file}</p>}
+            </>
           )}
 
           <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />

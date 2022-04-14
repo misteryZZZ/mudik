@@ -5,6 +5,7 @@ import { getTripSummary } from '../../../models/tripModel'
 import CardSummary from './CardSummary'
 
 import { SortDropdown } from '../../../components/SortDropdown'
+import { Spinner } from '../../../components/loading'
 
 const RightSide = () => {
   const [summary, setSummary] = useState([])
@@ -26,17 +27,21 @@ const RightSide = () => {
 
       <div className="overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
 
-        {summary.map((e,i) => (
-          <CardSummary key={i}
-            title={e.detail_bus ? e.detail_bus.name : '-'}
-            jumlah_penumpang={e.passenger_count}
-            laki_laki={e.passenger_man_count}
-            perempuan={e.passenger_woman_count}
-            driver_image={e.detail_bus ? e.detail_bus.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
-            driver_name={e.detail_bus ? e.detail_bus.driver.name : '-'}
-            no_polisi={e.detail_bus ? e.detail_bus.no_police : '-'}
-          />
-        ))}
+        {(summary.length == 0) ? (
+          <Spinner className="text-maincolor mx-auto" />
+        ) : (
+          summary.map((e,i) => (
+            <CardSummary key={i}
+              title={e.detail_bus ? e.detail_bus.name : '-'}
+              jumlah_penumpang={e.passenger_count}
+              laki_laki={e.passenger_man_count}
+              perempuan={e.passenger_woman_count}
+              driver_image={e.detail_bus ? e.detail_bus.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
+              driver_name={e.detail_bus ? e.detail_bus.driver.name : '-'}
+              no_polisi={e.detail_bus ? e.detail_bus.no_police : '-'}
+            />
+          ))
+        )}
       </div>
     </div>
   );

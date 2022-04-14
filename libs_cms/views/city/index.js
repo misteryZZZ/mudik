@@ -9,6 +9,7 @@ import Header from '../layout/header'
 import SectionTable from './SectionTable'
 import FormModal from './FormModal'
 import { Button } from '../../../libs/components/button'
+import { SpinnerOverlay } from '../../../libs/components/loading'
 
 const City = () => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const City = () => {
     })()
   },[])
 
-  if (!user) return <>Loading...</>;
+  if (!user) return <SpinnerOverlay  className="text-maincolor" />;
   return(
     <Layout 
     title="City | Mudik Gratis DKI Jakarta 2022"
