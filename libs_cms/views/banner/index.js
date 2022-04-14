@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
-import { getAllCity } from '../../models/cityModel'
 
 import Layout from '../layout'
 import Header from '../layout/header'
@@ -12,7 +11,7 @@ import FormModal from './FormModal'
 import { Button } from '../../../libs/components/button'
 import { SpinnerOverlay } from '../../../libs/components/loading'
 
-const TripView = () => {
+const BusView = () => {
   const router = useRouter();
 
   const [tableUpdate, setTableUpdate] = useState(0);
@@ -21,10 +20,6 @@ const TripView = () => {
   const [modalID, setModalID] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [typeModal, setTypeModal] = useState('create');
-  const [dataSelect, setDataSelect] = useState({
-    city: [],
-    type: [],
-  })
 
   const handleUpdateClick = (id) => {
     console.log(id);
@@ -45,24 +40,15 @@ const TripView = () => {
         router.push('/cms/login');
       }
 
-      const fetchCity = await getAllCity();
-      await setDataSelect({
-        city: fetchCity.map(e => ({
-          label: e.name,
-          value: e.id
-        })),
-        type: ['mudik-saja','mudik-balik','mudik-balik-motor']
-      })
-
     })()
   },[])
 
-  if (!user) return <SpinnerOverlay className="text-maincolor" />;
+  if (!user) return <SpinnerOverlay  className="text-maincolor" />;
   return(
     <Layout 
-    title="Trip | Mudik Gratis DKI Jakarta 2022"
-    menuActive="trip">
-      <Header title="Trip" hasMoreButtons
+    title="Banner | Mudik Gratis DKI Jakarta 2022"
+    menuActive="banner">
+      <Header title="Banner" hasMoreButtons
       user={user}
       additionalComponent={
         <>
@@ -74,14 +60,12 @@ const TripView = () => {
         setShowModal={setShowModal}
         showModal={showModal}
         handleUpdateClick={handleUpdateClick}
-        tableUpdate={tableUpdate}
-        />
+        tableUpdate={tableUpdate}/>
         {showModal &&
           <FormModal
           setShowModal={setShowModal}
           type={typeModal}
           id={modalID}
-          dataSelect={dataSelect}
           onSuccess={handleModalSuccess}
           />}
       </main>
@@ -89,4 +73,4 @@ const TripView = () => {
   );
 }
 
-export default TripView;
+export default BusView;

@@ -64,3 +64,23 @@ export const LO = ({ active }) => (
     </Link>
   </li>
 );
+
+export const Banner = ({ active }) => (
+  <li className={active ? 'active' : null}>
+    <Link href="/cms/banner">
+      <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
+        <p className="ml-4">Banner</p>
+      </div>
+    </Link>
+  </li>
+);
+
+export const Content = ({ active }) => (
+  <li className={active ? 'active' : null}>
+    <Link href="/cms/content">
+      <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
+        <p className="ml-4">Content</p>
+      </div>
+    </Link>
+  </li>
+);

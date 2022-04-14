@@ -30,6 +30,7 @@ const Navigation = ({ menuActive }) => {
           <Menu.City active={menuActive === 'city'} />
           <Menu.Driver active={menuActive === 'driver'} />
           <Menu.LO active={menuActive === 'lo'} />
+          <Menu.Banner active={menuActive === 'banner'} />
         </Menu.Wrapper>
       </nav>
     </>

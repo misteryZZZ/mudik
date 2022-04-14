@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import SectionForm from './SectionForm'
-import SectionImage from './SectionImage'
+import SectionImage from '../../../libs/views/login/SectionImage'
 
 const Login = () => {
   return (
