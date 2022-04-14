@@ -49,7 +49,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         accessor: 'bus_card'
       },
       {
-        Header: 'No. Bus',
+        Header: 'No. Truck',
         accessor: 'truck_card'
       },
       {
@@ -61,7 +61,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         // accessor: 'detail_passenger.name'
         accessor: ({ detail_passenger: {name, member}}) => {
           if (member.length > 0) return (
-          <button className="flex items-center justify-center" onClick={() => handleMemberClick(member)}>
+          <button className="flex items-center justify-center mx-auto" onClick={() => handleMemberClick(member)}>
             {name}
             <svg className="ml-2" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" viewBox="0 0 16 16">
               <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
