@@ -16,24 +16,21 @@ const Manifest = () => {
   const router = useRouter();
 
   const [user, setUser] = useState(false);
-  const [search, setSearch] = useState(undefined);
-  const [filter, setFilter] = useState(undefined);
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('bus.name');
 
   const filterOptions = [
     {
       label: 'Kota tujuan',
-      value: 'detail_bus.name'
+      value: 'bus.name'
     },{
-      label: 'Nama Penumpang',
-      value: 'detail_passenger.name'
-    },{
-      label: 'Email',
-      value: 'detail_passenger.email'
+      label: 'Nama',
+      value: 'name'
     }
   ]
 
   const handleSearchChange = (e) => {
-    const value = e.target.value || undefined;
+    const value = e.target.value || '';
     setSearch(value);
   }
 

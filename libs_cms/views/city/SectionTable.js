@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../../libs/components/table/simple';
+import Table from '../../../libs/components/table/TableSort';
 import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getAllCity, deleteCity } from '../../models/cityModel';

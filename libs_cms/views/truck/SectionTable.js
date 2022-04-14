@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../../libs/components/table/simple';
+import Table from '../../../libs/components/table/TableSort';
 import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getAllTruck, deleteTruck } from '../../models/truckModel';
@@ -50,8 +50,12 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
         accessor: 'quota'
       },
       {
+        Header: 'Slot Khusus',
+        accessor: 'khusus'
+      },
+      {
         Header: 'Tanggal Keberangkatan',
-        accessor: 'date_at'
+        accessor: ({ date_at }) => (new Date(date_at)).toLocaleDateString('id', {year: 'numeric', month: 'long', day: 'numeric'})
       },
       {
         Header: 'Waktu Keberangkatan',

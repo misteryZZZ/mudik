@@ -3,19 +3,19 @@ import React, { useState, useEffect } from 'react';
 import Table from '../../components/table';
 import { Dropdown } from '../../components/dropdown'
 
-// import dataLO from '../../models/lo-dummy.json'
-import { getAllLO } from '../../../libs_cms/models/loModel';
+import dataLO from '../../models/lo-dummy.json'
+// import { getPassengerList } from '../../models/passengerModel';
 
 const SectionTable = ({ filter, search }) => {
-  const [dataLO, setDataLO] = useState([]);
+  // const [manifest, setManifest] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      const data = await getAllLO();
-      console.log(data);
-      setDataLO(data)
-    })()
-  },[])
+  // useEffect(() => {
+  //   (async () => {
+  //     const dataManifest = await getPassengerList();
+  //     console.log(dataManifest);
+  //     setManifest(dataManifest)
+  //   })()
+  // },[])
 
   const data = React.useMemo(() => dataLO)
 
@@ -26,15 +26,15 @@ const SectionTable = ({ filter, search }) => {
       },
       {
         Header: 'Nama LO',
-        accessor: 'name'
+        accessor: 'nama_lo'
       },
       {
         Header: 'Kota Tujuan',
-        accessor: 'bus.name'
+        accessor: 'kota_tujuan'
       },
       {
         Header: 'No Bus',
-        accessor: 'bus.code'
+        accessor: 'no_bus'
       },
       {
         Header: 'No Telepon',
@@ -42,16 +42,16 @@ const SectionTable = ({ filter, search }) => {
       },
       {
         Header: 'Foto LO',
-        accessor: (rows) => <img className="w-12 h-12 object-cover rounded-full mx-auto" src={rows.image} />
+        accessor: (rows) => <img className="w-12 rounded-full mx-auto" src={rows.image} />
       },
-      /*{
+      {
         Header: 'Masuk',
         accessor: 'masuk'
       },
       {
         Header: 'Pulang',
         accessor: 'keluar'
-      }*/
+      }
     ],
     []
   );
@@ -59,7 +59,7 @@ const SectionTable = ({ filter, search }) => {
   return (
     <section className="rounded-2xl bg-white p-4 shadow-gray-500/10">
       <div className="overflow-auto pb-3">
-        <Table columns={columns} data={data} search={search} filter={filter} />
+        <Table columns={columns} data={data} search={search} filter={'kota_tujuan'} />
       </div>
     </section>
   )

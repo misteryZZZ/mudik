@@ -37,13 +37,13 @@ const Table = ({ columns, data, filter, search }) => {
     )
 
   useEffect(() => {
-    setFilter(filter, search);
+    if (filter) setFilter(filter, search);
   }, [filter, search])
 
   return (
     <>
       <div className="overflow-auto border border-black rounded-xl">
-        <div className="p-4 w-max min-w-full h-full mr-px">
+        <div className="p-4 w-max min-w-full h-full">
           <table {...getTableProps}
             className="w-full">
             <thead className="border-b border-black">

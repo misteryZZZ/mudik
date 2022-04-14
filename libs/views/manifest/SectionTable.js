@@ -115,7 +115,10 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         Header: 'File Booster',
         accessor: ({ detail_passenger: {file_booster} }) => {
           if (file_booster) return (
-            <a href={file_booster} target="_blank">Link</a>
+            <a href={file_booster} target="_blank"
+            className="py-1 px-3 border border-maincolor text-maincolor rounded">
+              Dokumen
+            </a>
           )
         }
       },

@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../../libs/components/table/simple';
-import { Dropdown } from '../../../libs/components/dropdown'
+import Table from '../../../libs/components/table/TableSort';
+import { Dropdown } from '../../../libs/components/dropdown';
+import { SpinnerOverlay } from '../../../libs/components/loading';
 
 import { getAllTrip, deleteTrip } from '../../models/tripModel';
 
 const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   const [trips, setTrips] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
+    setLoading(true)
     const dataTrips = await getAllTrip();
     setTrips(dataTrips)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -65,10 +69,11 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   );
 
   return (
-    <section className="rounded-2xl bg-white p-4">
-      <div className="overflow-auto pb-3">
-        <Table columns={columns} data={data} />
-      </div>
+    <section className="rounded-2xl bg-white p-4 relative">
+      {isLoading && (
+        <SpinnerOverlay className="text-maincolor" />
+      )}
+      <Table columns={columns} data={data} />
     </section>
   )
 }

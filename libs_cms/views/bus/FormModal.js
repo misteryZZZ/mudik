@@ -16,6 +16,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     code: '',
     no_police: '',
     quota: '',
+    khusus: '',
     date_at: '',
     time_at: '',
     place_at: '',
@@ -58,6 +59,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
           code: dataPre.code,
           no_police: dataPre.no_police,
           quota: dataPre.quota,
+          khusus: dataPre.khusus,
           date_at: dataPre.date_at,
           time_at: dataPre.time_at,
           place_at: dataPre.place_at,
@@ -78,7 +80,8 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
           <SelectWithLabel label="Trip" options={dataSelect.trip} selected={data.trip_id} onChange={e => setData({...data, trip_id: String(e.target.value)})} className="border-2" />
           <InputWithLabel label="Kode" value={data.code} onChange={e => setData({...data, code: e.target.value})} className="border-2"/>
           <InputWithLabel label="No Polisi" value={data.no_police} onChange={e => setData({...data, no_police: e.target.value})} className="border-2"/>
-          <InputWithLabel label="Kuota" value={data.quota} onChange={e => setData({...data, quota: String(e.target.value)})} className="border-2"/>
+          <InputWithLabel label="Kuota" value={data.quota} onChange={e => setData({...data, quota: e.target.value})} className="border-2"/>
+          <InputWithLabel label="Slot Khusus" value={data.khusus} onChange={e => setData({...data, khusus: e.target.value})} className="border-2"/>
           <InputWithLabel label="Tanggal" type="date" value={data.date_at} onChange={e => setData({...data, date_at: e.target.value})} className="border-2"/>
           <InputWithLabel label="Waktu" type="time" value={data.time_at} onChange={e => setData({...data, time_at: e.target.value})} className="border-2"/>
           <InputWithLabel label="Posisi" value={data.place_at} onChange={e => setData({...data, place_at: e.target.value})} className="border-2"/>

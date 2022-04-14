@@ -42,7 +42,7 @@ const Manifest = () => {
   ]
 
   const handleSearchChange = (e) => {
-    const value = e.target.value || undefined;
+    const value = e.target.value || '';
     setSearch(value);
   }
 
