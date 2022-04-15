@@ -72,7 +72,7 @@ const LeftSide = ({ trips, checkpoint }) => {
               <ButtonSort />
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-auto max-h-[340px]">
               {checkpoint.map((e,i) => (
                 <Checkpoint key={i} judul={e.bus.name} progres={0} rute={e.rute}/>
               ))}
