@@ -49,7 +49,9 @@ const Truck = () => {
       const fetchTrip = await getAllTrip();
       const fetchDriver = await getDriver({ all: true, type: 'truck' });
       await setDataSelect({
-        trip: fetchTrip.map(e => ({
+        trip: fetchTrip
+        .filter(e => e.type.includes('motor'))
+        .map(e => ({
           label: `${e.city.name} (${e.type})`,
           value: e.id
         })),

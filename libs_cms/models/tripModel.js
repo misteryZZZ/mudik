@@ -18,8 +18,9 @@ export const getAllTrip = async (page = 1, name = '') => {
   return data.data.trip;
 }
 
-export const getTrip = async (page = 1, name = '') => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/trip?page=${page}&name=${name}`, {
+export const getTrip = async (data) => {
+  const query = new URLSearchParams(data).toString();
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/trip?${query}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
