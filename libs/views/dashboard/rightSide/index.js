@@ -26,7 +26,7 @@ const RightSide = ({ summaryFilter }) => {
         <SortDropdown placeholder="Tujuan" options={summaryFilter}/>
       </div>
 
-      <div className="overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
+      <div className="overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2 max-h-[770px]">
 
         {(!summary) ? (
           <Spinner className="text-maincolor mx-auto" />

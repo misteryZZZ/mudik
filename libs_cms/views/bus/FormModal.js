@@ -55,7 +55,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         const dataPre = await getBusDetail(id)
         console.log(dataPre);
         setData({
-          driver_id: dataPre.id,
+          driver_id: dataPre.driver_id,
           trip_id: dataPre.trip_id,
           code: dataPre.code,
           no_police: dataPre.no_police,
