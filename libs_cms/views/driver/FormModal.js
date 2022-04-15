@@ -82,9 +82,9 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
   return (
     <Modal title={(type == 'create' ? 'Buat driver baru' : 'Update driver')} onClose={() => setShowModal(false)}>
       <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-        <InputWithLabel label="Nama" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2"/>
-        <SelectWithLabel label="Tipe Kendaraan" nama="type" options={dataVehicleType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
-        <ImageUpload label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />
+        <InputWithLabel required label="Nama" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2"/>
+        <SelectWithLabel required label="Tipe Kendaraan" placeholder="-Pilih Tipe Kendaraan-" nama="type" options={dataVehicleType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
+        <ImageUpload required label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />
 
         <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
       </form>

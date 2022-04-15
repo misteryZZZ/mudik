@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
-import { getAllDriver } from '../../models/driverModel'
+import { getDriver } from '../../models/driverModel'
 import { getAllTrip } from '../../models/tripModel'
 
 import Layout from '../layout'
@@ -47,7 +47,7 @@ const Truck = () => {
       }
 
       const fetchTrip = await getAllTrip();
-      const fetchDriver = await getAllDriver();
+      const fetchDriver = await getDriver({ all: true, type: 'truck' });
       await setDataSelect({
         trip: fetchTrip.map(e => ({
           label: `${e.city.name} (${e.type})`,

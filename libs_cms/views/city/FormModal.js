@@ -4,6 +4,7 @@ import { Button } from '../../../libs/components/button'
 import { InputWithLabel } from '../../../libs/components/input'
 import { SelectWithLabel } from '../../../libs/components/select'
 import { ImageUpload } from '../../../libs/components/imageUpload'
+import { Modal } from '../../../libs/components/modal'
 
 import { createCity, getCityDetail, updateCity } from '../../models/cityModel'
 
@@ -71,21 +72,15 @@ const FormModal = ({ setShowModal, type, id, onSuccess }) => {
   }, [])
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-start backdrop-blur-sm z-10 bg-black/10 overflow-y-auto p-4">
-      <div className="flex flex-col bg-white rounded-xl p-6 shadow-lg w-full max-w-[800px]">
-        <div className="flex justify-between border-b pb-4">
-          <h1 className="text-xl font-semibold">{(type === 'create') ? 'Buat kota baru' : 'Update kota'}</h1>
-          <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
-        </div>
-        <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-          <InputWithLabel label="Nama" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2"/>
-          <InputWithLabel label="Nama Terminal" name="terminal_name" value={data.terminal_name} onChange={e => setData({...data, terminal_name: e.target.value})} className="border-2"/>
-          <ImageUpload label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />
+    <Modal title={(type === 'create') ? 'Buat kota baru' : 'Update kota'} onClose={() => setShowModal(false)}>
+      <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
+        <InputWithLabel required label="Nama" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2"/>
+        <InputWithLabel required label="Nama Terminal" name="terminal_name" value={data.terminal_name} onChange={e => setData({...data, terminal_name: e.target.value})} className="border-2"/>
+        <ImageUpload required label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />
 
-          <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
-        </form>
-      </div>
-    </div>
+        <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
+      </form>
+    </Modal>
   )
 }
 

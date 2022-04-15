@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 import Table from '../../../libs/components/table/TableSort';
 import { Dropdown } from '../../../libs/components/dropdown'
+import { SpinnerOverlay } from '../../../libs/components/loading';
 
 import { getAllCity, deleteCity } from '../../models/cityModel';
 
 const SectionTable = ({ handleUpdateClick, tableUpdate }) => {
   const [city, setCity] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
+    setLoading(true)
     const dataCity = await getAllCity();
     setCity(dataCity)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -67,7 +71,10 @@ const SectionTable = ({ handleUpdateClick, tableUpdate }) => {
   );
 
   return (
-    <section className="rounded-2xl bg-white p-4">
+    <section className="rounded-2xl bg-white p-4 relative">
+      {isLoading && (
+        <SpinnerOverlay className="text-maincolor" />
+      )}
       <Table columns={columns} data={data} />
     </section>
   )

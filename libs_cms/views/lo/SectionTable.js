@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 import Table from '../../../libs/components/table/TableSort';
 import { Dropdown } from '../../../libs/components/dropdown'
+import { SpinnerOverlay } from '../../../libs/components/loading';
 
 import { getAllLO, deleteLO } from '../../models/loModel';
 
 const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   const [LO, setLO] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
+    setLoading(true)
     const dataLO = await getAllLO();
     setLO(dataLO);
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -79,7 +83,10 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   );
 
   return (
-    <section className="rounded-2xl bg-white p-4">
+    <section className="rounded-2xl bg-white p-4 relative">
+      {isLoading && (
+        <SpinnerOverlay className="text-maincolor" />
+      )}
       <Table columns={columns} data={data} />
     </section>
   )

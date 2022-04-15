@@ -1,5 +1,5 @@
 export const getAllDriver = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver?all=yes`, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver?all=true`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -18,8 +18,9 @@ export const getAllDriver = async () => {
   return data.data.driver;
 }
 
-export const getDriver = async (page = 1, city = '') => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver?page=${page}&city=${city}`, {
+export const getDriver = async (data) => {
+  const query = new URLSearchParams(data).toString();
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver?${query}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
