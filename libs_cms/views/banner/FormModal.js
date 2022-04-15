@@ -47,6 +47,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         alert('Gagal membuat banner');
       }
     } else {
+      formData.append('_method', 'PUT');
       const response = await updateBanner(id, formData);
       console.log(response);
       if (response && response.success) {
