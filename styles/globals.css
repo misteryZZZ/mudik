@@ -8,6 +8,11 @@
 @tailwind components;
 @tailwind utilities;*/
 
+body.modal-open{
+  overflow-y: hidden;
+  padding: 5px;
+}
+
 .leaflet-container {
   @apply w-full h-full z-[1];
 }

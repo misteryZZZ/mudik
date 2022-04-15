@@ -51,7 +51,7 @@ const TripView = () => {
           label: e.name,
           value: e.id
         })),
-        type: ['mudik-saja','mudik-balik','mudik-balik-motor']
+        type: ['mudik-saja','mudik-balik','mudik-saja-motor','mudik-balik-motor']
       })
 
     })()

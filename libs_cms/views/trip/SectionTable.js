@@ -22,11 +22,13 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   },[tableUpdate])
 
   const handleDeleteClick = async (id) => {
-    const response = await deleteTrip(id);
+    if (window.confirm('Anda yakin ingin menghapusnya?')) {
+      const response = await deleteTrip(id);
 
-    if (response.success) {
-      alert('Berhasil menghapus trip');
-      getData()
+      if (response.success) {
+        alert('Berhasil menghapus trip');
+        getData()
+      }
     }
   }
 

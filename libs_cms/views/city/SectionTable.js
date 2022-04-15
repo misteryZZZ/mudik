@@ -18,11 +18,13 @@ const SectionTable = ({ handleUpdateClick, tableUpdate }) => {
   },[tableUpdate])
 
   const handleDeleteClick = async (id) => {
-    const response = await deleteCity(id);
+    if (window.confirm('Anda yakin ingin menghapusnya?')) {
+      const response = await deleteCity(id);
 
-    if (response.success) {
-      alert('Berhasil menghapus city');
-      getData();
+      if (response.success) {
+        alert('Berhasil menghapus city');
+        getData();
+      }
     }
   }
 

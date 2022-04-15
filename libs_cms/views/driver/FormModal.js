@@ -4,6 +4,7 @@ import { Button } from '../../../libs/components/button'
 import { InputWithLabel } from '../../../libs/components/input'
 import { SelectWithLabel } from '../../../libs/components/select'
 import { ImageUpload } from '../../../libs/components/imageUpload'
+import { Modal } from '../../../libs/components/modal'
 
 import { createDriver, getDriverDetail, updateDriver } from '../../models/driverModel'
 
@@ -63,6 +64,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     setLoading(false);
   }
 
+  // didMount
   useEffect(() => {
     (async () => {
       if (type == 'update') {
@@ -78,21 +80,15 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-start backdrop-blur-sm z-10 bg-black/10 overflow-y-auto p-4">
-      <div className="flex flex-col bg-white rounded-xl p-6 shadow-lg w-full max-w-[800px]">
-        <div className="flex justify-between border-b pb-4">
-          <h1 className="text-xl font-semibold">{(type === 'create') ? 'Buat driver baru' : 'Update driver'}</h1>
-          <button className="text-xl" onClick={() => setShowModal(false)}>x</button>
-        </div>
-        <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-          <InputWithLabel label="Nama" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2"/>
-          <SelectWithLabel label="Tipe Kendaraan" nama="type" options={dataVehicleType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
-          <ImageUpload label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />
+    <Modal title={(type == 'create' ? 'Buat driver baru' : 'Update driver')} onClose={() => setShowModal(false)}>
+      <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
+        <InputWithLabel label="Nama" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2"/>
+        <SelectWithLabel label="Tipe Kendaraan" nama="type" options={dataVehicleType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
+        <ImageUpload label="Gambar" onChange={handleFileChange} preview={image.preview} className="!border-2" />
 
-          <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
-        </form>
-      </div>
-    </div>
+        <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
+      </form>
+    </Modal>
   )
 }
 

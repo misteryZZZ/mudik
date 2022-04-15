@@ -18,11 +18,13 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   },[tableUpdate])
 
   const handleDeleteClick = async (id) => {
-    const response = await deleteTruck(id);
+    if (window.confirm('Anda yakin ingin menghapusnya?')) {
+      const response = await deleteTruck(id);
 
-    if (response.success) {
-      alert('Berhasil menghapus truk');
-      getData();
+      if (response.success) {
+        alert('Berhasil menghapus truk');
+        getData();
+      }
     }
   }
 

@@ -18,10 +18,12 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   },[tableUpdate])
 
   const handleDeleteClick = async (id) => {
-    const response = await deleteLO(id);
-    if (response.success) {
-      alert('Berhasil menghapus LO')
-      getData();
+    if (window.confirm('Anda yakin ingin menghapusnya?')) {
+      const response = await deleteLO(id);
+      if (response.success) {
+        alert('Berhasil menghapus LO')
+        getData();
+      }
     }
   }
 
