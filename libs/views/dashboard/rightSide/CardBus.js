@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CardSummary = ({
+const CardBus = ({
   title,
   jumlah_penumpang,
   laki_laki,
@@ -41,4 +41,4 @@ const CardSummary = ({
   </div>
 )
 
-export default CardSummary;
+export default CardBus;

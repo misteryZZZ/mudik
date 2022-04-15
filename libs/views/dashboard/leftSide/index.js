@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import { getTripCounting } from '../../../models/tripModel'
-import { getCheckpoint } from '../../../models/checkpointModel'
-
 import SectionMap from './SectionMap';
 import JumlahPenumpangMotor from './JumlahPenumpangMotor';
 import DetilJumlah from './DetilJumlah';
@@ -13,20 +10,7 @@ import { Search } from '../../../components/input'
 import { ButtonSort } from '../../../components/button'
 import { SpinnerOverlay } from '../../../components/loading'
 
-const LeftSide = () => {
-  const [trips, setTrips] = useState([])
-  const [checkpoint, setCheckpoint] = useState([])
-
-  useEffect(() => {
-    (async () => {
-      const dataTrips = await getTripCounting();
-      setTrips(dataTrips)
-
-      const dataCheckpoint = await getCheckpoint();
-      setCheckpoint(dataCheckpoint)
-    })()
-  },[])
-
+const LeftSide = ({ trips, checkpoint }) => {
 
   return (
     <div className="bg-white rounded-xl p-4 lg:w-2/3 mb-4 relative">

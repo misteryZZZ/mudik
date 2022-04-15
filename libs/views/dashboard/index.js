@@ -7,6 +7,8 @@ import Layout from '../layout'
 import Header from '../layout/header'
 
 import { isLogedin } from '../../models/userModel'
+import { getTripCounting } from '../../models/tripModel'
+import { getCheckpoint } from '../../models/checkpointModel'
 
 import LeftSide from './leftSide';
 import RightSide from './rightSide';
@@ -15,6 +17,21 @@ const DashboardView = () => {
   const router = useRouter();
 
   const [user, setUser] = useState(false);
+
+  const [trips, setTrips] = useState([])
+  const [checkpoint, setCheckpoint] = useState([])
+  const [summaryFilter, setSummaryFilter] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const dataTrips = await getTripCounting();
+      setTrips(dataTrips)
+      setSummaryFilter(dataTrips.map(e => e.trip.city.name))
+
+      const dataCheckpoint = await getCheckpoint();
+      setCheckpoint(dataCheckpoint)
+    })()
+  },[])
 
   useEffect(() => {
     (async () => {
@@ -38,8 +55,13 @@ const DashboardView = () => {
       user={user}/>
       <main className="px-4 py-2">
         <div className="flex flex-col lg:flex-row">
-          <LeftSide />
-          <RightSide />
+          <LeftSide
+          trips={trips}
+          checkpoint={checkpoint}
+          />
+          <RightSide
+          summaryFilter={summaryFilter}
+          />
         </div>
       </main>
     </Layout>

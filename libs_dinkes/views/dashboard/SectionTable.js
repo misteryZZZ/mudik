@@ -52,20 +52,6 @@ const SectionTable = ({ filter, search, territory }) => {
         accessor: 'detail_passenger.status'
       },
       {
-        Header: 'Vaksin',
-        accessor: ({ detail_passenger: {vaksin} }) => `Dosis ${vaksin}`
-      },
-      {
-        Header: 'Tipke Vaksin',
-        accessor: 'detail_passenger.type_vaksin'
-      },
-      {
-        Header: 'File Booster',
-        accessor: ({ file_booster }) => {
-          if (file_booster) return <a href={file_booster} target="_blank">File</a>
-        }
-      },
-      {
         Header: 'Puskesmas',
         accessor: 'detail_passenger.puskes.name'
       }

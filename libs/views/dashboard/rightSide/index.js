@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 
 import { getTripSummary } from '../../../models/tripModel'
 
-import CardSummary from './CardSummary'
+import CardBus from './CardBus'
+import CardTruck from './CardTruck'
 
 import { SortDropdown } from '../../../components/SortDropdown'
 import { Spinner } from '../../../components/loading'
 
-const RightSide = () => {
+const RightSide = ({ summaryFilter }) => {
   const [summary, setSummary] = useState([])
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const RightSide = () => {
     <div className="grow px-4 max-h-[688px] rounded-2xl">
       <div className="flex justify-between">
         <h1 className="text-2xl text-maincolor mb-4">Summary</h1>
-        <SortDropdown placeholder="Tujuan" options={['Cilacap', 'Jogjakarta', 'Malang']}/>
+        <SortDropdown placeholder="Tujuan" options={summaryFilter}/>
       </div>
 
       <div className="overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
@@ -31,7 +32,7 @@ const RightSide = () => {
           <Spinner className="text-maincolor mx-auto" />
         ) : (
           summary.map((e,i) => (
-            <CardSummary key={i}
+            <CardBus key={i}
               title={e.detail_bus ? e.detail_bus.name : '-'}
               jumlah_penumpang={e.passenger_count}
               laki_laki={e.passenger_man_count}
