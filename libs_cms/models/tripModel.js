@@ -20,7 +20,7 @@ export const getAllTrip = async (page = 1, name = '') => {
 
 export const getTrip = async (data) => {
   const query = new URLSearchParams(data).toString();
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/trip?${query}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/trip?${query}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -34,9 +34,9 @@ export const getTrip = async (data) => {
     console.warn(err)
     return false;
   })
-  console.log(data);
-  if (!data) return false;
-  return data.data.trip;
+  console.log(response);
+  if (!response) return false;
+  return response.data.trip;
 }
 
 export const getTripDetail = async (id) => {

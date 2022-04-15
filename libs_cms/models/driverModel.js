@@ -20,7 +20,7 @@ export const getAllDriver = async () => {
 
 export const getDriver = async (data) => {
   const query = new URLSearchParams(data).toString();
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver?${query}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver?${query}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -34,9 +34,9 @@ export const getDriver = async (data) => {
     console.warn(err)
     return false;
   })
-  console.log(data);
-  if (!data) return false;
-  return data.data.driver;
+  console.log(response);
+  if (!response) return false;
+  return response.data.driver;
 }
 
 export const getDriverDetail = async (id) => {
