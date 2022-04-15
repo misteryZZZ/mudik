@@ -7,6 +7,7 @@ import Layout from '../layout'
 import Header from '../layout/header'
 
 import { isLogedin } from '../../models/userModel'
+import { getMap } from '../../models/mapModel'
 import { getTripCounting } from '../../models/tripModel'
 import { getCheckpoint } from '../../models/checkpointModel'
 
@@ -20,6 +21,8 @@ const DashboardView = () => {
 
   const [trips, setTrips] = useState([])
   const [checkpoint, setCheckpoint] = useState([])
+  const [maps, setMaps] = useState([])
+
   const [filterOptions, setFilterOption] = useState([])
   const [summaryFilter, setSummaryFilter] = useState([])
   const [filter, setFilter] = useState('')
@@ -36,6 +39,9 @@ const DashboardView = () => {
       if (!userData) {
         router.push('/dashboard/login');
       }
+
+      const response = await getMap();
+      setMaps(response)
 
       const dataTrips = await getTripCounting();
       setTrips(dataTrips)
@@ -58,6 +64,7 @@ const DashboardView = () => {
       <main className="px-4 py-2">
         <div className="flex flex-col lg:flex-row">
           <LeftSide
+          maps={maps.filter(e => e.name?.includes(filter))}
           trips={trips.filter(e => e.trip.city.name.includes(filter))}
           checkpoint={checkpoint.filter(e => e.bus?.name.includes(filter))}
           />
