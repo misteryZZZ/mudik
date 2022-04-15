@@ -18,6 +18,7 @@
     "react-dom": "18.0.0",
     "react-dropdown": "^1.9.2",
     "react-leaflet": "^4.0.0-beta.0",
+    "react-select-search": "^3.0.9",
     "react-sortable": "^2.0.0",
     "react-table": "^7.7.0"
   },

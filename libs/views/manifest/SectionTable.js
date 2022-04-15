@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../components/table/TableSort';
+import Table from '../../components/table/TablePagination';
 import { Dropdown } from '../../components/dropdown'
 import { Button } from '../../components/button'
 import { SpinnerOverlay } from '../../components/loading'
@@ -25,7 +25,9 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
     getData();
   },[tableUpdate])
 
-  const data = React.useMemo(() => manifest)
+  console.log(manifest);
+
+  const data = React.useMemo(() => manifest.data ? manifest.data : [])
 
   const columns = React.useMemo(() => [
       {
@@ -58,8 +60,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'Nama Penumpang',
-        // accessor: 'detail_passenger.name'
-        accessor: ({ detail_passenger: {name, member}}) => {
+        accessor: ({ name, member }) => {
           if (member.length > 0) return (
           <button className="flex items-center justify-center mx-auto" onClick={() => handleMemberClick(member)}>
             {name}
@@ -73,47 +74,47 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'NIK',
-        accessor: 'detail_passenger.nik'
+        accessor: 'nik'
       },
       {
         Header: 'No. KK',
-        accessor: 'detail_passenger.no_kk'
+        accessor: 'no_kk'
       },
       {
         Header: 'Jenis Kelamin',
-        accessor: ({ detail_passenger: {gender} }) => `${(gender === 'p') ? 'Perempuan' : 'Laki-laki'}`
+        accessor: ({ gender }) => `${(gender === 'p') ? 'Perempuan' : 'Laki-laki'}`
       },
       {
         Header: 'No. Telepon',
-        accessor: 'detail_passenger.phone'
+        accessor: 'phone'
       },
       {
         Header: 'Email',
-        accessor: 'detail_passenger.email'
+        accessor: 'email'
       },
       {
         Header: 'Status Vaksin',
-        accessor: 'detail_passenger.type_vaksin'
+        accessor: 'type_vaksin'
       },
       {
         Header: 'Puskesmas',
-        accessor: 'detail_passenger.puskes.name'
+        accessor: 'puskes.name'
       },
       {
         Header: 'Waktu Verifikasi Offline',
-        accessor: () => ''
+        accessor: 'verify_date'
       },
       {
         Header: 'Sepeda Motor',
-        accessor: ({ detail_passenger: {vehicle} }) => vehicle ? 'Ya' : 'Tidak'
+        accessor: ({ vehicle }) => vehicle ? 'Ya' : 'Tidak'
       },
       {
         Header: 'No. STNK',
-        accessor: 'detail_passenger.vehicle.stnk'
+        accessor: 'vehicle.stnk'
       },
       {
         Header: 'File Booster',
-        accessor: ({ detail_passenger: {file_booster} }) => {
+        accessor: ({ file_booster }) => {
           if (file_booster) return (
             <a href={file_booster} target="_blank"
             className="py-1 px-3 border border-maincolor text-maincolor rounded">
@@ -124,7 +125,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'Status Booking',
-        accessor: ({ detail_passenger: {id, name, address, verify_date} }) => (
+        accessor: ({ id, name, address, verify_date }) => (
           <Button
           text="Verifikasi"
           disabled={!!verify_date}
@@ -145,7 +146,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       {isLoading && (
         <SpinnerOverlay className="text-maincolor" />
       )}
-      <Table columns={columns} data={data} search={search} filter={filter} />
+      <Table columns={columns} data={data} />
     </section>
   )
 }

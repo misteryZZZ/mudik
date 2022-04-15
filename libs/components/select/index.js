@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const SelectWithLabel = ({ label, labelClassName, options, className, placeholder = '-', selected, ...inputProps }) => (
   <label className={`block mt-4 `+labelClassName}>
     <p className="text-sm mb-1">{label}</p>

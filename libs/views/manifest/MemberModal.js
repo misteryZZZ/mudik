@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Table } from '../../../libs/components/table'
 
 const MemberModal = ({ data, setShowModal }) => {
+  console.log(data);
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm z-10 bg-black/10 overflow-y-auto p-4">
@@ -33,7 +34,14 @@ const MemberModal = ({ data, setShowModal }) => {
                   <td className="p-2">{(e.gender == 'p') ? 'Perempuan' : 'Laki-laki'}</td>
                   <td className="p-2">Dosis {e.Vaksin}</td>
                   <td className="p-2">{e.type_vaksin}</td>
-                  <td className="p-2"><a href={e.file_booster} target="_blank">{e.file_booster ? 'File' : ''}</a></td>
+                  <td className="p-2">
+                    {e.file_booster && (
+                      <a href={e.file_booster}
+                      target="_blank"
+                      className="py-1 px-3 border border-maincolor text-maincolor rounded">
+                      >Dokumen</a>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
