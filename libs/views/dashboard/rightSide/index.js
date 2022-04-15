@@ -35,21 +35,21 @@ const RightSide = ({ summaryFilter }) => {
             <>
               {e.category == 'bus' ? (
                 <CardBus key={i}
-                  title={e.detail_bus ? e.detail_bus.name : '-'}
-                  jumlah_penumpang={e.passenger_count}
-                  laki_laki={e.passenger_man_count}
-                  perempuan={e.passenger_woman_count}
-                  driver_image={e.detail_bus ? e.detail_bus.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
-                  driver_name={e.detail_bus ? e.detail_bus.driver.name : '-'}
-                  no_polisi={e.detail_bus ? e.detail_bus.no_police : '-'}
+                  title={e.name}
+                  jumlah_penumpang={e.mudik?.passenger_count}
+                  laki_laki={e.mudik?.passenger_man_count}
+                  perempuan={e.mudik?.passenger_woman_count}
+                  driver_image={e.driver ? e.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
+                  driver_name={e.driver ? e.driver.name : '-'}
+                  no_polisi={e.no_police}
                 />
               ): (
                 <CardTruck key={i}
-                  title={e.detail_truck ? e.detail_truck.name : '-'}
-                  jumlah_motor={e.vehicle_count}
-                  driver_image={e.detail_truck ? e.detail_truck.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
-                  driver_name={e.detail_truck ? e.detail_truck.driver.name : '-'}
-                  no_polisi={e.detail_truck ? e.detail_truck.no_police : '-'}
+                  title={e.name}
+                  jumlah_motor={e.mudik?.vehicle_count}
+                  driver_image={e.driver ? e.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
+                  driver_name={e.driver ? e.driver.name : '-'}
+                  no_polisi={e.no_police}
                 />
               )}
             </>
