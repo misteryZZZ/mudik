@@ -18,8 +18,8 @@ const DashboardView = () => {
 
   const [user, setUser] = useState(false);
 
-  const [trips, setTrips] = useState([])
-  const [checkpoint, setCheckpoint] = useState([])
+  const [trips, setTrips] = useState(null)
+  const [checkpoint, setCheckpoint] = useState(null)
   const [summaryFilter, setSummaryFilter] = useState([])
 
   useEffect(() => {

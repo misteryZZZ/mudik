@@ -9,7 +9,7 @@ import { SortDropdown } from '../../../components/SortDropdown'
 import { Spinner } from '../../../components/loading'
 
 const RightSide = ({ summaryFilter }) => {
-  const [summary, setSummary] = useState([])
+  const [summary, setSummary] = useState(null)
 
   useEffect(() => {
     (async () => {
@@ -28,7 +28,7 @@ const RightSide = ({ summaryFilter }) => {
 
       <div className="overflow-y-auto pr-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
 
-        {(summary.length == 0) ? (
+        {(!summary) ? (
           <Spinner className="text-maincolor mx-auto" />
         ) : (
           summary.map((e,i) => (

@@ -82,9 +82,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
 
   return (
     <section className="rounded-2xl bg-white p-4">
-      <div className="overflow-auto">
-        <Table columns={columns} data={data} />
-      </div>
+      <Table columns={columns} data={data} />
     </section>
   )
 }

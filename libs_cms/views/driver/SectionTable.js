@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Table from '../../../libs/components/table/simple';
+import Table from '../../../libs/components/table/TableSort';
 import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getAllDriver, deleteDriver } from '../../models/driverModel';
@@ -67,9 +67,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
 
   return (
     <section className="rounded-2xl bg-white p-4">
-      <div className="overflow-auto pb-3">
-        <Table columns={columns} data={data} />
-      </div>
+      <Table columns={columns} data={data} />
     </section>
   )
 }

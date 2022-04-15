@@ -78,7 +78,7 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
   }, [])
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-start backdrop-blur-sm z-10 bg-black/10 overflow-y-auto p-4">
+    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-start backdrop-blur-sm z-10 bg-black/10 overflow-y-auto p-4">
       <div className="flex flex-col bg-white rounded-xl p-6 shadow-lg w-full max-w-[800px]">
         <div className="flex justify-between border-b pb-4">
           <h1 className="text-xl font-semibold">{(type === 'create') ? 'Buat driver baru' : 'Update driver'}</h1>
