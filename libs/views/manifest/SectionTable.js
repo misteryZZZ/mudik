@@ -146,7 +146,15 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       {isLoading && (
         <SpinnerOverlay className="text-maincolor" />
       )}
-      <Table columns={columns} data={data} />
+      <Table
+      columns={columns}
+      data={data}
+      links={manifest.links || []}
+      from={manifest.from}
+      to={manifest.to}
+      total={manifest.total}
+      basePagination="/dashboard/manifest"
+      />
     </section>
   )
 }

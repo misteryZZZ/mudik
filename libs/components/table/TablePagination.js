@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTable } from 'react-table'
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, links, from, to, total, basePagination }) => {
   const router = useRouter();
 
   const {
@@ -60,31 +61,21 @@ const Table = ({ columns, data }) => {
         </div>
       </div>
 
-      {/*<div className="flex justify-between items-center">
-        <div>
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}
-          className="cursor-pointer px-2 py-1 border rounded my-2">
-            {'<<'}
-          </button>{' '}
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}
-          className="cursor-pointer px-2 py-1 border rounded my-2">
-            {'<'}
-          </button>{' '}
-          <button onClick={() => nextPage()} disabled={!canNextPage}
-          className="cursor-pointer px-2 py-1 border rounded my-2">
-            {'>'}
-          </button>{' '}
-          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}
-          className="cursor-pointer px-2 py-1 border rounded my-2">
-            {'>>'}
-          </button>{' '}
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-2">
+        {links && links.map((link,i) => (
+          <Link key={i} href={link.active ? `${basePagination}?page=`+link.label : ''}>
+            <button className="cursor-pointer px-2 py-1 border rounded my-2" 
+            dangerouslySetInnerHTML={{ __html: link.label }}/>
+          </Link>
+        ))}
         </div>
         <div>
           <span className="">
-            {} - {} data of total {}
+            {from} - {to} data of total {total}
           </span>
         </div>
-      </div>*/}
+      </div>
     </>
   );
 }

@@ -65,6 +65,16 @@ export const LO = ({ active }) => (
   </li>
 );
 
+export const Puskemas = ({ active }) => (
+  <li className={active ? 'active' : null}>
+    <Link href="/cms/puskesmas">
+      <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
+        <p className="ml-4">Puskemas</p>
+      </div>
+    </Link>
+  </li>
+);
+
 export const Banner = ({ active }) => (
   <li className={active ? 'active' : null}>
     <Link href="/cms/banner">

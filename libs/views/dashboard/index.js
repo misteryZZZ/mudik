@@ -18,20 +18,15 @@ const DashboardView = () => {
 
   const [user, setUser] = useState(false);
 
-  const [trips, setTrips] = useState(null)
-  const [checkpoint, setCheckpoint] = useState(null)
+  const [trips, setTrips] = useState([])
+  const [checkpoint, setCheckpoint] = useState([])
+  const [filterOptions, setFilterOption] = useState([])
   const [summaryFilter, setSummaryFilter] = useState([])
+  const [filter, setFilter] = useState('')
 
-  useEffect(() => {
-    (async () => {
-      const dataTrips = await getTripCounting();
-      setTrips(dataTrips)
-      setSummaryFilter(dataTrips.map(e => e.trip.city.name))
-
-      const dataCheckpoint = await getCheckpoint();
-      setCheckpoint(dataCheckpoint)
-    })()
-  },[])
+  const handleChangeFilter = (e) => {
+    setFilter(e.value);
+  }
 
   useEffect(() => {
     (async () => {
@@ -41,6 +36,13 @@ const DashboardView = () => {
       if (!userData) {
         router.push('/dashboard/login');
       }
+
+      const dataTrips = await getTripCounting();
+      setTrips(dataTrips)
+      setFilterOption([...new Set(dataTrips.map(e => e.trip.city.name))])
+
+      const dataCheckpoint = await getCheckpoint();
+      setCheckpoint(dataCheckpoint)
     })()
   },[])
 
@@ -56,11 +58,13 @@ const DashboardView = () => {
       <main className="px-4 py-2">
         <div className="flex flex-col lg:flex-row">
           <LeftSide
-          trips={trips}
-          checkpoint={checkpoint}
+          trips={trips.filter(e => e.trip.city.name.includes(filter))}
+          checkpoint={checkpoint.filter(e => e.bus?.name.includes(filter))}
           />
           <RightSide
-          summaryFilter={summaryFilter}
+          filterOptions={filterOptions}
+          filter={filter}
+          handleChangeFilter={handleChangeFilter}
           />
         </div>
       </main>
