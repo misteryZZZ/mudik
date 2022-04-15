@@ -1,13 +1,11 @@
 import React from 'react'
 
-const CardBus = ({
+const CardTruck = ({
   title,
-  jumlah_penumpang,
-  laki_laki,
-  perempuan,
+  jumlah_motor,
   driver_image,
   driver_name,
-  no_polisi
+  no_polisi,
 }) => (
   <div className="bg-white rounded-lg shadow-sm text-sm mb-4">
     <div className="flex justify-between items-center w-full p-3 border-b">
@@ -15,20 +13,16 @@ const CardBus = ({
       <p className="rounded-md bg-yellow-300 px-3 h-min">{no_polisi}</p>
     </div>
 
-    <div className="flex items-center justify-between px-3 py-1.5 border-b">
-      <p className="w-[80px]">Jumlah Penumpang</p>
+    <div className="flex items-center justify-center px-3 py-1.5 border-b">
+      <p className="w-[80px]">Jumlah Motor</p>
       <div className="flex items-start">
-        <p className="text-4xl font-semibold">{jumlah_penumpang}</p>
-        <p className="ml-2">Org</p>
-      </div>
-      <div>
-        <p>{laki_laki} Laki-laki</p>
-        <p>{perempuan} Perempuan</p>
+        <p className="text-4xl font-semibold">{jumlah_motor}</p>
+        <p className="ml-2">Unit</p>
       </div>
     </div>
 
     <div className="flex items-center gap-2 p-3">
-      <img className="rounded-md w-12" src={driver_image} alt="foto driver" />
+      <img className="rounded-md w-12 h-12 object-cover" src={driver_image} alt="foto driver" />
       <div className="grow">
         <p className="font-semibold">{driver_name}</p>
         {/*<p className="bg-green-500/25 text-green-900 px-2 rounded inline-block text-xs">
@@ -36,9 +30,9 @@ const CardBus = ({
           Perjalanan
         </p>*/}
       </div>
-      <p className="text-orange">Bus Penumpang</p>
+      <p className="text-orange">Truk Barang</p>
     </div>
   </div>
 )
 
-export default CardBus;
+export default CardTruck;

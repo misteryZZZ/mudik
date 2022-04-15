@@ -28,7 +28,7 @@ const CardBus = ({
     </div>
 
     <div className="flex items-center gap-2 p-3">
-      <img className="rounded-md w-12" src={driver_image} alt="foto driver" />
+      <img className="rounded-md w-12 h-12 object-cover" src={driver_image} alt="foto driver" />
       <div className="grow">
         <p className="font-semibold">{driver_name}</p>
         {/*<p className="bg-green-500/25 text-green-900 px-2 rounded inline-block text-xs">

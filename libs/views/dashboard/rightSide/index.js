@@ -32,15 +32,27 @@ const RightSide = ({ summaryFilter }) => {
           <Spinner className="text-maincolor mx-auto" />
         ) : (
           summary.map((e,i) => (
-            <CardBus key={i}
-              title={e.detail_bus ? e.detail_bus.name : '-'}
-              jumlah_penumpang={e.passenger_count}
-              laki_laki={e.passenger_man_count}
-              perempuan={e.passenger_woman_count}
-              driver_image={e.detail_bus ? e.detail_bus.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
-              driver_name={e.detail_bus ? e.detail_bus.driver.name : '-'}
-              no_polisi={e.detail_bus ? e.detail_bus.no_police : '-'}
-            />
+            <>
+              {e.category == 'bus' ? (
+                <CardBus key={i}
+                  title={e.detail_bus ? e.detail_bus.name : '-'}
+                  jumlah_penumpang={e.passenger_count}
+                  laki_laki={e.passenger_man_count}
+                  perempuan={e.passenger_woman_count}
+                  driver_image={e.detail_bus ? e.detail_bus.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
+                  driver_name={e.detail_bus ? e.detail_bus.driver.name : '-'}
+                  no_polisi={e.detail_bus ? e.detail_bus.no_police : '-'}
+                />
+              ): (
+                <CardTruck key={i}
+                  title={e.detail_truck ? e.detail_truck.name : '-'}
+                  jumlah_motor={e.vehicle_count}
+                  driver_image={e.detail_truck ? e.detail_truck.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
+                  driver_name={e.detail_truck ? e.detail_truck.driver.name : '-'}
+                  no_polisi={e.detail_truck ? e.detail_truck.no_police : '-'}
+                />
+              )}
+            </>
           ))
         )}
       </div>
