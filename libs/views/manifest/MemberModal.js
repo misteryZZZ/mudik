@@ -31,14 +31,14 @@ const MemberModal = ({ data, setShowModal }) => {
                   <td className="p-2">{e.name}</td>
                   <td className="p-2">{e.nik}</td>
                   <td className="p-2">{e.no_kk}</td>
-                  <td className="p-2">{(e.gender == 'p') ? 'Perempuan' : 'Laki-laki'}</td>
-                  <td className="p-2">Dosis {e.Vaksin}</td>
+                  <td className="p-2">{(e.gender == 'p') ? 'Perempuan' : (e.gender == 'l') ? 'Laki-laki' : null}</td>
+                  <td className="p-2">Dosis {e.vaksin}</td>
                   <td className="p-2">{e.type_vaksin}</td>
                   <td className="p-2">
                     {e.file_booster && (
                       <a href={e.file_booster}
                       target="_blank"
-                      className="py-1 px-3 border border-maincolor text-maincolor rounded">
+                      className="py-1 px-3 border border-maincolor text-maincolor rounded"
                       >Dokumen</a>
                     )}
                   </td>

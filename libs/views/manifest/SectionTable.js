@@ -82,7 +82,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'Jenis Kelamin',
-        accessor: ({ gender }) => `${(gender === 'p') ? 'Perempuan' : 'Laki-laki'}`
+        accessor: ({ gender }) => `${(gender === 'p') ? 'Perempuan' : (gender === 'l') ? 'Laki-laki' : ''}`
       },
       {
         Header: 'No. Telepon',

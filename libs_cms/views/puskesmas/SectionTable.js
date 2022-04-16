@@ -5,25 +5,27 @@ import Table from '../../../libs/components/table/TablePagination';
 import { Dropdown } from '../../../libs/components/dropdown';
 import { SpinnerOverlay } from '../../../libs/components/loading';
 
-import { getAllPuskesmas, deletePuskesmas } from '../../models/puskesmasModel';
+import { getPuskesmas, deletePuskesmas } from '../../models/puskesmasModel';
 
 const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   const router = useRouter()
   const { page } = router.query;
 
+  const [currentPage, setCurrentPage] = useState(Number(page));
   const [puskesmas, setPuskesmas] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true)
-    const dataPuskesmas = await getAllPuskesmas();
+    const dataPuskesmas = await getPuskesmas({ page });
     setPuskesmas(dataPuskesmas)
+    setCurrentPage(dataPuskesmas.currentPage)
     setLoading(false)
   }
 
   useEffect(() => {
     getData()
-  },[tableUpdate])
+  },[tableUpdate, page])
 
   const handleDeleteClick = async (id) => {
     if (window.confirm('Anda yakin ingin menghapusnya?')) {
@@ -38,10 +40,11 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
 
   const data = React.useMemo(() => puskesmas.data || [])
 
-  const columns = React.useMemo(() => [
+  console.log(puskesmas.from);
+  const columns = [
       {
         Header: 'No',
-        accessor: (e,i) => i + 1,
+        accessor: (e,i) => i + ((puskesmas) ? puskesmas.from : 1),
       },
       {
         Header: 'Nama',
@@ -78,9 +81,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
           </>
         )
       }
-    ],
-    []
-  );
+    ];
 
   return (
     <section className="rounded-2xl bg-white p-4 relative">
@@ -95,7 +96,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
       to={puskesmas?.to}
       total={puskesmas?.total}
       basePagination="/cms/puskesmas"
-      curentPage={page}
+      currentPage={page}
       />
     </section>
   )

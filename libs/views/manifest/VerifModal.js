@@ -77,7 +77,7 @@ const VerifModal = ({ setShowModal, id, data, onSuccess }) => {
                 </ul>
               </div>
               <form className="sm:w-1/2" onSubmit={handleSubmit}>
-                <SelectWithLabel label="Tempat Verifikasi" value={dataForm.passenger_place} options={dataTempatVerif} onChange={e => setDataForm({...dataForm, passenger_place: e.target.value})} className="border border-black !text-sm"/>
+                <SelectWithLabel label="Tempat Verifikasi" selected={dataForm.passenger_place} options={dataTempatVerif} onChange={e => setDataForm({...dataForm, passenger_place: e.value})} className="border border-black !text-sm"/>
                 <InputWithLabel label="Tanggal" type="date" value={dataForm.passenger_date} onChange={e => setDataForm({...dataForm, passenger_date: e.target.value})} className="border border-black !text-sm"/>
                 <InputWithLabel label="Waktu mulai" type="time" value={dataForm.passenger_time_start} onChange={e => setDataForm({...dataForm, passenger_time_start: e.target.value})} className="border border-black !text-sm"/>
                 <InputWithLabel label="Waktu akhir" type="time" value={dataForm.passenger_time_end} onChange={e => setDataForm({...dataForm, passenger_time_end: e.target.value})} className="border border-black !text-sm"/>
