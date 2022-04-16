@@ -10,6 +10,7 @@ import { isLogedin } from '../../models/userModel'
 import { getMap } from '../../models/mapModel'
 import { getTripCounting } from '../../models/tripModel'
 import { getCheckpoint } from '../../models/checkpointModel'
+import { getAllCity } from '../../../libs_cms/models/cityModel'
 
 import LeftSide from './leftSide';
 import RightSide from './rightSide';
@@ -45,7 +46,10 @@ const DashboardView = () => {
 
       const dataTrips = await getTripCounting();
       setTrips(dataTrips)
-      setFilterOption([...new Set(dataTrips.map(e => e.trip.city.name))])
+
+      const dataCity = await getAllCity();
+      console.log('city',dataCity);
+      setFilterOption([ {label: 'all', value:''},...new Set(dataCity.map(e => e.name))])
 
       const dataCheckpoint = await getCheckpoint();
       setCheckpoint(dataCheckpoint)

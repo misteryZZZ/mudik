@@ -60,9 +60,9 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
 
   return (
     <Modal title={(type === 'create') ? 'Buat trip baru' : 'Update trip'} onClose={() => setShowModal(false)}>
-      <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
-        <SelectWithLabel label="Kota" required placeholder="-Pilih Kota-" nama="city" options={dataSelect.city} selected={data.city_id} onChange={e => setData({...data, city_id: e.target.value})} className="border-2"/>
-        <SelectWithLabel label="Tipe" required placeholder="-Pilih Tipe-" nama="type" options={dataSelect.type} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2" />
+      <form className="py-4" onSubmit={handleSubmit}>
+        <SelectWithLabel label="Kota" required placeholder="-Pilih Kota-" nama="city" options={dataSelect.city} selected={data.city_id} onChange={e => setData({...data, city_id: e.value})} className="border-2"/>
+        <SelectWithLabel label="Tipe" required placeholder="-Pilih Tipe-" nama="type" options={dataSelect.type} selected={data.type} onChange={e => setData({...data, type: e.value})} className="border-2" />
         <InputRoute label="Rute" setValues={(newValues) => setData({...data, rute: newValues})} values={data.rute} className="border-2"/>
 
         <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />

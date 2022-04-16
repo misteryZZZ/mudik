@@ -65,11 +65,11 @@ export const LO = ({ active }) => (
   </li>
 );
 
-export const Puskemas = ({ active }) => (
+export const Puskesmas = ({ active }) => (
   <li className={active ? 'active' : null}>
     <Link href="/cms/puskesmas">
       <div className="flex items-center relative px-6 py-3 hover:bg-white/10 cursor-pointer">
-        <p className="ml-4">Puskemas</p>
+        <p className="ml-4">Puskesmas</p>
       </div>
     </Link>
   </li>

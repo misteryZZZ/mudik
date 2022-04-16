@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
 
-import Table from '../../../libs/components/table/TableSort';
+import Table from '../../../libs/components/table/TablePagination';
 import { Dropdown } from '../../../libs/components/dropdown';
 import { SpinnerOverlay } from '../../../libs/components/loading';
 
 import { getAllPuskesmas, deletePuskesmas } from '../../models/puskesmasModel';
 
 const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
-  const [puskesmass, setPuskesmass] = useState([]);
+  const router = useRouter()
+  const { page } = router.query;
+
+  const [puskesmas, setPuskesmas] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true)
-    const dataPuskesmass = await getAllPuskesmas();
-    setPuskesmass(dataPuskesmass)
+    const dataPuskesmas = await getAllPuskesmas();
+    setPuskesmas(dataPuskesmas)
     setLoading(false)
   }
 
@@ -32,7 +36,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
     }
   }
 
-  const data = React.useMemo(() => puskesmass)
+  const data = React.useMemo(() => puskesmas.data || [])
 
   const columns = React.useMemo(() => [
       {
@@ -40,16 +44,24 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
         accessor: (e,i) => i + 1,
       },
       {
-        Header: 'Kota Tujuan',
-        accessor: 'city.name'
+        Header: 'Nama',
+        accessor: 'name'
       },
       {
-        Header: 'Terminal',
-        accessor: 'city.terminal_name'
+        Header: 'Alamat',
+        accessor: 'address'
       },
       {
-        Header: 'Tipe',
-        accessor: 'type'
+        Header: 'Kecamatan',
+        accessor: 'kecamatan'
+      },
+      {
+        Header: 'Kabupaten',
+        accessor: 'kabupaten'
+      },
+      {
+        Header: 'No. Telepon',
+        accessor: 'phone'
       },
       {
         Header: 'Action',
@@ -75,7 +87,16 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
       {isLoading && (
         <SpinnerOverlay className="text-maincolor" />
       )}
-      <Table columns={columns} data={data} />
+      <Table
+      columns={columns}
+      data={data}
+      links={puskesmas?.links}
+      from={puskesmas?.from}
+      to={puskesmas?.to}
+      total={puskesmas?.total}
+      basePagination="/cms/puskesmas"
+      curentPage={page}
+      />
     </section>
   )
 }

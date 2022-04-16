@@ -15,12 +15,12 @@ export const getAllPuskesmas = async () => {
   })
   console.log(data);
   if (!data) return false;
-  return data.data.puskesmas;
+  return data.data.puskes;
 }
 
 export const getPuskesmas = async (data) => {
   const query = new URLSearchParams(data).toString();
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskesmas?${query}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskes?${query}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -36,11 +36,11 @@ export const getPuskesmas = async (data) => {
   })
   console.log(response);
   if (!response) return false;
-  return response.data.puskesmas;
+  return response.data.puskes;
 }
 
 export const getPuskesmasDetail = async (id) => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskesmas/${id}`, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskes/${id}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -55,16 +55,16 @@ export const getPuskesmasDetail = async (id) => {
     return false;
   })
   if (!data) return false;
-  return data.data.puskesmas;
+  return data.data.puskes;
 }
 
 export const createPuskesmas = async (data) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskesmas`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskes`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: data
+    body: JSON.stringify(data)
   })
   .then(response => {
     if(response.ok){
@@ -81,12 +81,15 @@ export const createPuskesmas = async (data) => {
 }
 
 export const updatePuskesmas = async (id, data) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskesmas/${id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskes/${id}`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${localStorage.token}`
     },
-    body: data
+    body: JSON.stringify({
+      _method: 'PUT',
+      ...data
+    })
   })
   .then(response => {
     if(response.ok){
@@ -104,7 +107,7 @@ export const updatePuskesmas = async (id, data) => {
 }
 
 export const deletePuskesmas = async (id) => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskesmas/${id}`, {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/puskes/${id}`, {
     method: 'DELETE',
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })

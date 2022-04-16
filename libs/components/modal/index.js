@@ -2,12 +2,20 @@ import { useEffect } from 'react'
 
 export const Modal = ({ title, children, onClose }) => {
 
+  const handleKeydown = (e) => {
+    if (event.key === "Escape") {
+      onClose()
+    }
+  }
+
   useEffect(() => {
     document.body.className = 'modal-open';
+    document.addEventListener("keydown", handleKeydown, false);
   },[])
 
   useEffect(() => () => {
     document.body.className = '';
+    document.removeEventListener("keydown", handleKeydown, false);
   },[])
 
   return (

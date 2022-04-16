@@ -11,7 +11,7 @@ import FormModal from './FormModal'
 import { Button } from '../../../libs/components/button'
 import { SpinnerOverlay } from '../../../libs/components/loading'
 
-const TripView = () => {
+const PuskesmasView = () => {
   const router = useRouter();
 
   const [tableUpdate, setTableUpdate] = useState(0);
@@ -47,9 +47,9 @@ const TripView = () => {
   if (!user) return <SpinnerOverlay className="text-maincolor" />;
   return(
     <Layout 
-    title="Trip | Mudik Gratis DKI Jakarta 2022"
-    menuActive="trip">
-      <Header title="Trip" hasMoreButtons
+    title="Puskesmas | Mudik Gratis DKI Jakarta 2022"
+    menuActive="puskesmas">
+      <Header title="Puskesmas" hasMoreButtons
       user={user}
       additionalComponent={
         <>
@@ -76,4 +76,4 @@ const TripView = () => {
   );
 }
 
-export default TripView;
+export default PuskesmasView;

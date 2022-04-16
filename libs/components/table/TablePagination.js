@@ -61,11 +61,13 @@ const Table = ({ columns, data, links, from, to, total, basePagination }) => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col md:flex-row justify-between items-center flex-wrap ">
+        <div className="flex items-center flex-wrap justify-center gap-x-2">
         {links && links.map((link,i) => (
-          <Link key={i} href={link.active ? `${basePagination}?page=`+link.label : ''}>
-            <button className="cursor-pointer px-2 py-1 border rounded my-2" 
+          <Link key={i} href={link.active ? link.url : ''}>
+          {/*<Link key={i} href={link.active ? `${basePagination}?page=`+link.label : ''}>*/}
+            <button className="cursor-pointer px-2 py-1 border rounded my-2 whitespace-nowrap transition hover:bg-gray-200 disabled:bg-gray-200 disabled:pointer-events-none" 
+            disabled={link.active}
             dangerouslySetInnerHTML={{ __html: link.label }}/>
           </Link>
         ))}

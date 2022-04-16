@@ -70,13 +70,13 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
 
   return (
     <Modal title={(type === 'create') ? 'Buat truck baru' : 'Update truck'} onClose={() => setShowModal(false)}>
-      <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
+      <form className="py-4" onSubmit={handleSubmit}>
         <SelectWithLabel required label="Driver" placeholder="-Pilih Driver-" nama="driver" options={dataSelect.driver} selected={data.driver_id} onChange={e => setData({...data, driver_id: String(e.target.value)})} className="border-2" />
         <SelectWithLabel required label="Trip" placeholder="-Pilih Trip-" nama="trip" options={dataSelect.trip} selected={data.trip_id} onChange={e => setData({...data, trip_id: String(e.target.value)})} className="border-2" />
         <InputWithLabel required label="Kode" name="code" value={data.code} onChange={e => setData({...data, code: e.target.value})} className="border-2"/>
         <InputWithLabel required label="No Polisi" name="no_police" value={data.no_police} onChange={e => setData({...data, no_police: e.target.value})} className="border-2"/>
         <InputWithLabel required label="Kuota" name="quota" value={data.quota} onChange={e => setData({...data, quota: e.target.value})} className="border-2"/>
-        <InputWithLabel required label="Slot Khusus" name="khusus" value={data.khusus} onChange={e => setData({...data, khusus: e.target.value})} className="border-2"/>
+        <InputWithLabel required label="Slot Khusus" name="khusus" value={data.khusus} onChange={e => setData({...data, khusus: Number(e.target.value)})} className="border-2"/>
         <InputWithLabel required label="Tanggal" type="date" value={data.date_at} onChange={e => setData({...data, date_at: e.target.value})} className="border-2"/>
         <InputWithLabel required label="Waktu" type="time" value={data.time_at} onChange={e => setData({...data, time_at: e.target.value})} className="border-2"/>
         <InputWithLabel required label="Posisi" value={data.place_at} onChange={e => setData({...data, place_at: e.target.value})} className="border-2"/>

@@ -12,6 +12,10 @@ body.modal-open{
   overflow-y: hidden;
   padding: 5px;
 }
+input[type=search]::-webkit-search-cancel-button{
+  position:relative;
+  right:10px;
+}
 
 .leaflet-container {
   @apply w-full h-full z-[1];
