@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
 
 import Table from '../../components/table/TablePagination';
 import { Dropdown } from '../../components/dropdown'
@@ -9,13 +10,15 @@ import { SpinnerOverlay } from '../../components/loading'
 import { getPassengerManifest, verifPassenger } from '../../models/passengerModel';
 
 const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMemberClick, setShowModal }) => {
+  const router = useRouter()
+  const { page } = router.query;
   
   const [manifest, setManifest] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true)
-    const dataManifest = await getPassengerManifest();
+    const dataManifest = await getPassengerManifest({ page });
     console.log(dataManifest);
     setManifest(dataManifest)
     setLoading(false)
@@ -23,16 +26,16 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
 
   useEffect(() => {
     getData();
-  },[tableUpdate])
+  },[tableUpdate, page])
 
   console.log(manifest);
 
   const data = React.useMemo(() => manifest.data ? manifest.data : [])
 
-  const columns = React.useMemo(() => [
+  const columns = [
       {
         Header: 'No',
-        accessor: (rows, i) => i + 1
+        accessor: (e,i) => i + ((manifest) ? manifest.from : 1)
       },
       {
         Header: 'No Tiket Penumpang',
@@ -137,9 +140,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         Header: 'Kode Booking',
         accessor: () => ''
       }
-    ],
-    []
-  );
+    ];
 
   return (
     <section className="rounded-2xl bg-white p-4 shadow-lg shadow-gray-500/10 relative">

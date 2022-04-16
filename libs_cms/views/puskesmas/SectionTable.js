@@ -11,7 +11,6 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
   const router = useRouter()
   const { page } = router.query;
 
-  const [currentPage, setCurrentPage] = useState(Number(page));
   const [puskesmas, setPuskesmas] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -19,7 +18,6 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
     setLoading(true)
     const dataPuskesmas = await getPuskesmas({ page });
     setPuskesmas(dataPuskesmas)
-    setCurrentPage(dataPuskesmas.currentPage)
     setLoading(false)
   }
 

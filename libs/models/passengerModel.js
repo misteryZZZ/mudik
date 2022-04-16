@@ -16,8 +16,9 @@ export const getPassengerCount = async (type) => {
   return data.data.count;
 }
 
-export const getPassengerManifest = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/passenger/manifest`, {
+export const getPassengerManifest = async (data) => {
+  const query = new URLSearchParams(data).toString();
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/passenger/manifest?${query}`, {
     headers: {'Authorization': `Bearer ${localStorage.token}`}
   })
   .then(response => {
@@ -31,7 +32,7 @@ export const getPassengerManifest = async () => {
     console.warn(err)
     return false;
   })
-  return data.data.transaction;
+  return response.data.transaction;
 }
 
 export const verifPassenger = async (data) => {
