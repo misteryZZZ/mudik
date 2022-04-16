@@ -32,7 +32,7 @@ const MemberModal = ({ data, setShowModal }) => {
                   <td className="p-2">{e.nik}</td>
                   <td className="p-2">{e.no_kk}</td>
                   <td className="p-2">{(e.gender == 'p') ? 'Perempuan' : (e.gender == 'l') ? 'Laki-laki' : null}</td>
-                  <td className="p-2">Dosis {e.vaksin}</td>
+                  <td className="p-2">{e.vaksin ? `Dosis ${e.vaksin}` : ''}</td>
                   <td className="p-2">{e.type_vaksin}</td>
                   <td className="p-2">
                     {e.file_booster && (

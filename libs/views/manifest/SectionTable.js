@@ -128,13 +128,14 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'Status Booking',
-        accessor: ({ id, name, address, verify_date }) => (
+        /*accessor: ({ id, name, address, verify_date }) => (
           <Button
           text="Verifikasi"
           disabled={!!verify_date}
           className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark"
           onClick={() => handleVerifClick(id, {name, address})} />
-        )
+        )*/
+        accessor: 'status'
       },
       {
         Header: 'Kode Booking',

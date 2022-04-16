@@ -35,7 +35,7 @@ export const SelectSearchable = ({
 
   const handleListClick = (value, label) => {
     setLabel(label);
-    if (onChange) onChange({ value })
+    if (onChange) onChange({ target: {value} })
     console.log(showList);
   }
 
