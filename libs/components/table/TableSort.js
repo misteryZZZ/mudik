@@ -52,7 +52,7 @@ const Table = ({ columns, data, filter, search }) => {
                   {headerGroup.headers.map(column => (
                     <th {...column.getHeaderProps(column.getSortByToggleProps())}
                       className="px-4 pb-3">
-                      <span className="flex items-center gap-1 select-none">
+                      <span className="flex items-center justify-center gap-1 select-none">
                         {column.render('Header')}
                         {column.isSorted
                           ? column.isSortedDesc
