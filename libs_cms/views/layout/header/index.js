@@ -18,7 +18,7 @@ const Header = ({
       <div className="flex items-center">
         {(hasMoreButtons) && (
           <>
-            <Button.Export />
+            {/*<Button.Export />*/}
             {/*<Button.Notif />*/}
             <Button.Profile
               fotoProfile={user.image}
