@@ -77,11 +77,29 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'NIK',
-        accessor: 'nik'
+        accessor: ({ nik, file_ktp }) => {
+          if (file_ktp) return (
+            <a href={file_ktp} target="_blank"
+            className="py-1 px-3 border border-maincolor text-maincolor rounded">
+              {nik}
+            </a>
+          )
+        }
       },
       {
         Header: 'No. KK',
-        accessor: 'no_kk'
+        accessor: ({ no_kk, file_kk }) => {
+          if (file_kk) return (
+            <a href={file_kk} target="_blank"
+            className="py-1 px-3 border border-maincolor text-maincolor rounded">
+              {no_kk}
+            </a>
+          )
+        }
+      },
+      {
+        Header: 'Kota pada KTP',
+        accessor: 'placebirth'
       },
       {
         Header: 'Jenis Kelamin',
