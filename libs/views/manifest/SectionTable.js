@@ -37,30 +37,30 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         Header: 'No',
         accessor: (e,i) => i + ((manifest) ? manifest.from : 1)
       },
-      {
-        Header: 'No Tiket Penumpang',
-        accessor: (rows) => rows.code
-      },
-      {
-        Header: 'No Tiket Motor',
-        accessor: (rows) => rows.code
-      },
-      {
-        Header: 'Status Keberangkatan',
-        accessor: () => ''
-      },
-      {
-        Header: 'No. Bus',
-        accessor: 'bus_card'
-      },
-      {
-        Header: 'No. Truck',
-        accessor: 'truck_card'
-      },
-      {
-        Header: 'Kota Tujuan',
-        accessor: 'detail_bus.name'
-      },
+      // {
+      //   Header: 'No Tiket Penumpang',
+      //   accessor: (rows) => rows.code
+      // },
+      // {
+      //   Header: 'No Tiket Motor',
+      //   accessor: (rows) => rows.code
+      // },
+      // {
+      //   Header: 'Status Keberangkatan',
+      //   accessor: () => ''
+      // },
+      // {
+      //   Header: 'No. Bus',
+      //   accessor: 'bus_card'
+      // },
+      // {
+      //   Header: 'No. Truck',
+      //   accessor: 'truck_card'
+      // },
+      // {
+      //   Header: 'Kota Tujuan',
+      //   accessor: 'detail_bus.name'
+      // },
       {
         Header: 'Nama Penumpang',
         accessor: ({ name, member }) => {
