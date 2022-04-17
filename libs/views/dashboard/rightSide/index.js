@@ -38,7 +38,7 @@ const RightSide = ({ filterOptions, handleChangeFilter, filter }) => {
               {e.vehicle.category == 'bus' ? (
                 <CardBus key={i}
                   title={e.vehicle.name}
-                  jumlah_penumpang={e.result.passenger}
+                  jumlah_penumpang={e.result.passenger + e.vehicle.khusus}
                   laki_laki={e.result.man}
                   perempuan={e.result.woman}
                   driver_image={e.vehicle.driver ? e.vehicle.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
