@@ -21,7 +21,7 @@ const MemberModal = ({ data, setShowModal }) => {
                 <th className="p-2 border-b">No. KK</th>
                 <th className="p-2 border-b">Gender</th>
                 <th className="p-2 border-b">Vaksin</th>
-                <th className="p-2 border-b">Tipe Vaksin</th>
+                {/*<th className="p-2 border-b">Tipe Vaksin</th>*/}
                 <th className="p-2 border-b">File Booster</th>
               </tr>
             </thead>
@@ -33,7 +33,7 @@ const MemberModal = ({ data, setShowModal }) => {
                   <td className="p-2">{e.no_kk}</td>
                   <td className="p-2">{(e.gender == 'p') ? 'Perempuan' : (e.gender == 'l') ? 'Laki-laki' : null}</td>
                   <td className="p-2">{e.vaksin ? `Dosis ${e.vaksin}` : ''}</td>
-                  <td className="p-2">{e.type_vaksin}</td>
+                  {/*<td className="p-2">{e.type_vaksin}</td>*/}
                   <td className="p-2">
                     {e.file_booster && (
                       <a href={e.file_booster}

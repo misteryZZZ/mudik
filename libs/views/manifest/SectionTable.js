@@ -20,7 +20,23 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
     setLoading(true)
     const dataManifest = await getPassengerManifest({ page });
     console.log(dataManifest);
-    setManifest(dataManifest)
+
+    // filter nulled member
+    let memberCount = 0;
+    const filterMember = dataManifest.data.map((e,i) => {
+      const notNullMember = e.member.filter(f => f.name && f.email);
+      memberCount += notNullMember.length
+      return {
+        ...e,
+        id_with_member: i + 1 + memberCount - notNullMember.length,
+        member: notNullMember
+      }
+    })
+
+    setManifest({
+      ...dataManifest,
+      data: filterMember
+    })
     setLoading(false)
   }
 
@@ -32,10 +48,11 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
 
   const data = React.useMemo(() => manifest.data ? manifest.data : [])
 
-  const columns = [
+  const columns = React.useMemo(() => [
       {
         Header: 'No',
-        accessor: (e,i) => i + ((manifest) ? manifest.from : 1)
+        // accessor: (e,i) => i + ((manifest) ? manifest.from : 1)
+        accessor: 'id_with_member'
       },
       // {
       //   Header: 'No Tiket Penumpang',
@@ -121,18 +138,18 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         Header: 'Puskesmas',
         accessor: 'puskes.name'
       },
-      {
-        Header: 'Waktu Verifikasi Offline',
-        accessor: 'verify_date'
-      },
+      // {
+      //   Header: 'Waktu Verifikasi Offline',
+      //   accessor: 'verify_date'
+      // },
       {
         Header: 'Sepeda Motor',
         accessor: ({ vehicle }) => vehicle ? 'Ya' : 'Tidak'
       },
-      {
-        Header: 'No. STNK',
-        accessor: 'vehicle.stnk'
-      },
+      // {
+      //   Header: 'No. STNK',
+      //   accessor: 'vehicle.stnk'
+      // },
       {
         Header: 'File Booster',
         accessor: ({ file_booster }) => {
@@ -155,11 +172,12 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         )*/
         accessor: 'status'
       },
-      {
-        Header: 'Kode Booking',
-        accessor: () => ''
-      }
-    ];
+      // {
+      //   Header: 'Kode Booking',
+      //   accessor: () => ''
+      // }
+    ], 
+   [manifest]);
 
   return (
     <section className="rounded-2xl bg-white p-4 shadow-lg shadow-gray-500/10 relative">

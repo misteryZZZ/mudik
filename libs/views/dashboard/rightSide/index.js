@@ -32,26 +32,26 @@ const RightSide = ({ filterOptions, handleChangeFilter, filter }) => {
           <Spinner className="text-maincolor mx-auto" />
         ) : (
           summary
-          .filter(e => e.name?.includes(filter))
+          .filter(e => e.vehicle.name?.includes(filter))
           .map((e,i) => (
             <>
-              {e.category == 'bus' ? (
+              {e.vehicle.category == 'bus' ? (
                 <CardBus key={i}
-                  title={e.name}
-                  jumlah_penumpang={e.mudik?.passenger_count}
-                  laki_laki={e.mudik?.passenger_man_count}
-                  perempuan={e.mudik?.passenger_woman_count}
-                  driver_image={e.driver ? e.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
-                  driver_name={e.driver ? e.driver.name : '-'}
-                  no_polisi={e.no_police}
+                  title={e.vehicle.name}
+                  jumlah_penumpang={e.result.passenger}
+                  laki_laki={e.result.man}
+                  perempuan={e.result.woman}
+                  driver_image={e.vehicle.driver ? e.vehicle.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
+                  driver_name={e.vehicle.driver ? e.vehicle.driver.name : '-'}
+                  no_polisi={e.vehicle.no_police}
                 />
               ): (
                 <CardTruck key={i}
-                  title={e.name}
-                  jumlah_motor={e.mudik?.vehicle_count}
-                  driver_image={e.driver ? e.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
-                  driver_name={e.driver ? e.driver.name : '-'}
-                  no_polisi={e.no_police}
+                  title={e.vehicl.name}
+                  jumlah_motor={e.result.vehicle}
+                  driver_image={e.vehicle.driver ? e.vehicle.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
+                  driver_name={e.vehicle.driver ? e.vehicle.driver.name : '-'}
+                  no_polisi={e.vehicle.no_police}
                 />
               )}
             </>
