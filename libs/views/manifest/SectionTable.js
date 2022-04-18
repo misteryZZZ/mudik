@@ -171,7 +171,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
           <Button
           text="Verifikasi"
           disabled={!!verify_date}
-          className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark"
+          className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark pointer-events-none"
           onClick={() => handleVerifClick(id, {name, address})} />
         )
       },
