@@ -89,7 +89,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
             </svg>
           </button>
         )
-        return <span className="max-w-[380px]">name</span>;
+        return <span className="max-w-[380px]">{name}</span>;
         }
       },
       {
