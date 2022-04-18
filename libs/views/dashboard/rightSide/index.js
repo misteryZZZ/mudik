@@ -20,7 +20,7 @@ const RightSide = ({ filterOptions, handleChangeFilter, filter }) => {
   },[])
 
   return (
-    <div className="px-4 md:pr-0 rounded-2xl w-[30%]">
+    <div className="md:pl-4 rounded-2xl md:w-[30%]">
       <div className="flex justify-between">
         <h1 className="text-2xl text-maincolor mb-4">Summary</h1>
         <SortDropdown placeholder="Tujuan" options={filterOptions} onChange={handleChangeFilter} />

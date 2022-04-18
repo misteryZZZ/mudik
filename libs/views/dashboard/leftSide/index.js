@@ -18,7 +18,7 @@ const LeftSide = ({ maps, trips, checkpoint }) => {
         <>
           <div className="flex flex-col md:flex-row gap-3 mb-3">
             <div className="flex flex-col gap-3 grow">
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <CardStatistic
                 title="Jumlah Penumpang"
                 penumpangMudik={0}
@@ -34,7 +34,7 @@ const LeftSide = ({ maps, trips, checkpoint }) => {
                 motorBalik={0}
                 />
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <SectionMap maps={maps} />
                 <div className="border-2 border-gray-400 rounded-lg p-3 overflow-y-auto h-[272px]">
                   {trips.map((e,i) => (
@@ -47,7 +47,7 @@ const LeftSide = ({ maps, trips, checkpoint }) => {
                 </div>
               </div>
             </div>
-            <div className="w-[27%] pt-6">
+            <div className="md:w-[27%] pt-6">
               <CardStatus
                 judul="Status Bus"
                 perjalanan="0"

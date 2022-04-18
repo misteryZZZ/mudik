@@ -8,7 +8,7 @@ export default function SectionMap({ maps }) {
   });
 
   return (
-    <section className="grow rounded-2xl overflow-hidden w-2/5 h-72 md:h-auto">
+    <section className="grow rounded-2xl overflow-hidden sm:w-2/5 h-72 md:h-auto">
       <LeafletMap markers={maps} />
     </section>
   );
