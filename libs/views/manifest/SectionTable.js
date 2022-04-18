@@ -56,11 +56,11 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'No Tiket Penumpang',
-        accessor: (rows) => rows.code
+        accessor: ({ mudik }) => mudik?.code
       },
       {
         Header: 'No Tiket Motor',
-        accessor: (rows) => rows.code
+        accessor: ({ mudik }) => mudik?.code
       },
       {
         Header: 'Status Keberangkatan',
@@ -68,15 +68,15 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'No. Bus',
-        accessor: 'bus_card'
+        accessor: 'mudik.bus_card'
       },
       {
         Header: 'No. Truck',
-        accessor: 'truck_card'
+        accessor: 'mudik.truck_card'
       },
       {
         Header: 'Kota Tujuan',
-        accessor: 'detail_bus.name'
+        accessor: 'mudik.detail_bus.name'
       },
       {
         Header: 'Nama Penumpang',
@@ -148,7 +148,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'No. STNK',
-        accessor: 'vehicle.stnk'
+        accessor: 'vehicle.no_stnk'
       },
       {
         Header: 'File Booster',
