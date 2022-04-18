@@ -19,8 +19,8 @@ const JumlahPenumpangMotor = () => {
   },[])
 
   return (
-    <div className="bg-gray-100 p-2 sm:p-4">
-      <div className="flex justify-between text-sm sm:text-reset">
+    <div className="bg-gray-100 p-2 sm:p-4 text-xs sm:text-sm">
+      <div className="flex justify-between">
         <p>Jumalah<br/>Penumpang</p>
         <div className="ml-2 font-semibold">
           <div className="flex items-center">

@@ -13,7 +13,7 @@ const Layout = ({ children, title, description, menuActive, headerTitle, headerM
       </Head>
       <div className="relative">
         <Navigation menuActive={menuActive} />
-        <div className="flex flex-col bg-gray-50 min-h-[100vh] lg:ml-[210px] transition-all">
+        <div className="flex flex-col bg-gray-50 min-h-[100vh] lg:ml-[176px] transition-all">
           {children}
         </div>
       </div>

@@ -65,7 +65,7 @@ const DashboardView = () => {
       title="Dashboard"
       hasMoreButtons
       user={user}/>
-      <main className="px-4 py-2">
+      <main className="px-4">
         <div className="flex flex-col lg:flex-row">
           <LeftSide
           maps={maps.filter(e => e.name?.includes(filter))}
