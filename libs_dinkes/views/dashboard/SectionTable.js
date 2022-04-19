@@ -5,7 +5,11 @@ import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getManifestDinkes } from '../../models/manifestModel';
 
-const capitalizeFirstLetter = (string) => string.toLowerCase().charAt(0).toUpperCase() + string.slice(1);
+const capitalizeFirstLetter = (string) => {
+  return string.split(' ').map(e => {
+    return e.charAt(0).toUpperCase() + e.slice(1).toLowerCase();
+  }).join(' ')
+}
 
 const SectionTable = ({ filter, search, territory }) => {
   const [manifest, setManifest] = useState([]);
