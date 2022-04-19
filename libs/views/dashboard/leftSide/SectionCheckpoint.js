@@ -16,7 +16,7 @@ const SectionCheckpoint = ({ checkpoint }) => {
       <div className="flex items-center gap-3 border-b">
         <h1 className="text-2xl text-maincolor">Bus Checkpoint</h1>
         <Search onChange={handleSearchChange} />
-        <ButtonSort className="hidden md:block" />
+        <ButtonSort className="hidden md:flex" />
       </div>
 
       <div className="overflow-auto max-h-[340px]">

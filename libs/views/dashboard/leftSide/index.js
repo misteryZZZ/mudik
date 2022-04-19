@@ -21,10 +21,10 @@ const LeftSide = ({ maps, trips, checkpoint }) => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <CardStatistic
                 title="Jumlah Penumpang"
-                penumpangMudik={0}
-                penumpangBalik={0}
-                motorMudik={0}
-                motorBalik={0}
+                penumpangMudik={'8,878'}
+                penumpangBalik={'6,966'}
+                motorMudik={'565'}
+                motorBalik={'247'}
                 />
                 <CardStatistic
                 title="Jumlah Verifikasi"

@@ -56,11 +56,11 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'No Tiket Penumpang',
-        accessor: ({ mudik }) => mudik?.code
+        accessor: ({ mudik, scan_booking }) => (scan_booking == '1') ? mudik?.code : ''
       },
       {
         Header: 'No Tiket Motor',
-        accessor: ({ mudik }) => mudik?.code
+        accessor: ({ mudik, scan_booking }) => (scan_booking == '1') ? mudik?.code : ''
       },
       {
         Header: 'Status Keberangkatan',
@@ -165,16 +165,16 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         Header: 'Status Booking',
         accessor: 'status'
       },
-      {
-        Header: 'Verifikasi',
-        accessor: ({ id, name, address, verify_date }) => (
-          <Button
-          text="Verifikasi"
-          disabled={!!verify_date}
-          className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark pointer-events-none"
-          onClick={() => handleVerifClick(id, {name, address})} />
-        )
-      },
+      // {
+      //   Header: 'Verifikasi',
+      //   accessor: ({ id, name, address, verify_date }) => (
+      //     <Button
+      //     text="Verifikasi"
+      //     disabled={!!verify_date}
+      //     className="bg-maincolor disabled:opacity-50 hover:bg-maincolor-dark pointer-events-none"
+      //     onClick={() => handleVerifClick(id, {name, address})} />
+      //   )
+      // },
       {
         Header: 'Kode Booking',
         accessor: () => ''
