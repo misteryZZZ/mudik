@@ -11,7 +11,7 @@ export const ProtalView = () => {
         <title>Mudik Gratis JKT 2022</title>
       </Head>
       <div className="flex flex-col bg-maincolor p-6 min-h-[100vh]">
-        <div className="flex gap-6">
+        <div className="flex justify-center gap-6">
           <img className="w-16" src="/images/pemprov-dki.png" alt="logo pemprov dki"/>
           <img className="w-16" src="/images/dishub-dki.png" alt="logo dishub dki"/>
         </div>

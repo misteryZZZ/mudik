@@ -14,7 +14,7 @@ const LeftSide = ({ maps, trips, checkpoint }) => {
   return (
     <div className="bg-white rounded-xl p-4 mb-4 relative grow">
 
-      {(true) ? (
+      {(trips && trips.length > 0) && (checkpoint && checkpoint.length > 0) ? (
         <>
           <div className="flex flex-col md:flex-row gap-3 mb-3">
             <div className="flex flex-col gap-3 grow">

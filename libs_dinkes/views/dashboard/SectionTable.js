@@ -5,6 +5,9 @@ import { Dropdown } from '../../../libs/components/dropdown'
 
 import { getManifestDinkes } from '../../models/manifestModel';
 
+const capitalizeFirstLetter = ([ first, ...rest ], locale = navigator.language) =>
+  first.toLocaleUpperCase(locale) + rest.join('')
+
 const SectionTable = ({ filter, search, territory }) => {
   const [manifest, setManifest] = useState([]);
 
@@ -48,16 +51,16 @@ const SectionTable = ({ filter, search, territory }) => {
         accessor: 'detail_passenger.no_kk'
       },
       {
-        Header: 'Status',
-        accessor: 'detail_passenger.status'
-      },
-      {
         Header: 'Vaksin',
         accessor: ({ detail_passenger: {vaksin} }) => (vaksin) ? `Dosis ${vaksin}` : 'Belum Vaksin'
       },
       {
+        Header: 'Tipe Vaksin',
+        accessor: 'detail_passenger.type_vaksin'
+      },
+      {
         Header: 'Puskesmas',
-        accessor: 'detail_passenger.puskes.name'
+        accessor: ({detail_passenger: {puskes}}) => `Puskesmas ${capitalizeFirstLetter(puskes.name)}`
       }
     ],
     []
