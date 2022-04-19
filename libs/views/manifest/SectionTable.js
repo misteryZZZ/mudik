@@ -76,7 +76,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'Kota Tujuan',
-        accessor: 'mudik.city.name'
+        accessor: 'trip.city.name'
       },
       {
         Header: 'Nama Penumpang',
