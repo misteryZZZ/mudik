@@ -6,16 +6,16 @@ const DetilJumlah = ({ trip, bus, truck }) => (
       <tr className="text-left pr-2">
         <th className="mx-px text-sm text-orange-500">{trip}</th>
         <th className="mx-px">
-          <img className="w-3" src="/images/bus.svg" alt=""/>
+          <img className="w-3 mx-auto" src="/images/bus.svg" alt=""/>
         </th>
         <th className="mx-px">
-          <img className="w-3" src="/images/male.svg" alt=""/>
+          <img className="w-3 mx-auto" src="/images/male.svg" alt=""/>
         </th>
         <th className="mx-px">
-          <img className="w-3" src="/images/female.svg" alt=""/>
+          <img className="w-3 mx-auto" src="/images/female.svg" alt=""/>
         </th>
         <th className="mx-px">
-          <img className="w-3" src="/images/motorcycle.svg" alt=""/>
+          <img className="w-3 mx-auto" src="/images/motorcycle.svg" alt=""/>
         </th>
       </tr>
     </thead>

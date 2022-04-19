@@ -52,6 +52,10 @@ const SectionTable = ({ filter, search, territory }) => {
         accessor: 'detail_passenger.status'
       },
       {
+        Header: 'Vaksin',
+        accessor: ({ detail_passenger: {vaksin} }) => (vaksin) ? `Dosis ${vaksin}` : 'Belum Vaksin'
+      },
+      {
         Header: 'Puskesmas',
         accessor: 'detail_passenger.puskes.name'
       }

@@ -82,7 +82,7 @@ const Table = ({ columns, data, filter, search }) => {
                     {row.cells.map((cell,i) => (
                       <td {...cell.getCellProps}
                         key={i}
-                        className="text-center px-1 py-3">
+                        className="text-center px-2 py-3">
                         {cell.render("Cell")}
                       </td>
                     ))}

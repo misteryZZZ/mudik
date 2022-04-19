@@ -39,20 +39,22 @@ const DashboardView = () => {
       await setUser(userData);
       if (!userData) {
         router.push('/dashboard/login');
+      } else {
+
+        const response = await getMap();
+        setMaps(response)
+
+        const dataTrips = await getTripCounting();
+        setTrips(dataTrips)
+
+        const dataCity = await getAllCity();
+        console.log('city',dataCity);
+        setFilterOption([ {label: 'all', value:''},...new Set(dataCity.map(e => e.name))])
+
+        const dataCheckpoint = await getCheckpoint();
+        setCheckpoint(dataCheckpoint)
+        
       }
-
-      const response = await getMap();
-      setMaps(response)
-
-      const dataTrips = await getTripCounting();
-      setTrips(dataTrips)
-
-      const dataCity = await getAllCity();
-      console.log('city',dataCity);
-      setFilterOption([ {label: 'all', value:''},...new Set(dataCity.map(e => e.name))])
-
-      const dataCheckpoint = await getCheckpoint();
-      setCheckpoint(dataCheckpoint)
     })()
   },[])
 
@@ -69,7 +71,7 @@ const DashboardView = () => {
         <div className="flex flex-col lg:flex-row">
           <LeftSide
           maps={maps.filter(e => e.name?.includes(filter))}
-          trips={trips.filter(e => e.trip.city.name.includes(filter))}
+          trips={trips.filter(e => e.name.includes(filter))}
           checkpoint={checkpoint.filter(e => e.bus?.name.includes(filter))}
           />
           <RightSide

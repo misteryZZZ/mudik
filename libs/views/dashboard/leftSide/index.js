@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 
 import SectionMap from './SectionMap';
 import SectionCheckpoint from './SectionCheckpoint';
-import JumlahPenumpangMotor from './JumlahPenumpangMotor';
+// import JumlahPenumpangMotor from './JumlahPenumpangMotor';
 import DetilJumlah from './DetilJumlah';
 import CardStatus from './CardStatus';
-import CardStatistic from './CardStatistic';
+import Statistic from './Statistic';
 
 import { SpinnerOverlay } from '../../../components/loading'
 
@@ -14,25 +14,12 @@ const LeftSide = ({ maps, trips, checkpoint }) => {
   return (
     <div className="bg-white rounded-xl p-4 mb-4 relative grow">
 
-      {(trips && trips.length > 0) || (checkpoint && checkpoint.length > 0) ? (
+      {(true) ? (
         <>
           <div className="flex flex-col md:flex-row gap-3 mb-3">
             <div className="flex flex-col gap-3 grow">
               <div className="flex flex-col sm:flex-row gap-3">
-                <CardStatistic
-                title="Jumlah Penumpang"
-                penumpangMudik={'8,878'}
-                penumpangBalik={'6,966'}
-                motorMudik={'565'}
-                motorBalik={'247'}
-                />
-                <CardStatistic
-                title="Jumlah Verifikasi"
-                penumpangMudik={0}
-                penumpangBalik={0}
-                motorMudik={0}
-                motorBalik={0}
-                />
+                <Statistic />
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <SectionMap maps={maps} />
@@ -40,9 +27,9 @@ const LeftSide = ({ maps, trips, checkpoint }) => {
                   {trips.map((e,i) => (
                     <DetilJumlah
                       key={i}
-                      trip={e.trip.city.name}
-                      bus={[e.bus_count, e.passenger_man_count, e.passenger_woman_count, 0, ]}
-                      truck={[e.truck_count, 0, 0, e.vehicle_count, ]} />
+                      trip={e.name}
+                      bus={[e.bus, e.man, e.woman, 0]}
+                      truck={[e.truck, 0, 0, e.vehicle]} />
                   ))}
                 </div>
               </div>
