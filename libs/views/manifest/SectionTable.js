@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router'
 
 import Table from '../../components/table/TablePagination';
@@ -11,14 +11,18 @@ import { getPassengerManifest, verifPassenger } from '../../models/passengerMode
 
 const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMemberClick, setShowModal }) => {
   const router = useRouter()
-  const { page } = router.query;
+  const {page, ...query} = router.query;
+  console.log('query',query);
   
   const [manifest, setManifest] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true)
-    const dataManifest = await getPassengerManifest({ page });
+    const dataManifest = await getPassengerManifest({ 
+      page,
+      ...query
+    });
     console.log(dataManifest);
 
     // filter nulled member
@@ -42,7 +46,7 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
 
   useEffect(() => {
     getData();
-  },[tableUpdate, page])
+  },[tableUpdate, page, query.search])
 
   console.log(manifest);
 
@@ -194,6 +198,8 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       from={manifest.from}
       to={manifest.to}
       total={manifest.total}
+      currentPage={page}
+      query={query}
       basePagination="/dashboard/manifest"
       />
     </section>

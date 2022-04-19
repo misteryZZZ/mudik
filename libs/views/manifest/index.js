@@ -20,8 +20,8 @@ const Manifest = () => {
   const [tableUpdate, setTableUpdate] = useState(0);
 
   const [user, setUser] = useState(false);
-  const [search, setSearch] = useState(undefined);
-  const [filter, setFilter] = useState('detail_bus.name');
+  const [search, setSearch] = useState();
+  const [filter, setFilter] = useState('city');
   const [data, setData] = useState('');
   const [modalID, setModalID] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -31,19 +31,26 @@ const Manifest = () => {
   const filterOptions = [
     {
       label: 'Kota tujuan',
-      value: 'detail_bus.name'
+      value: 'city'
     },{
       label: 'Nama Penumpang',
-      value: 'Nama Penumpang'
+      value: 'name'
     },{
       label: 'Email',
-      value: 'detail_passenger.email'
+      value: 'email'
     }
   ]
 
   const handleSearchChange = (e) => {
     const value = e.target.value || '';
     setSearch(value);
+  }
+
+  const handleSearchKeyPress = (e) => {
+    if (e.which === 13) {
+      e.preventDefault();
+      router.push(`/dashboard/manifest?page=1&key_search=${filter}&search=${search}`)
+    }
   }
 
   const handleFilterChange = (e) => {
@@ -86,7 +93,7 @@ const Manifest = () => {
       additionalComponent={
         <>
           <SortDropdown placeholder="Kota tujuan" options={filterOptions} onChange={handleFilterChange} />
-          <Search medium className="mr-2" onChange={handleSearchChange} />
+          <Search medium className="mr-2" onChange={handleSearchChange} onKeyPress={handleSearchKeyPress}  />
         </>
       } />
       <main className="px-4 py-2">
