@@ -36,6 +36,7 @@ export const SelectWithLabel = ({
     {...inputProps} />
   </label>
 )
+
 export const SelectWithIcon = ({
   className,
   options,

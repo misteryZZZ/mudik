@@ -12,16 +12,21 @@ export const SelectSearchable = ({
 }) => {
   options = options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e);
 
-  useEffect(() => {
-    options = options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e);
-    const selectedLable = options.filter(e => e.value == selected);
-    setLabel(selectedLable.length > 0 ? selectedLable[0].label : placeholder)
-  }, [selected])
-
   const [label, setLabel] = useState(placeholder)
   const [listOption, setListOptions] = useState(options)
   const [keyword, setKeyword] = useState('')
   const [showList, setShowList] = useState(false)
+
+  useEffect(() => {
+    options = options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e);
+    const selectedLable = options.filter(e => e.value == selected);
+    setLabel(selectedLable.length > 0 ? selectedLable[0].label : placeholder);
+  }, [selected])
+
+  useEffect(() => {
+    options = options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e);
+    setListOptions(options)
+  }, [options])
 
   const handleInputChange = (e) => {
     const value = e.target.value
@@ -47,6 +52,7 @@ export const SelectSearchable = ({
     setTimeout(() => setShowList(false) ,250)
   }
 
+  console.log('options(select):',options);
   return (
     <div className="w-full relative">
       <button type="button" onClick={handleClick}
