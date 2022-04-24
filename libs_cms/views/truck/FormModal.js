@@ -19,8 +19,8 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     quota: '',
     khusus: '',
     date_at: '',
-    time_at: '',
-    place_at: '',
+    // time_at: '',
+    // place_at: '',
   });
 
   const handleSubmit = async (e) => {
@@ -61,8 +61,8 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
           quota: dataPre.quota,
           khusus: dataPre.khusus,
           date_at: dataPre.date_at,
-          time_at: dataPre.time_at,
-          place_at: dataPre.place_at,
+          // time_at: dataPre.time_at,
+          // place_at: dataPre.place_at,
         })
       }
     })()
@@ -78,8 +78,8 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         <InputWithLabel required label="Kuota" name="quota" value={data.quota} onChange={e => setData({...data, quota: e.target.value})} className="border-2"/>
         <InputWithLabel required label="Slot Khusus" name="khusus" value={data.khusus} onChange={e => setData({...data, khusus: Number(e.target.value)})} className="border-2"/>
         <InputWithLabel required label="Tanggal" type="date" value={data.date_at} onChange={e => setData({...data, date_at: e.target.value})} className="border-2"/>
-        <InputWithLabel required label="Waktu" type="time" value={data.time_at} onChange={e => setData({...data, time_at: e.target.value})} className="border-2"/>
-        <InputWithLabel required label="Posisi" value={data.place_at} onChange={e => setData({...data, place_at: e.target.value})} className="border-2"/>
+        {/*<InputWithLabel required label="Waktu" type="time" value={data.time_at} onChange={e => setData({...data, time_at: e.target.value})} className="border-2"/>*/}
+        {/*<InputWithLabel required label="Posisi" value={data.place_at} onChange={e => setData({...data, place_at: e.target.value})} className="border-2"/>*/}
 
         <Button text={(type === 'create') ? 'Buat' : 'Update'} isLoading={isLoading} className="mt-6" />
       </form>
