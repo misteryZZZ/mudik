@@ -59,7 +59,8 @@ export const createCity = async (data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/city`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: data,
   })
@@ -81,7 +82,8 @@ export const updateCity = async (id, data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/city/${id}`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: data
   })

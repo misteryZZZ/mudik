@@ -62,7 +62,8 @@ export const createDriver = async (data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: data
   })
@@ -84,7 +85,8 @@ export const updateDriver = async (id, data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/driver/${id}`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: data
   })

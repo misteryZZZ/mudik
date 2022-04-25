@@ -60,7 +60,8 @@ export const createBus = async (data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: JSON.stringify(data)
   })
@@ -83,7 +84,8 @@ export const updateBus = async (id, data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: JSON.stringify({
       _method: 'PUT',

@@ -99,7 +99,9 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
         <InputWithLabel required label="Nama LO" name="name" value={data.name} onChange={e => setData({...data, name: e.target.value})} className="border-2" />
         <InputWithLabel required label="Email" name="email" value={data.email} onChange={e => setData({...data, email: e.target.value})} className="border-2" />
         <InputWithLabel label="Password" type="password" value={data.password} onChange={e => setData({...data, password: e.target.value})} className="border-2"/>
+        <p className="text-xs text-red-300 text-light">The password must be at least 8 characters.</p>
         <InputWithLabel label="Confirm Password" type="password" value={data.re_password} onChange={e => setData({...data, re_password: e.target.value})} className="border-2"/>
+        <p className="text-xs text-red-300 text-light">The password must be at least 8 characters.</p>
         <InputWithLabel required label="No Telepon" value={data.phone} onChange={e => setData({...data, phone: e.target.value})} className="border-2"/>
         <SelectWithLabel required label="Tipe Kendaraan" placeholder="-Pilih Tipe Kendaraan-" options={dataVehicleType} selected={data.type} onChange={e => setData({...data, type: e.target.value})} className="border-2"/>
         <SelectWithLabel required label="Kendaraan" placeholder="-Pilih Kendaraan-" options={(data.type) ? dataSelect[data.type] : []} selected={data.vehicle_id} value={data.vehicle_id} onChange={e => setData({...data, vehicle_id: String(e.target.value)})} className="border-2"/>

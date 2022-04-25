@@ -61,7 +61,8 @@ export const createLO = async (data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cms/v1/lo`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: data
   })

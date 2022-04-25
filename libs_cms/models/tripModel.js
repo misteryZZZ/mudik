@@ -64,7 +64,8 @@ export const createTrip = async (data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: JSON.stringify(data)
   })
@@ -87,7 +88,8 @@ export const updateTrip = async (id, data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.token}`
+      'Authorization': `Bearer ${localStorage.token}`,
+      'Accept': 'application/json'
     },
     body: JSON.stringify({
       _method: 'PUT',
