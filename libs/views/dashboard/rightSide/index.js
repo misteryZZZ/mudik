@@ -20,7 +20,7 @@ const RightSide = ({ filterOptions, handleChangeFilter, filter }) => {
   },[])
 
   return (
-    <div className="md:pl-4 rounded-2xl md:w-[30%]">
+    <div className="md:pl-4 rounded-2xl lg:w-[30%]">
       <div className="flex justify-between">
         <h1 className="text-2xl text-maincolor mb-4">Summary</h1>
         <SortDropdown placeholder="Tujuan" options={filterOptions} onChange={handleChangeFilter} />
@@ -47,7 +47,7 @@ const RightSide = ({ filterOptions, handleChangeFilter, filter }) => {
                 />
               ): (
                 <CardTruck key={i}
-                  title={e.vehicl.name}
+                  title={e.vehicle.name}
                   jumlah_motor={e.result.vehicle}
                   driver_image={e.vehicle.driver ? e.vehicle.driver.image : 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'}
                   driver_name={e.vehicle.driver ? e.vehicle.driver.name : '-'}

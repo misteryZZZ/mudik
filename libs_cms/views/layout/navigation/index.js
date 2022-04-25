@@ -20,7 +20,13 @@ const Navigation = ({ menuActive }) => {
   return (
     <>
       <Hamburger onClick={expand} />
-      <nav className={`bg-maincolor text-white h-[100vh] fixed top-0 left-0 -translate-x-full lg:translate-x-0 transition z-10 ${expanded ? '!translate-x-0' : ''}`} tabIndex="0" ref={nav} onBlur={close}>
+      <nav
+      className={`bg-maincolor text-white h-[100vh] fixed top-0 left-0 -translate-x-full lg:translate-x-0 transition z-10
+        ${expanded ? '!translate-x-0' : 'pointer-events-none lg:pointer-events-auto'}
+      `}
+      tabIndex="0"
+      ref={nav}
+      onBlur={close}>
         <Brand />
 
         <Menu.Wrapper>

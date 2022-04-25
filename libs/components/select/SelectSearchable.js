@@ -10,25 +10,25 @@ export const SelectSearchable = ({
   icon,
   ...props
 }) => {
-  options = options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e);
-
+  
   const [label, setLabel] = useState(placeholder)
-  const [listOption, setListOptions] = useState(options)
+  const [listOption, setListOptions] = useState(options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e))
   const [keyword, setKeyword] = useState('')
   const [showList, setShowList] = useState(false)
 
   useEffect(() => {
-    options = options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e);
-    const selectedLable = options.filter(e => e.value == selected);
+    const selectedLable = listOption.filter(e => e.value == selected);
     setLabel(selectedLable.length > 0 ? selectedLable[0].label : placeholder);
+    console.log('c');
   }, [selected])
 
   useEffect(() => {
-    options = options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e);
-    setListOptions(options)
+    setListOptions(options.map(e => (typeof e !== 'object') ? ({label: e, value: e}) : e))
+    console.log('b');
   }, [options])
 
   const handleInputChange = (e) => {
+    console.log('a');
     const value = e.target.value
     setKeyword(value);
     if (value !== '') {
@@ -41,7 +41,7 @@ export const SelectSearchable = ({
   const handleListClick = (value, label) => {
     setLabel(label);
     if (onChange) onChange({ target: {value} })
-    console.log(showList);
+    // console.log(showList);
   }
 
   const handleClick = () => {
@@ -52,7 +52,6 @@ export const SelectSearchable = ({
     setTimeout(() => setShowList(false) ,250)
   }
 
-  console.log('options(select):',options);
   return (
     <div className="w-full relative">
       <button type="button" onClick={handleClick}

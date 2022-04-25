@@ -93,8 +93,6 @@ const FormModal = ({ setShowModal, type, id, dataSelect, onSuccess }) => {
     })()
   }, [])
 
-  console.log('data type:',data.type);
-  console.log('dataselect:',dataSelect[data.type]);
   return (
     <Modal title={(type === 'create') ? 'Buat LO baru' : 'Update LO'} onClose={() => setShowModal(false)}>
       <form className="overflow-y-auto py-4" onSubmit={handleSubmit}>
