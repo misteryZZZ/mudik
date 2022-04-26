@@ -6,7 +6,7 @@ import { SpinnerOverlay } from '../../../libs/components/loading';
 
 import { getAllLO, deleteLO } from '../../models/loModel';
 
-const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
+const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate, search, filter }) => {
   const [LO, setLO] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -60,8 +60,12 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
         accessor: 'type'
       },
       {
+        Header: 'Kode',
+        accessor: (rows) => rows[rows.type]?.name
+      },
+      {
         Header: 'No Polisi',
-        accessor: (rows) => <>{rows[rows.type]?.no_police}</>
+        accessor: (rows) => rows[rows.type]?.no_police
       },
       {
         Header: 'Action',
@@ -87,7 +91,7 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
       {isLoading && (
         <SpinnerOverlay className="text-maincolor" />
       )}
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} search={search} filter={filter} />
     </section>
   )
 }

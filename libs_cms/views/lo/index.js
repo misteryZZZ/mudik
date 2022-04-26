@@ -11,6 +11,8 @@ import Header from '../layout/header'
 import SectionTable from './SectionTable'
 import FormModal from './FormModal'
 import { Button } from '../../../libs/components/button'
+import { Search } from '../../../libs/components/input'
+import { SortDropdown } from '../../../libs/components/SortDropdown'
 import { SpinnerOverlay } from '../../../libs/components/loading'
 
 const LOView = () => {
@@ -20,6 +22,8 @@ const LOView = () => {
 
   const [user, setUser] = useState(false);
   const [modalID, setModalID] = useState(null);
+  const [filter, setFilter] = useState('name');
+  const [search, setSearch] = useState();
   const [showModal, setShowModal] = useState(false);
   const [typeModal, setTypeModal] = useState('create');
   const [dataSelect, setDataSelect] = useState({
@@ -27,6 +31,29 @@ const LOView = () => {
     bus: [],
     truck: [],
   })
+
+  const filterOptions = [
+    {
+      label: 'Nama',
+      value: 'name'
+    },{
+      label: 'Email',
+      value: 'email'
+    },{
+      label: 'No Polisi',
+      value: 'No Polisi'
+    }
+  ]
+
+  const handleFilterChange = (e) => {
+    const value = e.value || undefined;
+    setFilter(value);
+  }
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value || '';
+    setSearch(value);
+  }
 
   const handleUpdateClick = (id) => {
     console.log(id);
@@ -72,7 +99,9 @@ const LOView = () => {
       user={user}
       additionalComponent={
         <>
-          <Button text="Create" className="!w-min rounded-lg !py-1" onClick={() => {setShowModal(true); setTypeModal('create')}} />
+          <Button text="Create" className="!w-min rounded-lg !py-1 mr-2" onClick={() => {setShowModal(true); setTypeModal('create')}} />
+          <SortDropdown placeholder="Nama" options={filterOptions} onChange={handleFilterChange} />
+          <Search medium className="mr-2" onChange={handleSearchChange} />
         </>
       } />
       <main className="px-4 py-2">
@@ -81,6 +110,8 @@ const LOView = () => {
         showModal={showModal}
         handleUpdateClick={handleUpdateClick}
         tableUpdate={tableUpdate}
+        search={search}
+        filter={filter}
         />
         {showModal &&
           <FormModal

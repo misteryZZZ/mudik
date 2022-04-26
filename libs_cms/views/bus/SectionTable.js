@@ -60,6 +60,10 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
         accessor: 'khusus'
       },
       {
+        Header: 'Sisa Kuota',
+        accessor: ({ quota, passengers_count, khusus }) => quota - khusus - passengers_count
+      },
+      {
         Header: 'Tanggal Keberangkatan',
         accessor: ({ date_at }) => (new Date(date_at)).toLocaleDateString('id', {year: 'numeric', month: 'long', day: 'numeric'})
       },
