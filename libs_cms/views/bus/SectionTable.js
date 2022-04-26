@@ -63,14 +63,14 @@ const SectionTable = ({ handleUpdateClick, setShowModal, tableUpdate }) => {
         Header: 'Sisa Kuota',
         accessor: ({ quota, passengers_count, khusus }) => quota - khusus - passengers_count
       },
-      {
-        Header: 'Tanggal Keberangkatan',
-        accessor: ({ date_at }) => (new Date(date_at)).toLocaleDateString('id', {year: 'numeric', month: 'long', day: 'numeric'})
-      },
-      {
-        Header: 'Waktu Keberangkatan',
-        accessor: 'time_at'
-      },
+      // {
+      //   Header: 'Tanggal Keberangkatan',
+      //   accessor: ({ date_at }) => (new Date(date_at)).toLocaleDateString('id', {year: 'numeric', month: 'long', day: 'numeric'})
+      // },
+      // {
+      //   Header: 'Waktu Keberangkatan',
+      //   accessor: 'time_at'
+      // },
       {
         Header: 'Action',
         accessor: (rows) => (
