@@ -59,7 +59,7 @@ export default function Statistic() {
       motorBalik={statistic.penumpang.motor_balik}
       />
       <CardStatistic
-      title="Jumlah Verifikasi"
+      title="Jumlah Verifikasi E-Ticket"
       penumpangMudik={statistic.verif.penumpang_mudik}
       penumpangBalik={statistic.verif.penumpang_balik}
       motorMudik={statistic.verif.motor_mudik}
