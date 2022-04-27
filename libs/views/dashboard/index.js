@@ -8,7 +8,7 @@ import Header from '../layout/header'
 
 import { isLogedin } from '../../models/userModel'
 import { getMap } from '../../models/mapModel'
-import { getTripCounting } from '../../models/tripModel'
+import { getTripCounting, getStatistic } from '../../models/tripModel'
 import { getCheckpoint } from '../../models/checkpointModel'
 import { getAllCity } from '../../../libs_cms/models/cityModel'
 
@@ -23,6 +23,7 @@ const DashboardView = () => {
   const [trips, setTrips] = useState([])
   const [checkpoint, setCheckpoint] = useState([])
   const [maps, setMaps] = useState([])
+  const [scaned, setScaned] = useState('-')
 
   const [filterOptions, setFilterOption] = useState([])
   const [summaryFilter, setSummaryFilter] = useState([])
@@ -53,6 +54,9 @@ const DashboardView = () => {
 
         const dataCheckpoint = await getCheckpoint();
         setCheckpoint(dataCheckpoint)
+
+        const dataScaned = await getStatistic({ type: 'total', category: 'mudik', verif: 'yes'});
+        setScaned(dataScaned.toLocaleString())
         
       }
     })()
@@ -73,6 +77,7 @@ const DashboardView = () => {
           maps={maps.filter(e => e.name?.includes(filter))}
           trips={trips.filter(e => e.name.includes(filter))}
           checkpoint={checkpoint.filter(e => e.bus?.name.includes(filter))}
+          scaned={scaned}
           />
           <RightSide
           filterOptions={filterOptions}

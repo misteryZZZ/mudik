@@ -52,3 +52,23 @@ export const getStatistic = async (data) => {
   })
   return response.data.result;
 }
+
+export const getStatus = async (data) => {
+  const query = new URLSearchParams(data).toString()
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/v1/status/vehicle?${query}`, {
+    headers: {'Authorization': `Bearer ${localStorage.token}`}
+  })
+  .then(response => {
+    if(response.ok){
+      return response.json()
+    } else {
+      return false;
+    }
+  })
+  .catch((err) => {
+    console.warn(err)
+    return false;
+  })
+  console.log(response);
+  return response.data.status;
+}

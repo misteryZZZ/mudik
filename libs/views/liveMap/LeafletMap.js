@@ -12,7 +12,7 @@ const LeafletMap = ({ center, markers =['a'] }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {markers.map((e,i) => (
-        <Marker key={i} position={[Number(e.latitude), Number(e.longitude)]} icon={(e.lo?.type == 'bus') ? iconBus : iconTruck}>
+        <Marker key={i} position={[Number(e.latitude), Number(e.longitude)]} icon={(e.category == 'bus') ? iconBus : iconTruck}>
           <Popup>
             <div className="p-3">
               <h1 className="text-lg">

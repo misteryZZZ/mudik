@@ -32,6 +32,7 @@ const RightSide = ({ filterOptions, handleChangeFilter, filter }) => {
           <Spinner className="text-maincolor mx-auto" />
         ) : (
           summary
+          .filter(e => e.vehicle.category == 'truck')
           .filter(e => e.vehicle.name?.includes(filter))
           .map((e,i) => (
             <>

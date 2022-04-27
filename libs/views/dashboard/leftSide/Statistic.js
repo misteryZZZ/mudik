@@ -7,16 +7,16 @@ import CardStatistic from './CardStatistic';
 export default function Statistic() {
   const [statistic, setStatistic] = useState({
     penumpang: {
-      penumpang_mudik: 0,
-      penumpang_balik: 0,
-      motor_mudik: 0,
-      motor_balik: 0,
+      penumpang_mudik: '-',
+      penumpang_balik: '-',
+      motor_mudik: '-',
+      motor_balik: '-',
     },
     verif: {
-      penumpang_mudik: 0,
-      penumpang_balik: 0,
-      motor_mudik: 0,
-      motor_balik: 0,
+      penumpang_mudik: '-',
+      penumpang_balik: '-',
+      motor_mudik: '-',
+      motor_balik: '-',
     }
   });
 
@@ -34,16 +34,16 @@ export default function Statistic() {
       
       setStatistic({
         penumpang: {
-          penumpang_mudik,
-          penumpang_balik,
-          motor_mudik,
-          motor_balik,
+          penumpang_mudik: penumpang_mudik.toLocaleString(),
+          penumpang_balik: penumpang_balik.toLocaleString(),
+          motor_mudik: motor_mudik.toLocaleString(),
+          motor_balik: motor_balik.toLocaleString(),
         },
         verif: {
-          penumpang_mudik: penumpang_mudik_verif,
-          penumpang_balik: penumpang_balik_verif,
-          motor_mudik: motor_mudik_verif,
-          motor_balik: motor_balik_verif,
+          penumpang_mudik: penumpang_mudik_verif.toLocaleString(),
+          penumpang_balik: penumpang_balik_verif.toLocaleString(),
+          motor_mudik: motor_mudik_verif.toLocaleString(),
+          motor_balik: motor_balik_verif.toLocaleString(),
         }
       })
     })()
