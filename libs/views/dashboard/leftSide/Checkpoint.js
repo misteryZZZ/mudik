@@ -4,10 +4,10 @@ const Checkpoint = ({ judul, progres, rute }) => (
   <div className="flex items-center py-4 border-b">
     <h2 className="font-semibold text-orange whitespace-nowrap">{judul}</h2>
     <div className="stepper">
-      {rute.map((e,i) => 
-        (i + 1 == progres) ? (
+      {rute.map((e,i,A) => 
+        (e.checkpoint != null) ? (
           <span key={i} className="stepper-item active relative">
-            <div className="absolute text-xs -top-4 translate-x-8 border rounded text-gray-400 px-1 w-max">Tiba di {e.name}</div>
+          {A[i + 1]?.checkpoint == null && <div className="absolute text-xs -top-4 translate-x-8 border rounded text-gray-400 px-1 w-max">Tiba di {e.name}</div>}
           </span>
         ) : (
           <span key={i} className={`stepper-item ${(i + 1 <= progres) ? 'active' : ''}`}/>

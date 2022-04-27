@@ -12,15 +12,16 @@ const LeafletMap = ({ center, markers =['a'] }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {markers.map((e,i) => (
-        <Marker key={i} position={[Number(e.latitude), Number(e.longitude)]} icon={(e.category == 'bus') ? iconBus : iconTruck}>
+        <Marker key={i} position={[Number(e.latitude), Number(e.longitude)]} icon={(e.lo?.type == 'bus') ? iconBus : iconTruck}>
           <Popup>
             <div className="p-3">
               <h1 className="text-lg">
                 {e.place_at} <br/>
                 <span className={`text-md text-white px-3 bg-red-500 rounded ml-2
-                  ${e.status == 'start' &&  ' bg-gray-500'}
-                  ${e.status == 'start' &&  ' bg-gray-500'}
-                  `}>{e.name}</span>
+                  ${e.status == 'start' ? 'bg-gray-500'
+                    : e.status == 'end' ? 'bg-yellow-500'
+                    : 'bg-red-500'}
+                  `}>{e.name} {e.status}</span>
               </h1>
               <p className="text-sm" style={{ marginBottom: 0}}>Tanggal</p>
               <p className="" style={{ margin: 0, fontSize: '16px' }}>

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import { getMap } from '../../models/mapModel'
 
-export default function SectionMap() {
+export default function SectionMap({ filter, search }) {
   const LeafletMap = dynamic(() => import("./LeafletMap"), {
     ssr: false
   });
@@ -22,7 +22,7 @@ export default function SectionMap() {
 
   return (
     <section className="rounded-2xl flex flex-col bg-white overflow-hidden h-[84vh] h-full">
-      <LeafletMap markers={maps} />
+      <LeafletMap markers={maps.filter(e => e.name?.includes(filter) && e.name?.toLowerCase().includes(search.toLowerCase()))} />
     </section>
   );
 }

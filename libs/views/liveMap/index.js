@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { isLogedin } from '../../models/userModel'
+import { getAllCity } from '../../../libs_cms/models/cityModel'
 
 import { SpinnerOverlay } from '../../components/loading'
 
@@ -16,6 +17,18 @@ const Map = () => {
   const router = useRouter();
 
   const [user, setUser] = useState(false);
+  const [filterOptions, setFilterOption] = useState([])
+  const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
+
+  const handleChangeFilter = (e) => {
+    setFilter(e.value);
+  }
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value || '';
+    setSearch(value);
+  }
 
   useEffect(() => {
     (async () => {
@@ -23,6 +36,9 @@ const Map = () => {
       await setUser(dataUser);
       if (!dataUser) {
         router.push('/dashboard/login');
+      } else {
+        const dataCity = await getAllCity();
+        setFilterOption([ {label: 'all', value:''},...new Set(dataCity.map(e => e.name))])
       }
     })()
   },[])
@@ -36,12 +52,12 @@ const Map = () => {
       user={user}
        additionalComponent={
         <>
-          <SortDropdown placeholder="Semua rute" options={['Cilacap', 'Jogjakarta', 'Malang']} />
-          <Search medium />
+          <SortDropdown placeholder="Semua rute" options={filterOptions} onChange={handleChangeFilter} />
+          <Search medium className="mr-2" onChange={handleSearchChange}/>
         </>
       } />
       <main className="px-4 py-2">
-        <SectionMap />
+        <SectionMap filter={filter} search={search}  />
       </main>
     </Layout>
   );
