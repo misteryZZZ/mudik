@@ -18,7 +18,7 @@ const LeafletMap = ({ center, markers =['a'] }) => {
               <h1 className="text-lg">
                 {e.place_at} <br/>
                 <span className={`text-md text-white px-3 bg-red-500 rounded ml-2
-                  ${e.status == 'start' ? 'bg-gray-500'
+                  ${  e.status == 'start' ? 'bg-gray-500'
                     : e.status == 'end' ? 'bg-yellow-500'
                     : 'bg-red-500'}
                   `}>{e.name} {e.status}</span>
