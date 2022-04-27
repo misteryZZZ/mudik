@@ -67,10 +67,6 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         accessor: ({ mudik, scan_booking }) => (scan_booking == '1') ? mudik?.code : ''
       },
       {
-        Header: 'Status Keberangkatan',
-        accessor: () => ''
-      },
-      {
         Header: 'No. Bus',
         accessor: ({ mudik, scan_booking }) => (scan_booking == '1') ? mudik?.bus_card : ''
       },
@@ -79,8 +75,12 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
         accessor: ({ mudik, scan_booking }) => (scan_booking == '1') ? mudik?.truck_card : ''
       },
       {
-        Header: 'Kota Tujuan',
-        accessor: 'trip.city.name'
+        Header: 'Nama Bus',
+        accessor: 'bus_mudik.bus.name'
+      },
+      {
+        Header: 'Nomor Kursi',
+        accessor: 'bus_mudik.name'
       },
       {
         Header: 'Nama Penumpang',
