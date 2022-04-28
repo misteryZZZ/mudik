@@ -68,11 +68,16 @@ const SectionTable = ({ filter, search, tableUpdate, handleVerifClick, handleMem
       },
       {
         Header: 'No. Bus',
-        accessor: ({ mudik, scan_booking }) => (scan_booking == '1') ? mudik?.bus_card : ''
+        accessor: 'bus_mudik.bus.code'
       },
       {
         Header: 'No. Truck',
-        accessor: ({ mudik, scan_booking }) => (scan_booking == '1') ? mudik?.truck_card : ''
+        accessor: 'truck_mudik.truck.code'
+      },
+      {
+        id: 'kota_tujuan',
+        Header: 'Kota Tujuan',
+        accessor: 'trip.city.name'
       },
       {
         Header: 'Nama Bus',
