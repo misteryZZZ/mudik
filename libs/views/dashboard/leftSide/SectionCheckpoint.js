@@ -23,7 +23,7 @@ const SectionCheckpoint = ({ checkpoint }) => {
         {checkpoint
           .filter(e => e.bus.name.toLowerCase().includes(filterCheckpont.toLowerCase()))
           .map((e,i) => (
-          <Checkpoint key={i} judul={e.bus.name} progres={0} rute={e.rute}/>
+          <Checkpoint key={i} judul={e.bus.name} progres={0} rute={e.rute} reverseRute={e.bus.status == 'end'}/>
         ))}
       </div>
     </>

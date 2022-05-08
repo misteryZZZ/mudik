@@ -23,7 +23,12 @@ const LeafletMap = ({ center, markers = [] }) => {
                     : e.lo?.last_report?.status == 'arrive' ? 'bg-yellow-500'
                     : e.lo?.last_report?.status == 'trouble' ? 'bg-red-500'
                     : ''}
-                  `}>{e.name}</span>
+                  `}>{e.name} {
+                    e.lo?.last_report?.status == 'ongoing' ? 'Dalam Perjalanan'
+                    : e.lo?.last_report?.status == 'arrive' ? 'Sampai'
+                    : e.lo?.last_report?.status == 'trouble' ? 'Bermasalah'
+                    : ''
+                  }</span>
               </h1>
               <p className="text-sm" style={{ marginBottom: 0}}>Tanggal</p>
               <p className="" style={{ margin: 0, fontSize: '16px' }}>
