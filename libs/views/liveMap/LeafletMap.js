@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
-const LeafletMap = ({ center, markers =['a'] }) => {
+const LeafletMap = ({ center, markers = [] }) => {
   const iconBus = L.icon({ iconUrl: '/marker-icon.png', iconSize: [25,41], iconAnchor: [12,41], popupAnchor: [0,-30] });
   const iconTruck = L.icon({ iconUrl: '/marker-orange.png', iconSize: [25,41], iconAnchor: [12,41], popupAnchor: [0,-30] });
 
@@ -16,20 +16,22 @@ const LeafletMap = ({ center, markers =['a'] }) => {
           <Popup>
             <div className="p-3">
               <h1 className="text-lg">
-                {e.place_at} <br/>
+                {e.place_at}<br/>
+                <span className="text-sm">{e.status == 'end' ? '(arus balik)' : '(arus mudik)'}</span><br/>
                 <span className={`text-md text-white px-3 bg-red-500 rounded ml-2
-                  ${  e.status == 'start' ? 'bg-gray-500'
-                    : e.status == 'end' ? 'bg-yellow-500'
-                    : 'bg-red-500'}
-                  `}>{e.name} {e.status}</span>
+                  ${  e.lo?.last_report?.status == 'ongoing' ? 'bg-green-500'
+                    : e.lo?.last_report?.status == 'arrive' ? 'bg-yellow-500'
+                    : e.lo?.last_report?.status == 'trouble' ? 'bg-red-500'
+                    : ''}
+                  `}>{e.name}</span>
               </h1>
               <p className="text-sm" style={{ marginBottom: 0}}>Tanggal</p>
               <p className="" style={{ margin: 0, fontSize: '16px' }}>
-                {(new Date(e.date_at)).toLocaleDateString('id', {year: 'numeric', month: 'long', day: 'numeric'})}
+                {(new Date(e.lo?.last_report?.date || e.date_at)).toLocaleDateString('id', {year: 'numeric', month: 'long', day: 'numeric'})}
               </p>
               <p className="text-sm" style={{ marginBottom: 0 }}>Jam</p>
               <p className="" style={{ margin: 0, fontSize: '16px' }}>
-                {(new Date(`${e.date_at} ${e.time_at}`)).toLocaleTimeString('id', {hour: '2-digit', minute: '2-digit'}) + ' WIB'}
+                {(new Date(`${e.lo?.last_report?.date || e.date_at} ${e.lo?.last_report?.time || e.time_at}`)).toLocaleTimeString('id', {hour: '2-digit', minute: '2-digit'}) + ' WIB'}
               </p>
               <div className="flex items-center justify-between">
                 <p>LO: {e.lo ? e.lo.name : '-'}</p>

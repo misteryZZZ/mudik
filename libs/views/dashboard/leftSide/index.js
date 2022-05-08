@@ -24,7 +24,7 @@ const LeftSide = ({ maps, trips, checkpoint, status, scaned }) => {
               <p className="font-semibold text-lg text-maincolor tracking-widest">Total scan e-ticket: {scaned}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <SectionMap maps={maps} />
-                <div className="w-px h-[272px]" />
+                <div className="w-px md:h-[272px]" />
                 {/*<div className="border-2 border-gray-400 rounded-lg p-3 overflow-y-auto h-[272px]">
                   {trips.map((e,i) => (
                     <DetilJumlah
